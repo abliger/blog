@@ -81,10 +81,6 @@ export async function filesToSidebar(files: Object): Promise<SidebarItem[]> {
     }
     return sidebar
 }
-export async function getSidebar(srcDir: string): Promise<SidebarItem[]> {
-    let java = getUrlFile(srcDir, ["md"])
-    return filesToSidebar(java)
-}
 // 获得文件名
 function getFileName(dir: string): string {
     return dir.split('/').pop()?.split('.').shift() as string

@@ -3,9 +3,7 @@ import { themeConfig } from './themeConfig.mts';
 import { markdown } from './markdown.mts';
 import { viteDemoPreviewPlugin } from '@vitepress-code-preview/plugin'
 import vueJsx from '@vitejs/plugin-vue-jsx'
-import { getUrlFile } from '../util/getUrlFile';
-import { archiveDir } from './file.mts';
-let dir = getUrlFile('./doc/')
+import { dir, getFileNameByNextOrPrev } from './file.mts';
 export default {
     title: "Blog",
     description: "Abliger's Blog",
@@ -22,13 +20,39 @@ export default {
     lastUpdated: true,
     ignoreDeadLinks: true,
     transformPageData(pageData, ctx) {
-        let t = pageData.relativePath.split('/')
-        let childSider = archiveDir[`/${t.shift()}`] as DefaultTheme.SidebarItem[]
-        if (!childSider) {
-            return
-        }
-        console.log(childSider);
 
+        let path = pageData.relativePath
+
+        // 寻找 dir 中的 path 对应的 index
+        const index = dir.findIndex(item => item === path);
+        if (index == 0) {
+            pageData.frontmatter = {
+                next: {
+                    text: getFileNameByNextOrPrev(dir[index + 1]),
+                    link: dir[index + 1]
+                }
+            }
+        } else if (index === dir.length - 1) {
+            console.log(getFileNameByNextOrPrev(dir[index]));
+
+            pageData.frontmatter = {
+                prev: {
+                    text: getFileNameByNextOrPrev(dir[index - 1]),
+                    link: dir[index - 1]
+                },
+            }
+        } else {
+            pageData.frontmatter = {
+                next: {
+                    text: getFileNameByNextOrPrev(dir[index + 1]),
+                    link: dir[index + 1]
+                },
+                prev: {
+                    text: getFileNameByNextOrPrev(dir[index - 1]),
+                    link: dir[index - 1]
+                },
+            }
+        }
 
 
         // if (!weakMap.has(new String(t[0]))) {
@@ -37,16 +61,7 @@ export default {
         // }
         // let filedir = weakMap.get(new String(t[0]))
         // console.log(filedir)
-        pageData.frontmatter = {
-            prev: {
-                text: "Markdown",
-                link: "/java/Swagger/Swagger"
-            },
-            next: {
-                text: "Markdown",
-                link: "/java/Swagger/Swagger"
-            }
-        }
+
     },
     locales: {
         root: {
