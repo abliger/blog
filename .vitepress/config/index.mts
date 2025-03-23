@@ -3,7 +3,13 @@ import { themeConfig } from './themeConfig.mts';
 import { markdown } from './markdown.mts';
 import { viteDemoPreviewPlugin } from '@vitepress-code-preview/plugin'
 import vueJsx from '@vitejs/plugin-vue-jsx'
-import { dir, getFileNameByNextOrPrev } from './file.mts';
+import { getFileURLToNextOrPrev } from './file.mts';
+
+let vite = {
+    assetsInclude: '**/*.html',
+    plugins: [viteDemoPreviewPlugin(), vueJsx()],
+}
+
 export default {
     title: "Blog",
     description: "Abliger's Blog",
@@ -20,48 +26,8 @@ export default {
     lastUpdated: true,
     ignoreDeadLinks: true,
     transformPageData(pageData, ctx) {
-
         let path = pageData.relativePath
-
-        // 寻找 dir 中的 path 对应的 index
-        const index = dir.findIndex(item => item === path);
-        if (index == 0) {
-            pageData.frontmatter = {
-                next: {
-                    text: getFileNameByNextOrPrev(dir[index + 1]),
-                    link: dir[index + 1]
-                }
-            }
-        } else if (index === dir.length - 1) {
-            console.log(getFileNameByNextOrPrev(dir[index]));
-
-            pageData.frontmatter = {
-                prev: {
-                    text: getFileNameByNextOrPrev(dir[index - 1]),
-                    link: dir[index - 1]
-                },
-            }
-        } else {
-            pageData.frontmatter = {
-                next: {
-                    text: getFileNameByNextOrPrev(dir[index + 1]),
-                    link: dir[index + 1]
-                },
-                prev: {
-                    text: getFileNameByNextOrPrev(dir[index - 1]),
-                    link: dir[index - 1]
-                },
-            }
-        }
-
-
-        // if (!weakMap.has(new String(t[0]))) {
-        //     let filedir = getUrlFile(`./doc/${t[0]}`)
-        //     weakMap.set(new String(t[0]), filedir)
-        // }
-        // let filedir = weakMap.get(new String(t[0]))
-        // console.log(filedir)
-
+        pageData.frontmatter = Object.assign({}, pageData.frontmatter, getFileURLToNextOrPrev(path))
     },
     locales: {
         root: {
@@ -71,7 +37,5 @@ export default {
     },
     themeConfig,
     markdown,
-    vite: {
-        plugins: [viteDemoPreviewPlugin(), vueJsx()],
-    },
+    vite
 } as UserConfig<DefaultTheme.Config>

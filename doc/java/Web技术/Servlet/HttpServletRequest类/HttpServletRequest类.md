@@ -227,4 +227,4 @@ public class Servlet2 extends HttpServlet {
 
 有一个特殊的情况:
 
-response.sendredirect("/”); 把斜杠发送给浏览器解析. [http://ip:port](http://ip:port "http://ip:port")
+response.sendredirect("/“); 把斜杠发送给浏览器解析. [http://ip:port](http://ip:port "http://ip:port")

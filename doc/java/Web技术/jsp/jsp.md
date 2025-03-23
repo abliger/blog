@@ -86,7 +86,7 @@ jsp 其实它就是一个 Servlet 程序.
 
 ### EL 表达式，获取域对象数据（重点）
 
-使用 EL 表达式获取数据的语法： "\${标识符}”
+使用 EL 表达式获取数据的语法： "\${标识符}“
 
 第一点：当 EL 表达式输出的 key 不存在的时候，输出的是空串""
 
@@ -108,7 +108,7 @@ EL 表达式语句在执行时，会用标识符为关键字分别从 page、req
   ${ user.username }  // 获取user对象中。username属性值
   ${ list[下标] }     // 访问有序集合（或数组）中给定索引的元素
   ${ map.key }       // 访问map集合中指定key的属性值
-  ${  map["key”]  }  // 访问特殊字符串的key的属性值
+  ${  map["key“]  }  // 访问特殊字符串的key的属性值
 
 
   <%@ page contentType="text/html;charset=UTF-8" language="java" %>

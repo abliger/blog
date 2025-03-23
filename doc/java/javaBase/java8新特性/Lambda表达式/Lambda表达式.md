@@ -360,7 +360,7 @@ long applyAsLong(long left, long right)
 
 Lambda 表达式是用来给【函数式接口】的变量或形参赋值用的。
 
-其实本质上，Lambda 表达式是用于实现【函数式接口】的"抽象方法”
+其实本质上，Lambda 表达式是用于实现【函数式接口】的"抽象方法“
 
 Lambda 表达式语法格式
 

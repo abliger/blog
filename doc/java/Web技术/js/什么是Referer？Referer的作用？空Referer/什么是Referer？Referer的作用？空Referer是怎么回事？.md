@@ -41,7 +41,7 @@ Referer=<https://www.sojson.com>
 
 那么什么时候 [HTTP](https://www.sojson.com/tag_http.html "HTTP") 请求会不包含 [Referer](https://www.sojson.com/tag_referer.html "Referer") 字段呢？根据 Referer 的定义，它的作用是指示一个请求是从哪里链接过来，那么当一个请求并不是由链接触发产生的，那么自然也就不需要指定这个请求的链接来源。
 
-比如，直接在浏览器的地址栏中输入一个资源的 URL 地址，那么这种请求是不会包含 [Referer](https://www.sojson.com/tag_referer.html "Referer") 字段的，因为这是一个"凭空产生”的 [HTTP](https://www.sojson.com/tag_http.html "HTTP") 请求，并不是从一个地方链接过去的。 &#x20;
+比如，直接在浏览器的地址栏中输入一个资源的 URL 地址，那么这种请求是不会包含 [Referer](https://www.sojson.com/tag_referer.html "Referer") 字段的，因为这是一个"凭空产生“的 [HTTP](https://www.sojson.com/tag_http.html "HTTP") 请求，并不是从一个地方链接过去的。 &#x20;
 
 ### 那么在防盗链设置中，允许空 Referer 和不允许空 Referer 有什么区别？
 

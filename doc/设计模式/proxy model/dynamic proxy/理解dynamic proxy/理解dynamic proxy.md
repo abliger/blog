@@ -246,7 +246,7 @@ class Proxy{
 }
 ```
 
-1、需要说明的一点是，Proxy 类中 getProxyClass 方法返回的是 Proxy 的 Class 类。之所以说明，是因为我一开始犯了个低级错误，以为返回的是"被代理类的 Class 类”- -！推荐看一下 getProxyClass 的源码，很长=。=  &#x20;
+1、需要说明的一点是，Proxy 类中 getProxyClass 方法返回的是 Proxy 的 Class 类。之所以说明，是因为我一开始犯了个低级错误，以为返回的是"被代理类的 Class 类“- -！推荐看一下 getProxyClass 的源码，很长=。=  &#x20;
 
 2、从\$Proxy0 的源码可以看出，动态代理类不仅代理了显示定义的接口中的方法，而且还代理了 java 的根类 Object 中的继承而来的 equals()、hashcode()、toString()这三个方法，并且仅此三个方法。[例子](https://www.cnblogs.com/vinozly/p/4925062.html "例子")
 

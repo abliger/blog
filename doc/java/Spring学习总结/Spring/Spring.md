@@ -30,7 +30,7 @@ Spring enables you to build applications from "plain old Java objects" (POJOs) a
 
 #### Dependency Injection and Inversion of Control
 
-Spring 框架控制反转(IoC)组件通过提供一种形式化的方法来将不同的组件组成一个可以正常使用的应用程序，从而解决了这一问题。 Spring 框架将形式化的设计模式编码为一流的对象，您可以将其集成到自己的应用程序中。许多组织和机构都以这种方式使用 Spring Framework 来设计健壮的，"可维护的”应用程序。
+Spring 框架控制反转(IoC)组件通过提供一种形式化的方法来将不同的组件组成一个可以正常使用的应用程序，从而解决了这一问题。 Spring 框架将形式化的设计模式编码为一流的对象，您可以将其集成到自己的应用程序中。许多组织和机构都以这种方式使用 Spring Framework 来设计健壮的，"可维护的“应用程序。
 
 尽管 Java 平台提供了丰富的应用程序开发功能，但它缺乏将基本构建块组织成一个连贯的整体的方法，而将任务留给了架构师和开发人员。尽管您可以使用诸如\* Factory ， Abstract Factory ， Builder ， Decorator 和 Service Locator \*之类的设计模式来构成组成应用程序的各种类和对象实例，但是这些模式仅是：给出最佳名称的最佳做法，并描述该模式的作用，应用方式，解决的问题等等。模式是形式化的最佳实践，您必须在应用程序中实现自己。
 

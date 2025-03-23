@@ -7,9 +7,11 @@ import DefaultTheme from 'vitepress/theme'
 import './style.css'
 import DemoPreview, { useComponents } from '@vitepress-code-preview/container'
 import '@vitepress-code-preview/container/dist/style.css'
+import Layout from './Layout.vue'
+
 export default {
   extends: DefaultTheme,
-  Layout: DefaultTheme.Layout,
+  Layout: Layout,
   enhanceApp({ app, router, siteData }: EnhanceAppContext) {
     app.use(TwoslashFloatingVue)
     useComponents(app, DemoPreview)

@@ -1,30 +1,30 @@
-# Restful和拦截器
+# Restful 和拦截器
 
 ## 目录
 
-- [Restful风格](#Restful风格)
+- [Restful 风格](#Restful风格)
   - [Restful 风格的介绍](#Restful-风格的介绍)
     - [原则条件](#原则条件)
-  - [如何学习restful风格，这里需要明确两点：](#如何学习restful风格这里需要明确两点)
+  - [如何学习 restful 风格，这里需要明确两点：](#如何学习restful风格这里需要明确两点)
     - [就是把传统的请求参数加入到请求地址是什么样子？](#就是把传统的请求参数加入到请求地址是什么样子)
-    - [restful风格中请求方式GET、POST、PUT、DELETE分别表示查、增、改、删。](#restful风格中请求方式GETPOSTPUTDELETE分别表示查增改删)
-    - [SpringMVC中如何发送GET请求、POST请求、PUT请求、DELETE请求。](#SpringMVC中如何发送GET请求POST请求PUT请求DELETE请求)
-  - [Restful风格的Controller如何实现](#Restful风格的Controller如何实现)
-  - [Restful风格在高版本Tomcat中无法转发到jsp页面](#Restful风格在高版本Tomcat中无法转发到jsp页面)
+    - [restful 风格中请求方式 GET、POST、PUT、DELETE 分别表示查、增、改、删。](#restful风格中请求方式GETPOSTPUTDELETE分别表示查增改删)
+    - [SpringMVC 中如何发送 GET 请求、POST 请求、PUT 请求、DELETE 请求。](#SpringMVC中如何发送GET请求POST请求PUT请求DELETE请求)
+  - [Restful 风格的 Controller 如何实现](#Restful风格的Controller如何实现)
+  - [Restful 风格在高版本 Tomcat 中无法转发到 jsp 页面](#Restful风格在高版本Tomcat中无法转发到jsp页面)
   - [@PathVariable 路径参数获取](#PathVariable-路径参数获取)
 - [文件上传](#文件上传)
   - [准备一个文件上传的表单](#准备一个文件上传的表单)
-  - [导入文件上传需要的jar包](#导入文件上传需要的jar包)
+  - [导入文件上传需要的 jar 包](#导入文件上传需要的jar包)
   - [配置文件上传解析器](#配置文件上传解析器)
-  - [编写文件上传的Controller控制器中的代码：](#编写文件上传的Controller控制器中的代码)
-  - [使用ResponseEntity返回值处理文件下载](#使用ResponseEntity返回值处理文件下载)
-- [HandlerInterceptor拦截器](#HandlerInterceptor拦截器)
-  - [HandlerInterceptor拦截器的介绍](#HandlerInterceptor拦截器的介绍)
-  - [单个HandlerInterceptor拦截器的示例](#单个HandlerInterceptor拦截器的示例)
+  - [编写文件上传的 Controller 控制器中的代码：](#编写文件上传的Controller控制器中的代码)
+  - [使用 ResponseEntity 返回值处理文件下载](#使用ResponseEntity返回值处理文件下载)
+- [HandlerInterceptor 拦截器](#HandlerInterceptor拦截器)
+  - [HandlerInterceptor 拦截器的介绍](#HandlerInterceptor拦截器的介绍)
+  - [单个 HandlerInterceptor 拦截器的示例](#单个HandlerInterceptor拦截器的示例)
   - [单个拦截器异常时的执行顺序](#单个拦截器异常时的执行顺序)
   - [多个拦截器的执行介绍：](#多个拦截器的执行介绍)
 
-# Restful风格
+# Restful 风格
 
 ## Restful 风格的介绍
 
@@ -45,13 +45,12 @@ public @ResponseBody List<Person> findAll(){
 }
 ```
 
-
-**Restful是一种设计风格。对于我们Web开发人员来说。就是使用一个url地址表示一个唯一的资源。然后把原来的请求参数加入到请求资源地址中。然后原来请求的增，删，改，查操作。改为使用HTTP协议中请求方式GET、POST、PUT、DELETE表示。**
+**Restful 是一种设计风格。对于我们 Web 开发人员来说。就是使用一个 url 地址表示一个唯一的资源。然后把原来的请求参数加入到请求资源地址中。然后原来请求的增，删，改，查操作。改为使用 HTTP 协议中请求方式 GET、POST、PUT、DELETE 表示。**
 
 1. 把请求参数加入到请求的资源地址中
-2. 原来的增，删，改，查。使用HTTP请求方式，POST、DELETE、PUT、GET分别一一对应。
+2. 原来的增，删，改，查。使用 HTTP 请求方式，POST、DELETE、PUT、GET 分别一一对应。
 
-## 如何学习restful风格，这里需要明确两点：
+## 如何学习 restful 风格，这里需要明确两点：
 
 ### 就是把传统的请求参数加入到请求地址是什么样子？
 
@@ -59,47 +58,47 @@ public @ResponseBody List<Person> findAll(){
 
 比如：[http://ip](http://ip "http://ip"):port/工程名/资源名?请求参数
 
-举例：[http://127.0.0.1:8080/springmvc/book?action=delete\&id=1](http://127.0.0.1:8080/springmvc/book?action=delete\&id=1 "http://127.0.0.1:8080/springmvc/book?action=delete\&id=1")
+举例：[http://127.0.0.1:8080/springmvc/book?action=delete\&id=1](http://127.0.0.1:8080/springmvc/book?action=delete&id=1 "http://127.0.0.1:8080/springmvc/book?action=delete&id=1")
 
-restful风格是：
+restful 风格是：
 
 比如：[http://ip](http://ip "http://ip"):port/工程名/资源名/请求参数/请求参数
 
 举例：[http://127.0.0.1:8080/springmvc/book/delete/1](http://127.0.0.1:8080/springmvc/book/delete/1 "http://127.0.0.1:8080/springmvc/book/delete/1")
 
-请求的动作删除由请求方式delete决定
+请求的动作删除由请求方式 delete 决定
 
-### restful风格中请求方式GET、POST、PUT、DELETE分别表示查、增、改、删。
+### restful 风格中请求方式 GET、POST、PUT、DELETE 分别表示查、增、改、删。
 
-GET请求    对应   查询
+GET 请求 对应 查询
 
-[http://ip](http://ip "http://ip"):port/工程名/book/1    HTTP请求GET    表示要查询id为1的图书
+[http://ip](http://ip "http://ip"):port/工程名/book/1 HTTP 请求 GET 表示要查询 id 为 1 的图书
 
-[http://ip](http://ip "http://ip"):port/工程名/book      HTTP请求GET    表示查询全部的图书
+[http://ip](http://ip "http://ip"):port/工程名/book HTTP 请求 GET 表示查询全部的图书
 
-POST请求  对应  添加
+POST 请求 对应 添加
 
-[http://ip](http://ip "http://ip"):port/工程名/book      HTTP请求POST    表示要添加一个图书
+[http://ip](http://ip "http://ip"):port/工程名/book HTTP 请求 POST 表示要添加一个图书
 
-PUT请求    对应  修改
+PUT 请求 对应 修改
 
-[http://ip](http://ip "http://ip"):port/工程名/book/1    HTTP请求PUT    表示要修改id为1的图书信息
+[http://ip](http://ip "http://ip"):port/工程名/book/1 HTTP 请求 PUT 表示要修改 id 为 1 的图书信息
 
-DELETE请求  对应  删除
+DELETE 请求 对应 删除
 
-[http://ip](http://ip "http://ip"):port/工程名/book/1    HTTP请求DELETE    表示要删除id为1的图书信息
+[http://ip](http://ip "http://ip"):port/工程名/book/1 HTTP 请求 DELETE 表示要删除 id 为 1 的图书信息
 
-### SpringMVC中如何发送GET请求、POST请求、PUT请求、DELETE请求。
+### SpringMVC 中如何发送 GET 请求、POST 请求、PUT 请求、DELETE 请求。
 
-我们知道发起GET请求和POST请求，只需要在表单的form标签中，设置method=”get” 就是GET请求。
+我们知道发起 GET 请求和 POST 请求，只需要在表单的 form 标签中，设置 method=“get“ 就是 GET 请求。
 
-设置form标签的method=”post”。就会发起POST请求。而PUT请求和DELETE请求。要如何发起呢。
+设置 form 标签的 method=“post“。就会发起 POST 请求。而 PUT 请求和 DELETE 请求。要如何发起呢。
 
-1. 要有post请求的form标签
-2. 在form表单中，添加一个额外的隐藏域\_method=”PUT”或\_method=”DELETE”
-3. 在web.xml中配置一个Filter过滤器org.springframework.web.filter.HiddenHttpMethodFilter（注意，这个Filter一定要在处理乱码的Filter后面）
+1. 要有 post 请求的 form 标签
+2. 在 form 表单中，添加一个额外的隐藏域\_method=“PUT“或\_method=“DELETE“
+3. 在 web.xml 中配置一个 Filter 过滤器 org.springframework.web.filter.HiddenHttpMethodFilter（注意，这个 Filter 一定要在处理乱码的 Filter 后面）
 
-## Restful风格的Controller如何实现
+## Restful 风格的 Controller 如何实现
 
 jsp:
 
@@ -124,7 +123,6 @@ jsp:
   <input type="submit" value="删除图书" />
 </form>
 ```
-
 
 controller
 
@@ -158,21 +156,20 @@ public String deleteBookById() {
 }
 ```
 
+## Restful 风格在高版本 Tomcat 中无法转发到 jsp 页面
 
-## Restful风格在高版本Tomcat中无法转发到jsp页面
-
-在Tomcat8之后的一些高版本，使用restful风格访问然后转发到jsp页面。就会有如下的错误提示：
+在 Tomcat8 之后的一些高版本，使用 restful 风格访问然后转发到 jsp 页面。就会有如下的错误提示：
 
 1. 使用请求重定向 \<br/>
-2. 在jsp页面的page指定中设置 isErrorPage=true.
+2. 在 jsp 页面的 page 指定中设置 isErrorPage=true.
 
 ![  ](image/wps7_xvL_OfsM3j.jpg "  ")
 
 ## @PathVariable 路径参数获取
 
-前面我们已经知道如何编写和配置restful风格的请求和控制器。
+前面我们已经知道如何编写和配置 restful 风格的请求和控制器。
 
-那么 现在的问题是。如何接收restful风格请求的参数。比如前面的id值。
+那么 现在的问题是。如何接收 restful 风格请求的参数。比如前面的 id 值。
 
 ```java
 /**
@@ -195,42 +192,47 @@ public String findBookById(
 }
 ```
 
-
 # 文件上传
 
-文件上传在SpringMVC中如何实现：
+文件上传在 SpringMVC 中如何实现：
 
-准备工作前端控制器 , SpringMVC两个标配
+准备工作前端控制器 , SpringMVC 两个标配
 
 1. 准备一个文件上传的表单
-2. 导入文件上传需要的jar包
+2. 导入文件上传需要的 jar 包
 
 - commons-fileupload-1.2.1.jar
 - commons-io-1.4.jar
 
-1. 配置文件上传解析器  **CommonsMultipartResolver**
-2. 配置Controller控制器的代码
+1. 配置文件上传解析器 **CommonsMultipartResolver**
+2. 配置 Controller 控制器的代码
 
 ## 准备一个文件上传的表单
 
 ```html
-<html>  
-    <head>    
-        <title>$Title$</title>  
-    </head>
-    <body>   
-        <%-- 准备一个文件上传的表单 --%>    
-        <form action="${pageContext.request.contextPath}/upload" enctype="multipart/form-data" method="post">
-            用户名:<input type="text" name="username"/>  <br/>        
-            头像: <input type="file" name="photo"/> <br/>        
-            <input name="send" type="submit"/>    
-        </form>
-    </body>
+<html>
+    
+  <head>
+        
+    <title>$Title$</title>
+      
+  </head>
+  <body>
+        <%-- 准备一个文件上传的表单 --%>    
+    <form
+      action="${pageContext.request.contextPath}/upload"
+      enctype="multipart/form-data"
+      method="post"
+    >
+      用户名:<input type="text" name="username" />  <br />         头像:
+      <input type="file" name="photo" /> <br />        
+      <input name="send" type="submit" />    
+    </form>
+  </body>
 </html>
 ```
 
-
-## 导入文件上传需要的jar包
+## 导入文件上传需要的 jar 包
 
 commons-fileupload-1.2.1.jar
 
@@ -249,8 +251,7 @@ commons-io-1.4.jar
 </bean>
 ```
 
-
-## 编写文件上传的Controller控制器中的代码：
+## 编写文件上传的 Controller 控制器中的代码：
 
 ```java
 /**
@@ -281,8 +282,7 @@ commons-io-1.4.jar
     }
 ```
 
-
-## 使用ResponseEntity返回值处理文件下载
+## 使用 ResponseEntity 返回值处理文件下载
 
 ```java
 /**
@@ -317,26 +317,25 @@ commons-io-1.4.jar
 }
 ```
 
+# HandlerInterceptor 拦截器
 
-# HandlerInterceptor拦截器
+## HandlerInterceptor 拦截器的介绍
 
-## HandlerInterceptor拦截器的介绍
-
-SpringMVC的拦截器和JavaWeb的Filter过滤器非常接近.( 就是对请求的目标资源进行拦截,做一些操作,然后决定是否放行. )
+SpringMVC 的拦截器和 JavaWeb 的 Filter 过滤器非常接近.( 就是对请求的目标资源进行拦截,做一些操作,然后决定是否放行. )
 
 使用的步骤如下:
 
-1. 先编写一个类去实现HandlerInterceptor接口
+1. 先编写一个类去实现 HandlerInterceptor 接口
 2. 实现拦截器的方法
-3. 到springMVC.xml中去配置拦截器的拦截路径
+3. 到 springMVC.xml 中去配置拦截器的拦截路径
 
-## 单个HandlerInterceptor拦截器的示例
+## 单个 HandlerInterceptor 拦截器的示例
 
-1、编写一个类去实现HandlerInterceptor接口
+1、编写一个类去实现 HandlerInterceptor 接口
 
-2、到Spring的容器配置文件中去配置拦截器，让SpringMVC知道都拦截哪些目标方法
+2、到 Spring 的容器配置文件中去配置拦截器，让 SpringMVC 知道都拦截哪些目标方法
 
-Controller中的代码:
+Controller 中的代码:
 
 ```java
 @Controller
@@ -348,7 +347,6 @@ public class HelloController {
    }
 }
 ```
-
 
 拦截器:
 
@@ -393,8 +391,7 @@ public class FirstHandlerInceptor implements HandlerInterceptor {
 }
 ```
 
-
-SpringMVC的配置文件:
+SpringMVC 的配置文件:
 
 ```xml
 <!-- 配置拦截器 -->
@@ -413,66 +410,65 @@ SpringMVC的配置文件:
 </mvc:interceptors>
 ```
 
-
 正常情况下.它拉执行顺序是:
 
-preHandle()  ==>>  目标方法  ==>> postHandle()  ==>>  渲染页面  ==>> afterCompletion()&#x20;
+preHandle() ==>> 目标方法 ==>> postHandle() ==>> 渲染页面 ==>> afterCompletion()&#x20;
 
 ## 单个拦截器异常时的执行顺序
 
-一：目标方法前返回false的情况：
+一：目标方法前返回 false 的情况：
 
-1. 目标方法前执行   返回false
-2. 这是目标方法      不执行
-3. 目标方法之后      不执行
-4. 这是渲染页面      不执行
-5. 页面渲染完成！    不执行
+1. 目标方法前执行 返回 false
+2. 这是目标方法 不执行
+3. 目标方法之后 不执行
+4. 这是渲染页面 不执行
+5. 页面渲染完成！ 不执行
 
-二：目标方法前返回true的情况，目标方法异常
+二：目标方法前返回 true 的情况，目标方法异常
 
-1. 目标方法前执行   返回true
-2. 这是目标方法      异常
-3. 目标方法之后      不执行
-4. 这是渲染页面      渲染异常页面
-5. 页面渲染完成！    执行
+1. 目标方法前执行 返回 true
+2. 这是目标方法 异常
+3. 目标方法之后 不执行
+4. 这是渲染页面 渲染异常页面
+5. 页面渲染完成！ 执行
 
-三：目标方法前返回true的情况，目标方法后异常
+三：目标方法前返回 true 的情况，目标方法后异常
 
-1. 目标方法前执行   返回true
-2. 这是目标方法      执行
-3. 目标方法之后      异常
-4. 这是渲染页面      渲染异常页面
-5. 页面渲染完成！    执行
+1. 目标方法前执行 返回 true
+2. 这是目标方法 执行
+3. 目标方法之后 异常
+4. 这是渲染页面 渲染异常页面
+5. 页面渲染完成！ 执行
 
-四：目标方法前返回true的情况，渲染页面异常
+四：目标方法前返回 true 的情况，渲染页面异常
 
-1. 目标方法前执行   返回true
-2. 这是目标方法      执行
-3. 目标方法之后      执行
-4. 这是渲染页面      异常
-5. 页面渲染完成！    执行
+1. 目标方法前执行 返回 true
+2. 这是目标方法 执行
+3. 目标方法之后 执行
+4. 这是渲染页面 异常
+5. 页面渲染完成！ 执行
 
 ## 多个拦截器的执行介绍：
 
 ![  ](image/1575693-20190304145305454-1179901883_CLkg0Hx5DC.png "  ")
 
-frist preHandle()           第一个前置
+frist preHandle() 第一个前置
 
-second preHandle()         第一个前置
+second preHandle() 第一个前置
 
-这是controller#hello()       目标方法
+这是 controller#hello() 目标方法
 
-second postHandle()         第二个后置
+second postHandle() 第二个后置
 
-frist postHandle()             第一个后置
+frist postHandle() 第一个后置
 
-这是ok.jsp页面                  渲染页面
+这是 ok.jsp 页面 渲染页面
 
-second afterCompletion()       第二个页面渲染完成
+second afterCompletion() 第二个页面渲染完成
 
-frist afterCompletion()         第一个页面渲染完成
+frist afterCompletion() 第一个页面渲染完成
 
-多个拦截器异常情况下,我们只需要记住一点 : **如果preHandle() 方法返回了true.它的afterCompletion() 方法就一定会执行,由于目标方法不执行,所以postHandle()不会执行**
+多个拦截器异常情况下,我们只需要记住一点 : **如果 preHandle() 方法返回了 true.它的 afterCompletion() 方法就一定会执行,由于目标方法不执行,所以 postHandle()不会执行**
 
 ```xml
 <mvc:interceptors>
@@ -487,5 +483,4 @@ frist afterCompletion()         第一个页面渲染完成
     </mvc:interceptors>
 ```
 
-
-[Restful风格实现的CRUD图书](Restful风格实现的CRUD图书/Restful风格实现的CRUD图书.md "Restful风格实现的CRUD图书")
+[Restful 风格实现的 CRUD 图书](Restful风格实现的CRUD图书/Restful风格实现的CRUD图书.md "Restful风格实现的CRUD图书")

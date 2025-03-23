@@ -254,7 +254,7 @@ public class Car {
 
 实验 26：`[SpEL 测试 I]` 在 SpEL 中使用字面量
 
-使用格式：`#{数值} #{"字符串” || ‘字符串’}`
+使用格式：`#{数值} #{"字符串“ || '字符串'}`
 
 ```xml
 <bean id="person" class="com.atguigu.pojo.Person">

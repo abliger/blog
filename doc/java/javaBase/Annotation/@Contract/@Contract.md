@@ -26,11 +26,11 @@ IntelliJ IDEA 中 @Contract 注释通过定义方法参数和返回值之间的�
 
 该 @Contract 注释值的语法如下：
 
-- contract ::= (clause ‘;’)\* clause
-- clause ::= args ‘->’ effect
-- args ::= ((arg ‘,’)\* arg )?
+- contract ::= (clause ';')\* clause
+- clause ::= args '->' effect
+- args ::= ((arg ',')\* arg )?
 - arg ::= value-constraint
-- value-constraint ::= ‘ \_’ | ‘null’ | ‘!null’ | ‘false’ | ‘true’
+- value-constraint ::= ' \_' | 'null' | '!null' | 'false' | 'true'
 - effect ::= value-constraint | 'fail' | 'this' | 'new' | 'param\<N>'
 
 这里的约束是：
@@ -55,4 +55,4 @@ The additional return values denote the following:
 
 value 属性包含描述调用参数和返回值之间的因果关系的 contract 子句。
 
-pure 属性适用于不更改其对象状态的方法，但只返回一个新值。该属性可以用作"忽略方法调用的结果”检查的提示，以指示在调用时应该使用方法的返回值。它是假（false）（默认情况下），也可以为真（true）。
+pure 属性适用于不更改其对象状态的方法，但只返回一个新值。该属性可以用作"忽略方法调用的结果“检查的提示，以指示在调用时应该使用方法的返回值。它是假（false）（默认情况下），也可以为真（true）。

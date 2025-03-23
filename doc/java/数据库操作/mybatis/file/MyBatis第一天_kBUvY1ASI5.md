@@ -24,7 +24,7 @@ javaBean 数据库表 操作 javaBean 直接映射到数据库表
 
 原是 apache 的一个开源项目 iBatis, 2010 年 6 月这个项目由 apache software foundation 迁移到了 google code，随着开发团队转投 Google Code 旗下，ibatis3.x 正式更名为 Mybatis ，代码于 2013 年 11 月迁移到 Github。
 
-iBATIS 一词来源于"internet”和"abatis”的组合，是一个基于 Java 的持久层框架。
+iBATIS 一词来源于"internet“和"abatis“的组合，是一个基于 Java 的持久层框架。
 
 iBATIS 提供的持久层框架包括 SQL Maps 和 Data Access Objects（DAO）
 

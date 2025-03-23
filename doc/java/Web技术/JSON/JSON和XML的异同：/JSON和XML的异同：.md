@@ -8,7 +8,7 @@
 ## 类似 XML
 
 - JSON 是纯文本
-- JSON 具有"自我描述性”（人类可读）
+- JSON 具有"自我描述性“（人类可读）
 - JSON 具有层级结构（值中存在值）
 - JSON 可通过 JavaScript 进行解析
 - JSON 数据可使用 AJAX 进行传输

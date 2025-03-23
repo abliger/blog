@@ -236,7 +236,7 @@ public void testSelectMapsPage() {
 
 #### 逻辑删除
 
-逻辑删除：假删除，将对应数据中代表是否被删除字段的状态修改为"被删除状态”，之后在数据库中仍旧能看到此条数据记录
+逻辑删除：假删除，将对应数据中代表是否被删除字段的状态修改为"被删除状态“，之后在数据库中仍旧能看到此条数据记录
 
 1. **数据库修改** 添加 deleted 字段
 
@@ -340,7 +340,7 @@ BaseMapper 的具体方法有如下内容
 | **between**      | BETWEEN 条件语句                 |
 | **notBetween**   | NOTBETWEEN 条件语句              |
 | **addFilter**    | 自由拼接 SQL                     |
-| **last**         | 拼接在最后，例如：last("LIMIT1”) |
+| **last**         | 拼接在最后，例如：last("LIMIT1“) |
 
 它的架构
 

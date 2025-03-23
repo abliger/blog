@@ -331,7 +331,7 @@ POST /atguigu/_delete_by_query {
 "query":{ "match":{ "title":"手机"}
  }
 }
-#这样写表示在atguigu索引库中将所有表中的title字段带有‘手机’的文档删除
+#这样写表示在atguigu索引库中将所有表中的title字段带有'手机'的文档删除
 #当然也可以指定在某个库的某个表中直接按着查询条件删除，例如：
 POST /atguigu/goods/_delete_by_query {
   "query":{
@@ -410,7 +410,7 @@ GET /{index}/_search
        }
      }
    }
-   #注意：title默认会分词哦，而且分词之后的的‘小米’和’手机’是”或”的关系
+   #注意：title默认会分词哦，而且分词之后的的'小米'和'手机'是“或“的关系
 
    GET /atguigu/_search
    {
@@ -587,7 +587,7 @@ GET /{index}/_search
      },
      "highlight": {
      "fields": {"title": {}},
-     "pre_tags": "<em class=’color:red’>",
+     "pre_tags": "<em class='color:red'>",
      "post_tags": "</em>"
      }
    }

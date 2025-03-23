@@ -1,9 +1,10 @@
 ---
-layout: home
+layout: page
 
 hero:
-  name: "Blog"
-  text: "Abliger's Blog"
+  name: Blog
+  text: Abliger's Blog
 ---
 
-test
+{{ $frontmatter }}
+yrdy

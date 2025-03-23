@@ -112,7 +112,7 @@ public void test1(){
 
 <context:include-filter /> 设置包含的内容
 
-注意：通常需要与 use-default-filters 属性配合使用才能够达到"仅包含某些组件”这样的效果。
+注意：通常需要与 use-default-filters 属性配合使用才能够达到"仅包含某些组件“这样的效果。
 
 即：通过将 use-default-filters 属性设置为 false，
 

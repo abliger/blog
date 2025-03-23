@@ -22,15 +22,18 @@ export function getUrlFile(dir: string, fileType: string[] = [], srcExclude: str
     let res = {}
     let file = files.shift() as { name: string, isFile: boolean } | undefined
     while (file) {
+        if (srcExcludeReg.some((reg) => reg.test(file!.name))) {
+            file = files.shift();
+            continue
+        }
         if (file.isFile) {
-            if (fileTypeReg.some(reg => reg.test(file!.name)) && !srcExcludeReg.some((reg) => reg.test(file!.name))) {
+            if (fileTypeReg.some(reg => reg.test(file!.name))) {
                 if (res['index']) {
                     res['index'].push(shifeFirstD(file.name))
                 } else {
                     res['index'] = [shifeFirstD(file.name)]
                 }
             }
-
         } else {
             let files = getUrlFile(file.name, fileType, srcExclude)
             if (Object.keys(files).length) {
@@ -52,34 +55,45 @@ type SidebarItem = DefaultTheme.SidebarItem
  * @returns 
  */
 export async function filesToSidebar(files: Object): Promise<SidebarItem[]> {
-    let sidebar: SidebarItem[] = []
-    for (let key in files) {
-        if (key === 'index') {
-            continue
-        }
-        let item: SidebarItem = {
-            text: key,
-            link: files[key]['index'].length > 1 ? undefined : encodeURI(files[key]['index'][0]),
-            collapsed: true,
-            items: []
-        }
-        if (files[key]['index'].length > 1) {
-            files[key]['index'].forEach((key) => {
+    function temp(files: Object): SidebarItem[] {
+        let sidebar: SidebarItem[] = []
+
+        for (let key in files) {
+            if (key === 'index') {
+                continue
+            }
+
+            let item: SidebarItem = {
+                text: key,
+                collapsed: true,
+                items: []
+            }
+
+            let fileMap = (files[key]['index'] as Array<string>).reduce((acc, fileName) => {
+                if (fileName.endsWith('/index.md')) {
+                    acc[0] = fileName;
+                } else {
+                    acc[1].push(fileName);
+                }
+                return acc;
+            }, [null as any, [] as string[]]);
+            if (fileMap[0]) {
+                item.link = '/' + fileMap[0].split('/index.md').shift() + '/'
+            }
+            fileMap[1].forEach((key) => {
                 item.items!.push({
                     text: getFileName(key),
-                    link: encodeURI(key)
+                    link: '/' + key.replaceAll('.md', '')
                 })
             })
+            if (Object.keys(files[key]).length !== 1) {
+                item.items?.push(...temp(files[key]))
+            }
             sidebar.push(item)
-            continue
         }
-
-        if (Object.keys(files[key]).length) {
-            item.items = await filesToSidebar(files[key])
-        }
-        sidebar.push(item)
+        return sidebar
     }
-    return sidebar
+    return temp(files)
 }
 // 获得文件名
 function getFileName(dir: string): string {

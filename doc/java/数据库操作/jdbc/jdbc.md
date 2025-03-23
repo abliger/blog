@@ -405,7 +405,7 @@ MySQL 的四种 BLOB 类型(除了在存储的最大信息量上不同外，他�
 
   **JDBC 连接 MySQL**时，如果要使用批处理功能，请再 url 中加参数?rewriteBatchedStatements=true
 
-  **PreparedStatement 作批处理"插入”时使用 values**（使用 value 没有效果）
+  **PreparedStatement 作批处理"插入“时使用 values**（使用 value 没有效果）
 
   ```java
   public class TestBatch {

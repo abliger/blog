@@ -146,7 +146,7 @@ MIME 是 HTTP 协议中数据类型。
 
 MIME 的英文全称是"Multipurpose Internet Mail Extensions" 多功能 Internet 邮件扩充服务。MIME 类型的格式是
 
-"大类型/小类型”，并与某一种文件的扩展名相对应。
+"大类型/小类型“，并与某一种文件的扩展名相对应。
 
 常见的 MIME 类型：
 
