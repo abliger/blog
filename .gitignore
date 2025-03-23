@@ -1,0 +1,5 @@
+**/node_modules/**
+game/
+project/
+**/dist/**
+**/cache/**

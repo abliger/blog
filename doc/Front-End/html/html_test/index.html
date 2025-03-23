@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="HTML, CSS, XML, XHTML, JavaScript">
+    <meta name="description" content="HTML 所有标签使用样例">
+    <meta name="author" content="Abliger">
+    <!-- 强制页面在当前页面以独立页面显示，可以防止自己的页面被当别人当做一个 frame页调用 -->
+    <meta http-equiv="windows-Target" content="_top">
+    <!-- 每300秒刷新页面： -->
+    <meta http-equiv="refresh" content="300">
+    <!-- 重定向到指定的连接所用的时间间隔（秒） <meta http-equiv='refresh' content='3;url=https://www.baidu.com'> -->
+    <!-- 用于禁止浏览器从本地机的缓存中查阅页面内容，用户脱机无法浏览 -->
+    <meta http-equiv="Pragma" content="No-cach">
+    <meta http-equiv="Page-Enter" Content="blendTrans(Duration=0.5)">
+    <!-- 
+    meta:
+    http-equiv:
+        content-type
+        default-style 指定了在页面上使用的首选样式表。content 属性必须包含 <link> 元素的标题，href属性链接到CSS样式或是包含CSS样式表的<style>元素的标题
+        refresh 
+    name:
+        application-name
+        author
+        description
+        generator
+        keywords
+
+    meta 使用案例 https://segmentfault.com/a/1190000005781663
+    -->
+    <title>HTML 标签测试</title>
+    <!-- <link rel="stylesheet" href="./css/print.css" type="text/css" media="print" title="打印样式文件使用案例"> -->
+    <!-- 
+    引入样式文件 
+            link的属性:
+                【 href 】：指定链接外部路径的路径和文件名，要设置全路径并且带文件名（绝对URL）
+                【 rel 】：引用文件，引用资源的类型定义。我们在使用 linkb标签引用外部文件时，外部文件的类型是多种多样的
+                        tag   创建应用于当前文档的标签
+                        help  帮助文件的链接
+                        prev   如果是连续网页
+                        next  如果是连续网页的时候，指定下一个网页
+                        icon  网页的图标，新的size属性和这属性相结合使用，指定链接图片的宽高
+                        author   网页的作者
+                        search   链接到可以用于搜索当前页面和相关页面的资源
+                        license   链接到当前文档的版权声明
+                        sidebar   链接到可以作为附属上下文的文档
+                        prefetch   把链接外部资源时提前缓存起来，需要链接的目标文件。
+                        alternate   代替文档（种子，其他语言版本，其他格式等等）
+                        pingback   处理当前文档被引用情况的服务器地址
+                        stylesheet   引入样式表
+                        prefetch/preload。优先下载并缓存某个资源，确保这些资源在需要时已经可用。区别是，prefetch 可能会在浏览器忙时被忽略，而 preload 则是一定会被预先下载
+                        preconnect。让浏览器在一个 HTTP 请求正式发给服务器前预先执行一些操作，这包括 DNS 解析、TLS 协商、TCP 握手，通过消除往返延迟来为用户节省时间。
+                        prerender。浏览器不仅会加载资源，还会解析执行页面，进行预渲染。
+                        dns-prefetch。对某个域名预先进行 DNS 解析并缓存，以减少 DNS 查询延迟。这样，当浏览器在请求同域名资源的时候，能省去从域名查询 IP 的过程，从而减少时间损耗。
+                【media】链接文件或是资源属于哪一种资源
+                        tv   电视
+                        all   所有
+                        tty   终端
+                        print   打印的页面
+                        aural   语音合成器
+                        braille  盲文设备
+                        screen   计算机屏幕
+                        handheld   手持设备
+                        projection  投影仪
+                        具体写法查看 https://www.runoob.com/tags/att-link-media.html
+                【hreflang】链接文件的语言种类
+                【type】链接文件的mi/me类型（比如说，图片图标文本）
+                【sizes】根据 link链接文件的类型，来指定文件的大小
+                【title】**注意: 下面三个 link 标签控制浏览器不同大小时显示样式.但当 title 内容不一致时无效**
+                其他属性查看 https://zhuanlan.zhihu.com/p/711682710
+    -->
+    <!-- 
+            要注意一点下面的方式实现切换样式会浪费带宽,如果 title 不一致,只能通过 js 来指定当前使用的样式:
+                    ```
+                    const sheets = document.styleSheets;
+                    sheets[i].disabled = sheets[i].title !== "手机样式文件使用案例"
+                    ```
+    -->
+    <link rel="stylesheet" href="./css/pc.css" type="text/css" media="screen" title="样式文件使用案例">
+    <!--  测试无效改用下面的标签 <link rel="stylesheet" href="./css/mobile.css" type="text/css" media="handheld" title="手机样式文件使用案例"> -->
+    <link rel="alternate stylesheet" href="./css/mobile.css" type="text/css" media="screen and (max-width:1000px)"
+        title="样式文件使用案例">
+    <link rel="alternate stylesheet" href="./css/big.css" type="text/css" media="screen and (min-width:2000px)"
+        title="样式文件使用案例">
+
+    <!-- 
+    sao 优化: 将PC版页面指向移动版页面，或将移动版页面指向PC版页面。这有助于搜索引擎为不同设备的用户提供不同类型的页面，提升用户体验和搜索引擎优化（SEO）‌
+    PC版本页面：<link rel="alternate" media="only screen and (max-width:640px)" href="http://m.mobile.com">
+    移动版本页面：<link rel="canonical" href="http://www.pc.com">
+    -->
+
+    <!-- <link rel="next" href="next.html">
+    <link rel="preload" as="document" href="next.html"> -->
+
+
+    <link rel="shortcut icon" href="./assert/favicon.ico" type="image/x-icon">
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="#" />
+    <!-- 添加 RSS 订阅 href 指向 XML 文件  -->
+    <style>
+        /* 消除浏览器默认属性 详情见 https://www.cnblogs.com/gangerdai/p/6164587.html */
+        /* * {
+            margin: 0;
+            padding: 0;
+        } */
+
+        /* li {
+            list-style: none
+        } */
+
+        /* img {
+            vertical-align: top;
+            border: none
+        } */
+    </style>
+    <script>
+        console.log("hello");
+    </script>
+    <!-- 
+    async	async	规定脚本在解析页面的同时进行并行下载，并在可用时立即执行（在解析完成之前）（仅适用于外部脚本）。
+    crossorigin	anonymous：请求使用了 CORS 标头，且证书标志被设置为 'same-origin'。没有通过 cookies、客户端 SSL 证书或 HTTP 认证交换用户凭据，除非目的地是同一来源
+    use-credentials：请求使用了 CORS 标头，且证书标志被设置为 'include'。总是包含用户凭据
+    ”：将属性名称设置为空值，如 crossorigin 或 crossorigin=""，与设置为 anonymous 的效果一样	将请求的模式设置为 HTTP CORS 请求。
+    defer	defer	规定脚本在解析页面的同时进行并行下载，并在页面完成解析后执行（仅适用于外部脚本）。
+    integrity	filehash	允许浏览器检查获取的脚本，以确保如果源代码被篡改，代码永远不会被加载。
+    nomodule	True
+    False	规定脚本不应在支持 ES2015 模块的浏览器中执行。实际上，这可用于在不支持模块化 JavaScript 的旧浏览器中提供回退脚本。
+    referrerpolicy	no-referrer
+                    no-referrer-when-downgrade
+                    origin
+                    origin-when-cross-origin
+                    same-origin
+                    strict-origin
+                    strict-origin-when-cross-origin
+                    unsafe-url	规定在获取脚本时发送哪些引用者信息。
+    src	URL	规定外部脚本文件的 URL。
+    type	脚本类型	规定脚本的媒体类型。
+    nonce	随机数	一种安全策略，主要用于防止跨站脚本攻击（XSS）。值是一个服务器生成的随机数，每次请求都会变化。
+    referrerpolicy	默认 no-referrer-when-downgrade（具体值见下方说明）	表示在获取脚本或脚本获取资源时，要发送哪个 referrer
+    blocking	render：屏幕上渲染内容的操作应该被阻断	这个属性明确指出，在获取脚本的过程中，某些操作应该被阻断。要阻断的操作必须是一个以空格分隔的列表
+    fetchpriority（实验性）	high：获取该脚本的优先级比其他外部脚本的等级要高。
+    low：获取该脚本的优先级比其他外部脚本的等级要低。
+    auto：默认值：自动确定获取该脚本的相对优先级。	提供一个指示，说明在获取外部脚本时要使用的相对优先级 
+    详情见: https://zhuanlan.zhihu.com/p/710865810
+    -->
+    <!-- <base href="" target="_blank"> -->
+    <!-- 
+        target:
+            _blank  在新窗口中打开被链接的文档
+            _self   默认值，在相同框架中打开被链接的文档
+            _parent   在父框架集中
+            _top   在整个窗口中打开被链接文档
+            framename   在指定框架中打开被链接文档 
+    -->
+</head>
+
+<body>
+    <header>
+        <h1>HTML 标签样例</h1>
+        <nav><a href="#">首页</a> -
+            <a href="#">工具</a> -
+            <a href="#">设置</a>
+        </nav>
+    </header>
+    <main>
+        <article>
+            <header>
+                <h1>使用 article 标签代表文章</h1>
+            </header>
+            <aside>
+                文章目录
+                <nav>
+                    <li><a href="#h2">使用 h 标签来记录文章段落标题</a></li>
+                    <li><a href="#h3">第二段标题</a></li>
+                    <li><a href="#h32">第三段标题</a></li>
+                    <li><a href="#h33">第四段标题</a></li>
+                    <li><a href="#h34">第五段标题</a></li>
+                    <li><a href="#h35">第六段标题</a></li>
+                </nav>
+            </aside>
+            <section itemprop="articleBody">
+                <section>
+                    <h2><a name="h2">使用 h 标签来记录文章段落标题</a></h2>
+                    <p>使用 p 标签写此段落详情</p>
+                    <ol>
+                        <li>使用 ol 表示有序列表</li>
+                        <li>使用 ol 表示有序列表</li>
+                    </ol>
+                    <ol type="i">
+                        <li>使用 ol 表示有序列表</li>
+                        <li>使用 ol 表示有序列表</li>
+                    </ol>
+                    <ol type="a">
+                        <li>使用 ol 表示有序列表</li>
+                        <li>使用 ol 表示有序列表</li>
+                    </ol>
+                    <ol type="A">
+                        <li>使用 ol 表示有序列表</li>
+                        <li>使用 ol 表示有序列表</li>
+                    </ol>
+                    <ol type="I">
+                        <li>使用 ol 表示有序列表</li>
+                        <li>使用 ol 表示有序列表</li>
+                    </ol>
+                    <ul type="circle">
+                        <li>使用 ul 表示无序列表</li>
+                        <li>使用 ul 表示无序列表</li>
+                    </ul>
+                    <ul type="disc">
+                        <li>使用 ul 表示无序列表</li>
+                        <li>使用 ul 表示无序列表</li>
+                    </ul>
+                    <ul type="square">
+                        <li>使用 ul 表示无序列表</li>
+                        <li>使用 ul 表示无序列表</li>
+                    </ul>
+                    <details>
+                        <summary>点击展开详情</summary>
+                        <p>这里是隐藏的内容...</p>
+                    </details>
+                </section>
+                <section>
+                    <h3><a name="h3">第二段标题</a></h3>
+                    <p>使用 p 标签写此段落详情</p>
+                    <blockquote cite="#">
+                        blockquote 标签表示来自其他来源引用的内容,可选的引用必须在 <mark>`footer` 或 <cite><a
+                                    href="https://www.w3.org/TR/2014/REC-html5-20141028/text-level-semantics.html#the-cite-element">cite</a></cite></mark>
+                        标签内,可选的内联更改,如注释和缩写
+                    </blockquote>
+                    <figure>
+                        <img src="https://picsum.photos/200/300?random=1" alt="Elephant at sunset" />
+                        <figcaption>使用 figure 和 figcaption 代表一段独立的内容</figcaption>
+                    </figure>
+                    <p></p>
+                </section>
+                <section>
+                    <h3><a name="h32">第三段标题</a></h3>
+                    <p>使用 p 标签写此段落详情</p>
+                    <iframe src="next.html" frameborder="0"></iframe>
+                </section>
+                <fieldset>
+                    <legend>重点标注</legend>
+                    <section>
+                        <h3><a name="h33">第四段标题</a></h3>
+                        <p>使用 p 标签写此段落详情</p>
+                        <dl>
+                            使用 dl 定义一个描述列表
+                            <dt> dt 列表标题
+                            </dt>
+                            <dd>列表内容1</dd>
+                            <dd>列表内容2</dd>
+                        </dl>
+                    </section>
+                    <section>
+                        <h3><a name="h34">第五段标题</a></h3>
+                        <p>使用 p 标签写此段落详情</p>
+                    </section>
+                </fieldset>
+                <section>
+                    <h3><a name="h35">第六段标题</a></h3>
+                    <p>使用 p 标签写此段落详情</p>
+                </section>
+            </section>
+            <footer>
+                <p>
+                <address>写于<a href="mailto:3330181534@qq.com">Abliger</a>. 地址: xxx.com; <time datetime="20250306">
+                        <p>最后修改时间: <span itemprop="修改时间">2025-03-06</span></p>
+                    </time></address>
+                </p>
+                <nav>
+                    <h1>相关链接</h1>
+                    <ul>
+                        <li><a href="javascript:void(0)">Index of all articles</a></li>
+                        <li><a href="javascript:void(0)">Things sheeple need to wake up for today</a></li>
+                        <li><a href="javascript:void(0)">Sheeple we have managed to wake</a></li>
+                    </ul>
+                </nav>
+            </footer>
+        </article>
+    </main>
+
+    </article>
+
+    <footer>
+        <p>Copyright ©
+            <span itemprop="版权时间">2025</span>
+            <span itemprop="版权持有人">Abliger</span>
+            备案号：xxx
+        </p>
+        <p><a href="javascript:void(0)">关于</a> -
+            <a href="javascript:void(0)">帮助</a> -
+            <a href="javascript:void(0)">反馈</a> -
+            <a href="javascript:void(0)">举报</a> -
+            <a href="javascript:void(0)">联系我们</a>
+        </p>
+    </footer>
+</body>
+
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>next-page</title>
+    <link rel="stylesheet" href="./css/next_default.css" type="text/css" media="screen" title="样式文件使用案例">
+    <link rel="stylesheet" href="./css/pc.css" type="text/css" media="screen" title="样式文件使用案例">
+</head>
+
+<body>
+    这是第二页
+    <div id="app">
+        {{ message }}
+        <br />
+        <button @click="()=>{dialog.showModal();}">打开模态框</button>
+        <dialog ref="dialog">
+            <!-- 
+                当没有设置 open 属性时，对话框不应该显示给用户。推荐使用 .show() 或 .showModal() 方法来渲染对话框，而不是使用 open 属性。
+            -->
+            <form action="" method="get" class="form-example"
+                oninput="result.value=parseInt(a.value)+parseInt(b.value)">
+                <!-- 
+                action	URL	规定当提交表单时向何处发送表单数据。
+                autocompleteNew	on
+                                off	规定是否启用表单的自动完成功能。
+                enctype	application/x-www-form-urlencoded
+                        multipart/form-data
+                        text/plain	规定在向服务器发送表单数据之前如何对其进行编码。（适用于 method="post" 的情况）
+                method	get
+                        post	规定用于发送表单数据的 HTTP 方法。
+                -->
+                <div class="form-example">
+                    <label for="name">输入名字: </label>
+                    <input type="text" name="name" id="name" required />
+                </div>
+
+                <div class="form-example">
+                    <label for="email">输入邮箱: </label>
+                    <input type="email" name="email" id="email" required />
+                </div>
+                <div class="form-example">
+                    <label for="email">选项: </label>
+                    <select>
+                        <optgroup label="Group 1">
+                            <option>Option 1.1</option>
+                        </optgroup>
+                        <optgroup label="Group 2">
+                            <option>Option 2.1</option>
+                            <option>Option 2.2</option>
+                        </optgroup>
+                        <optgroup label="Group 3" disabled>
+                            <option>Option 3.1</option>
+                            <option>Option 3.2</option>
+                            <option>Option 3.3</option>
+                        </optgroup>
+                    </select>
+                </div>
+                <div class="form-example">
+                    <label>选择浏览器: <input list="browsers" name="myBrowser" /></label>
+                    <datalist id="browsers">
+                        <option value="Chrome"></option>
+                        <option value="Firefox"></option>
+                        <option value="Internet Explorer"></option>
+                        <option value="Opera"></option>
+                        <option value="Safari"></option>
+                    </datalist>
+                </div>
+                <div class="form-example">
+                    <label>结果浏览: </label>
+                    <input type="range" name="b" value="50" /> +
+                    <input type="number" name="a" value="10" /> =
+                    <output name="result"></output>
+                </div>
+                <div class="form-example">
+                    <label for="fuel">Fuel level:</label>
+                    <meter id="fuel" min="0" max="100" low="33" high="66" optimum="80" value="50">
+                        at 50/100
+                    </meter>
+                </div>
+                <div class="form-example">
+                    <label for="file">File progress:</label>
+                    <progress id="file" max="100" value="70">70%</progress>
+                </div>
+                <div class="form-example">
+                    <label>其他内容: </label>
+                    <textarea id="story" name="story" rows="5" cols="33"></textarea>
+                </div>
+                <fieldset>
+                    <legend>是否同意该条款？</legend>
+                    <label><input type="radio" name="radio" value="yes" />是</label>
+                    <label><input type="radio" name="radio" value="no" />否</label>
+                </fieldset>
+                <div class="form-example">
+                    <input type="submit" value="提交!" />
+                    <button @click="dialog.close()">关闭模态框</button>
+                </div>
+            </form>
+        </dialog>
+    </div>
+
+    <!-- 引入 vue start -->
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <!-- <script type="importmap">
+        {
+          "imports": {
+            "vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js"
+          }
+        }
+    </script> -->
+    <script type="module">
+        // <script type="module">
+        // import { createApp, ref } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
+        // 或者使用此方法导入 vue
+
+        const { createApp, ref } = Vue
+
+        createApp({
+            setup() {
+                const message = ref('Hello vue!')
+                const dialog = ref('dialog')
+                return {
+                    message,
+                    dialog
+                }
+            }
+        }).mount('#app')
+    </script>
+    <!-- 引入 vue start -->
+</body>
+
+</html>
