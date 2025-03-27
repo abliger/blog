@@ -2,22 +2,9 @@ import type { DefaultTheme } from 'vitepress'
 import { filesToSidebar, getUrlFile } from '../util/getUrlFile.ts'
 import * as fs from 'fs'
 import * as path from 'path'
-let base = getUrlFile('./doc/base', ['md'], ['**/code/**'])
-let front_end = getUrlFile('./doc/front_end', ['md'])
-let java = getUrlFile('./doc/java', ['md'])
-let linux = getUrlFile('./doc/linux', ['md'])
-let docker = getUrlFile('./doc/docker', ['md'])
-let design = getUrlFile('./doc/设计模式', ['md'])
 
-const filedir = {
-    base,
-    front_end,
-    java,
-    linux,
-    docker,
-    "设计模式": design,
-}
 async function getArchieve() {
+    const filedir = getFileDir()
     return Promise.all([
         {
             text: "基础",
@@ -56,16 +43,39 @@ async function getArchieve() {
 
 const archieve = await getArchieve();
 
-const a = {}
-archieve.forEach(item => {
-    a[item.link!] = archieve
-})
+// export const archiveDir: DefaultTheme.Sidebar = getArchieveDir()
 
-// 导出归档文件夹的路径 
-export const archiveDir: DefaultTheme.Sidebar =
-{
-    "/achieve": archieve,
-    ...a
+export function getArchieveDir() {
+    const a = {}
+    archieve.forEach(item => {
+        a[item.link!] = archieve
+    })
+
+    // 导出归档文件夹的路径 
+    const archiveDir: DefaultTheme.Sidebar = {
+        "/achieve": archieve,
+        ...a
+    }
+    return archiveDir
+}
+export const archieveDir = getArchieveDir();
+function getFileDir() {
+    let base = getUrlFile('./doc/base', ['md'], ['**/code/**'])
+    let front_end = getUrlFile('./doc/front_end', ['md'])
+    let java = getUrlFile('./doc/java', ['md'])
+    let linux = getUrlFile('./doc/linux', ['md'])
+    let docker = getUrlFile('./doc/docker', ['md'])
+    let design = getUrlFile('./doc/设计模式', ['md'])
+
+    const filedir = {
+        base,
+        front_end,
+        java,
+        linux,
+        docker,
+        "设计模式": design,
+    }
+    return filedir
 }
 
 function getFiles(filedir) {
@@ -84,7 +94,10 @@ function getFiles(filedir) {
     t(filedir)
     return temp
 }
-export const dir = getFiles(filedir)
+export const dir = getFiles(getFileDir())
+export function getDir() {
+    return getFiles(getFileDir())
+}
 
 function getFileNameByNextOrPrev(str: string): string {
     let sp = str.split('/')
@@ -97,7 +110,7 @@ function getFileNameByNextOrPrev(str: string): string {
 }
 
 export function getFileURLToNextOrPrev(path: string): Record<string, any> {
-    if (!Object.keys(archiveDir).some(item => new RegExp(`.*${item}/`).test('/' + path))) {
+    if (!Object.keys(archieveDir).some(item => new RegExp(`.*${item}/`).test('/' + path))) {
         return {}
     }
     const getNavItem = function (path: string) {

@@ -1,28 +1,26 @@
 import { DefaultTheme } from "vitepress/theme";
-import { archiveDir, fileTotal, getMonthlyUpdates, getWeeklyUpdates, lastFiles } from './file.mts'
-
+import { archieveDir, fileTotal, getArchieveDir, getMonthlyUpdates, lastFiles } from "./file.mts";
 
 const myOption = {
     lastFiles: lastFiles(20),
     fileTotal,
     getMonthlyUpdates,
-    // ...(import.meta.env.MODE === 'development' ? {
+    // ...(process.env.NODE_ENV === 'development' ? {
     //     getWeeklyUpdates,
     //     archiveDir,
     //     dir
     // } : {})
 }
 
-export const themeConfig = {
+const themeConfig = {
     myOption,
     outline: {
         level: [2, 6],
         label: '页面导航'
     },
-
-    sidebar: archiveDir,
+    sidebar: archieveDir,
     nav: [
-        { text: '归档', link: '/achieve', activeMatch: Object.keys(archiveDir).map(item => '^' + item).join('|') },
+        { text: '归档', link: '/achieve', activeMatch: Object.keys(archieveDir).map(item => '^' + item).join('|') },
         { text: '关于', link: '/about' }
     ],
     socialLinks: [
@@ -77,3 +75,5 @@ export const themeConfig = {
     darkModeSwitchTitle: '切换到深色模式',
     skipToContentLabel: '跳转到内容',
 } as DefaultTheme.Config
+
+export default themeConfig

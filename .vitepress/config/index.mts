@@ -1,5 +1,5 @@
 import type { DefaultTheme, UserConfig } from 'vitepress'
-import { themeConfig } from './themeConfig.mts';
+import themeConfig from './themeConfig.mts';
 import { markdown } from './markdown.mts';
 import { viteDemoPreviewPlugin } from '@vitepress-code-preview/plugin'
 import vueJsx from '@vitejs/plugin-vue-jsx'
