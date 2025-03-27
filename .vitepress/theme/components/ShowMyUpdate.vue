@@ -15,3 +15,6 @@
 // let option = ref(theme.value.myOption)
 
 </script>
+<style lang="css" scoped>
+
+</style>

@@ -4,6 +4,8 @@ import { useData,useRoute } from 'vitepress'
 const { Layout } = DefaultTheme
 import './css/iframe.css'
 const  {path} = useRoute()
+import {useTest} from './theme_dark/trans'
+useTest()
 </script>
 
 <template>
@@ -26,3 +28,7 @@ const  {path} = useRoute()
 
 
 </template>
+
+<style>
+
+</style>

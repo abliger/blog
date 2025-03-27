@@ -1,4 +1,6 @@
-html{
+@layer test{
+    html{
     background-color: #7fd629;
     color: red;
+}
 }

@@ -6,7 +6,7 @@ import vueJsx from '@vitejs/plugin-vue-jsx'
 import { getFileURLToNextOrPrev } from './file.mts';
 
 let vite = {
-    assetsInclude: '**/*.html',
+    assetsInclude: ['**/*.html'],
     plugins: [viteDemoPreviewPlugin(), vueJsx()],
 }
 
