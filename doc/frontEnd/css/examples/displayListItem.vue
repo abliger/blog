@@ -1,6 +1,5 @@
 <template>
     <div id="temp">
-        {{ useType }}
         <div>
             <input v-model="useImage" type="checkbox">使用图片</input>
         </div>
@@ -44,26 +43,19 @@
         <div id="ListItem">
             <div :class="['ListItem', useImage ? 'useImage' : '', usePosition === 'inside' ? 'usePositionInside' : 'usePositionOutside']"
                 :style="{ listStyleType: useType }">Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores
-                quibusdam dolore, veniam delectus repudiandae ea harum alias quaerat nulla ullam nisi provident sit
-                repellendus illum dignissimos molestiae ratione? Quisquam, placeat.</div>
+                quibusdam dolore, veniam delectus repudiandae .</div>
             <div :class="['ListItem', useImage ? 'useImage' : '', usePosition === 'inside' ? 'usePositionInside' : 'usePositionOutside']"
                 :style="{ listStyleType: useType }">Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita
-                asperiores dolor numquam pariatur. Quis adipisci consectetur deleniti aperiam nihil sequi non harum
-                libero quam, iste officia et, impedit dignissimos sapiente.</div>
+                asperiores dolor numquam pariatur. Quis adipisci.</div>
             <div :class="['ListItem', useImage ? 'useImage' : '', usePosition === 'inside' ? 'usePositionInside' : 'usePositionOutside']"
                 :style="{ listStyleType: useType }">Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque
-                deserunt
-                odio enim qui, delectus assumenda autem! Asperiores, laborum eum! Molestiae possimus optio quos dolore
-                distinctio dignissimos esse in a animi!</div>
+                deserunt!</div>
             <div :class="['ListItem', useImage ? 'useImage' : '', usePosition === 'inside' ? 'usePositionInside' : 'usePositionOutside']"
                 :style="{ listStyleType: useType }">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel
-                pariatur
-                iste assumenda, maiores nisi fugit recusandae neque odio, commodi, quibusdam adipisci doloribus
-                voluptas! Quod illo ducimus officiis ex fugit temporibus.</div>
+                pariatur iste assumenda, maiores nisi .</div>
             <div :class="['ListItem', useImage ? 'useImage' : '', usePosition === 'inside' ? 'usePositionInside' : 'usePositionOutside']"
                 :style="{ listStyleType: useType }">Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim
-                distinctio recusandae dicta aliquam voluptatum quis facilis asperiores, cupiditate cum repellat amet
-                atque! Sequi ducimus officia nisi inventore voluptate tenetur qui!</div>
+                distinctio recusandae dicta!</div>
         </div>
     </div>
 
@@ -71,13 +63,12 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 const useImage = ref(false)
-const usePosition = ref('outside')
+const usePosition = ref('inside')
 const useType = ref('circle')
 </script>
 <style scoped>
 #temp {
     height: auto;
-    background-color: aquamarine;
 }
 
 #ListItem {
@@ -87,8 +78,6 @@ const useType = ref('circle')
 
 .ListItem {
     display: list-item;
-    list-style-type: circle;
-    list-style-position: inside;
 }
 
 .usePositionInside {
