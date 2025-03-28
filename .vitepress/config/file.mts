@@ -13,8 +13,8 @@ async function getArchieve() {
             collapsed: false
         }, {
             text: "前端",
-            link: "/front_end/",
-            items: await filesToSidebar(filedir['front_end']),
+            link: "/frontEnd/",
+            items: await filesToSidebar(filedir['frontEnd']),
             collapsed: false
         }, {
             text: "JAVA",
@@ -61,7 +61,7 @@ export function getArchieveDir() {
 export const archieveDir = getArchieveDir();
 function getFileDir() {
     let base = getUrlFile('./doc/base', ['md'], ['**/code/**'])
-    let front_end = getUrlFile('./doc/front_end', ['md'])
+    let frontEnd = getUrlFile('./doc/frontEnd', ['md'])
     let java = getUrlFile('./doc/java', ['md'])
     let linux = getUrlFile('./doc/linux', ['md'])
     let docker = getUrlFile('./doc/docker', ['md'])
@@ -69,7 +69,7 @@ function getFileDir() {
 
     const filedir = {
         base,
-        front_end,
+        frontEnd,
         java,
         linux,
         docker,

@@ -16,5 +16,5 @@
 // console.log(getMonthlyUpdates);
 // console.log(getWeeklyUpdates);
 import { getFileURLToNextOrPrev } from "../file.mts";
-let a = getFileURLToNextOrPrev('front_end/js/从 NANOID 到 UUID —— js 代码的惊人细节.md')
+let a = getFileURLToNextOrPrev('frontEnd/js/从 NANOID 到 UUID —— js 代码的惊人细节.md')
 console.log(a);

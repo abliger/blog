@@ -23,4 +23,29 @@ position = static |relative |absolute | sticky | fixed
 5. sticky
    粘性定位是一种混合模式,元素在滚动范围内满足特定条件时表现为相对定位,在滚动超出这个范围时则转换为固定定位.这种定位模式需要指定 top、right、bottom、left 四个阈值之一才会生效.
 
+:::demo src=frontEnd/css/examples/position.vue
+:::
+
 # float
+
+float 是一个很老的属性,它最初只是用来实现文字环绕效果.而不是用来布局.(在最初使用 table 表格来实现布局).所以尽量少用浮动来布局.
+
+float 特性:
+
+• 包裹性；
+• 块状化并格式化上下文；
+• 破坏文档流；
+• 没有任何 margin 合并；
+
+:::demo src=frontEnd/css/examples/float.vue
+:::
+
+父元素高度塌陷: 使用 overflow 来支撑.
+
+:::demo src=frontEnd/css/examples/floatInChild.vue
+:::
+
+使用 clear 来使浮动元素另起一行 注意: clear 属性只对块元素有效，而伪元素 ::after 默认是行级
+
+:::demo src=frontEnd/css/examples/floatClear.vue
+:::
