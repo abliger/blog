@@ -71,7 +71,13 @@ margin （top、bottom）属性无效，设置水平方向的 padding、margin �
 - grid
 - `grid-area  <grid-row-start> <grid-column-start> <grid-row-end>  <grid-column-end>` 简写形式
 - `grid-auto-columns` 隐式创建的网格纵向轨道（track）的宽度。
+
+grid-auto-columns: auto|fit-content()|max-content|min-content|length;
+
 - `grid-auto-flow` 控制着自动布局算法怎样运作
+
+grid-auto-flow: row|column|dense|row dense|column dense;
+
 - `grid-auto-rows` 隐式创建的行轨道大小
 - `grid-column: <grid-column-start> <grid-column-end>` 简写形式
 - `grid-column-end`
@@ -87,9 +93,21 @@ margin （top、bottom）属性无效，设置水平方向的 padding、margin �
 - `grid-template: <grid-template-columns> <grid-template-rows> <grid-template-areas>` 简写形式
 - `grid-template-areas` 声明的区域名称
 - `grid-template-columns` 定义网格布局中的列数
+
+```css
+grid-template-columns: 150px 1fr 2fr;
+grid-template-columns: 33.33% 33.33% 33.33%;
+```
+
 - `grid-template-rows` 定义网格布局中的行数
 
 :::demo src=frontEnd/css/examples/displayGrid.vue
+:::
+
+:::demo src=frontEnd/css/examples/dispalyGridByTwo.vue
+:::
+
+:::demo src=frontEnd/css/examples/displayGridByThree.vue
 :::
 
 [游戏学习 grid]
