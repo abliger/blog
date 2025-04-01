@@ -69,14 +69,14 @@ export async function filesToSidebar(files: Object): Promise<SidebarItem[]> {
                 items: []
             }
 
-            let fileMap = (files[key]['index'] as Array<string>).reduce((acc, fileName) => {
+            let fileMap = (files[key]['index'] as Array<string>)?.reduce((acc, fileName) => {
                 if (fileName.endsWith('/index.md')) {
                     acc[0] = fileName;
                 } else {
                     acc[1].push(fileName);
                 }
                 return acc;
-            }, [null as any, [] as string[]]);
+            }, [null as any, [] as string[]]) || [undefined, []];
             if (fileMap[0]) {
                 item.link = '/' + fileMap[0].split('/index.md').shift() + '/'
             }
@@ -86,7 +86,7 @@ export async function filesToSidebar(files: Object): Promise<SidebarItem[]> {
                     link: '/' + key.replaceAll('.md', '')
                 })
             })
-            if (Object.keys(files[key]).length !== 1) {
+            if (Object.keys(files[key]).filter(item => item !== 'index').length > 0) {
                 item.items?.push(...temp(files[key]))
             }
             sidebar.push(item)
@@ -97,7 +97,9 @@ export async function filesToSidebar(files: Object): Promise<SidebarItem[]> {
 }
 // 获得文件名
 function getFileName(dir: string): string {
-    return dir.split('/').pop()?.split('.').shift() as string
+    let fileName = dir.split('/').pop()?.split('.').shift() as string
+    let t = /^\d+\_(.*)/.exec(fileName)
+    return t ? t[1] : fileName
 }
 
 //获得当前目录的名字

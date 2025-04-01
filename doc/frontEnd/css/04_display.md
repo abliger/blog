@@ -97,6 +97,7 @@ grid-auto-flow: row|column|dense|row dense|column dense;
 ```css
 grid-template-columns: 150px 1fr 2fr;
 grid-template-columns: 33.33% 33.33% 33.33%;
+grid-template-columns: repeat(3, 1fr);
 ```
 
 - `grid-template-rows` 定义网格布局中的行数
