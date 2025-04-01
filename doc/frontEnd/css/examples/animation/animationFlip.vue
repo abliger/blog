@@ -15,7 +15,7 @@ import { nextTick } from 'vue';
 import { ref, useTemplateRef } from 'vue';
 let nums = useTemplateRef('nums')
 function shuffle() {
-    const container = document.querySelector('.container')
+    const container = document.querySelector('.container')!
     const boxes = Array.from(container.children).map((item, index) => { return { item, index } })
     // First: 记录每个盒子的起始位置
     const startPositions = boxes.reduce(
