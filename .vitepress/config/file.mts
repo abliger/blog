@@ -67,13 +67,13 @@ export function getArchieveDir() {
 }
 export const archieveDir = getArchieveDir();
 function getFileDir() {
-    let base = getUrlFile('./doc/base', ['md'], ['**/code/**'])
-    let frontEnd = getUrlFile('./doc/frontEnd', ['md'])
-    let java = getUrlFile('./doc/java', ['md'])
-    let linux = getUrlFile('./doc/linux', ['md'])
-    let docker = getUrlFile('./doc/docker', ['md'])
-    let design = getUrlFile('./doc/设计模式', ['md'])
-    let other = getUrlFile('./doc/other', ['md'])
+    let base = getUrlFile('./doc/base', ['md'], ['**/code/**', "**/node_modules"])
+    let frontEnd = getUrlFile('./doc/frontEnd', ['md'], ["**/node_modules"])
+    let java = getUrlFile('./doc/java', ['md'], ["**/node_modules"])
+    let linux = getUrlFile('./doc/linux', ['md'], ["**/node_modules"])
+    let docker = getUrlFile('./doc/docker', ['md'], ["**/node_modules"])
+    let design = getUrlFile('./doc/设计模式', ['md'], ["**/node_modules"])
+    let other = getUrlFile('./doc/other', ['md'], ["**/node_modules"])
 
     const filedir = {
         base,

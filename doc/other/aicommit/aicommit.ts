@@ -12,7 +12,7 @@ const openai = new OpenAI({
   baseURL: 'https://api.deepseek.com',
   apiKey: process.env.DEEPSEEKAPIKEY
 });
-let content = readFileSync('/Users/fengsixue/Documents/Document/doc/other/aicommit/git\ AiCommit提交提示器.txt', { encoding: 'utf-8' })
+let content = readFileSync('/Users/fengsixue/Documents/Document/doc/other/aicommit/git\ AiCommit\ 提交提示器.txt', { encoding: 'utf-8' })
 
 const diff = new TextDecoder('utf-8').decode(execSync("git diff --cached"))
 if (diff.length <= 0) {
