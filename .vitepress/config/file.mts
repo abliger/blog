@@ -38,7 +38,14 @@ async function getArchieve() {
             link: "/设计模式/",
             items: await filesToSidebar(filedir['设计模式']),
             collapsed: false
-        }] as DefaultTheme.SidebarItem[])
+        },
+        {
+            text: "其他",
+            link: "/other/",
+            items: await filesToSidebar(filedir['other']),
+            collapsed: false
+        }
+    ] as DefaultTheme.SidebarItem[])
 }
 
 const archieve = await getArchieve();
@@ -66,6 +73,7 @@ function getFileDir() {
     let linux = getUrlFile('./doc/linux', ['md'])
     let docker = getUrlFile('./doc/docker', ['md'])
     let design = getUrlFile('./doc/设计模式', ['md'])
+    let other = getUrlFile('./doc/other', ['md'])
 
     const filedir = {
         base,
@@ -74,6 +82,7 @@ function getFileDir() {
         linux,
         docker,
         "设计模式": design,
+        other
     }
     return filedir
 }
