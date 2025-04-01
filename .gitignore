@@ -3,3 +3,4 @@ game/
 project/
 **/dist/**
 **/cache/**
+**/private.env

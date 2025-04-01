@@ -3,19 +3,29 @@ import { readFileSync, unlinkSync, writeFileSync } from "fs";
 import { tmpdir } from "os";
 import path from "path";
 import OpenAI from "openai";
-
+import { exit } from "process";
+if (!process.env.DEEPSEEKAPIKEY) {
+  throw new Error("找不到 deepseek api key,请设置 DEEPSEEKAPIKEY key")
+}
 // user should set `baseURL="https://api.deepseek.com/beta"` to use this feature.
 const openai = new OpenAI({
   baseURL: 'https://api.deepseek.com',
-  apiKey: 'sk-de52045aa81747e49fe7bf066add257c'
+  apiKey: process.env.DEEPSEEKAPIKEY
 });
 let content = readFileSync('/Users/fengsixue/Documents/Document/doc/other/aicommit/git\ AiCommit提交提示器.txt', { encoding: 'utf-8' })
 
 const diff = new TextDecoder('utf-8').decode(execSync("git diff --cached"))
-
+if (diff.length <= 0) {
+  console.log("暂存区没有修改内容,退出程序")
+  exit(0)
+}
 const c = await main(diff);
 const t = await launchEditor(c || '')
-execSync("git commit -m \"" + t + "\"")
+if (t.trim().length > 0) {
+  execSync("git commit -m \"" + t.trim() + "\"")
+} else {
+  console.log("提交信息为空,取消提交")
+}
 
 async function main(content: string) {
   const completion = await openai.chat.completions.create({
