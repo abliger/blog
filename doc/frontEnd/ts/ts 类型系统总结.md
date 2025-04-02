@@ -265,3 +265,92 @@ type Files = Array<string | { [k in string]: Files }>;
 
 const foo: Files = ["index.md", { code: [] }, { project: ["readme.md"] }];
 ```
+
+## other
+
+### 参数扩大
+
+有下面函数
+
+```ts
+declare function c(a: string | number): any;
+declare function d(a: string, b: number): any;
+```
+
+#### 如何根据函数 c 自动推导成函数 d?
+
+```ts twoslash
+declare function c(a: string | number): any;
+type UnionToIntersection<U> = (U extends any ? (k: U) => void : never) extends (
+  k: infer I
+) => void
+  ? I
+  : never;
+
+type UnionToTuple<U> = UnionToIntersection<
+  U extends any ? () => U : never
+> extends () => infer R
+  ? [R, ...UnionToTuple<Exclude<U, R>>]
+  : [];
+
+type funD = UnionToTuple<
+  Parameters<typeof c> extends [any: infer T] ? T : never
+> extends infer U
+  ? (...args: U extends any[] ? U : never) => any
+  : never;
+```
+
+#### 函数 d 推到 函数 c
+
+```ts twoslash
+declare function d(a: string, b: number): any;
+type bar<T extends (...args: any) => any> = (
+  a: Parameters<T> extends (infer U)[] ? U : never
+) => any;
+
+type funC = bar<typeof d>;
+```
+
+#### 从数组类型变为联合类型
+
+```ts twoslash
+type DC<T extends any[]> = T extends [infer U, ...infer H]
+  ? H extends any[]
+    ? DC<H> | U
+    : never
+  : never;
+
+type temp = DC<[string, number]>;
+```
+
+### 函数参数类型推导示例
+
+对于以下函数 `typeImpl(a, b, c,...z, (a, b, c,...,z) => {})`，其参数的前 n-1 项是第 n 项函数的参数。以下是一个示例代码片段，展示了如何编写其参数：
+
+```ts twoslash
+declare function typeImpl<T extends any[]>(
+  ...args1: [...a: T, (...args2: T) => any]
+): void;
+
+typeImpl("123", 123, true, (a, b, c) => {});
+```
+
+对于以下函数 `typeImpl('string', 'number', 'boolean',...z, (a, b, c,...,z) => {})`，其参数的前 n-1 项是第 n 项函数的参数的类型。以下是一个示例代码片段，展示了如何编写其参数：
+
+```ts twoslash
+type argsTypes = {
+  string: string;
+  number: number;
+  boolean: boolean;
+};
+
+type inferType<T extends (keyof argsTypes)[]> = {
+  [P in keyof T]: argsTypes[T[P]];
+};
+
+declare function typeImpl<T extends (keyof argsTypes)[]>(
+  ...args1: [...a: T, (...args2: inferType<T>) => any]
+): void;
+
+typeImpl("boolean", "number", (a, b) => {});
+```
