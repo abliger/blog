@@ -1,6 +1,6 @@
 <template>
   <div class="contenter">
-    <div class="container" style="display: flex">
+    <div class="container" style="display: flex" ref="nums">
       <div class="box" key="1">1</div>
       <div class="box" key="2">2</div>
       <div class="box" key="3">3</div>
@@ -10,9 +10,10 @@
   </div>
 </template>
 <script setup lang="ts">
-import { onMounted } from 'vue';
+import { onMounted, useTemplateRef } from 'vue';
+let nums = useTemplateRef('nums')
 onMounted(() => {
-  const container = document.querySelector('.container')
+  const container = nums.value!
   const boxes = Array.from(container!.children)
 
   boxes.forEach(box => {
@@ -84,6 +85,11 @@ onMounted(() => {
   width: 100%;
   border: 1px solid;
   overflow: hidden;
+
+}
+
+.container {
+  position: relative;
 }
 
 .box {

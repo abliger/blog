@@ -7,15 +7,14 @@
             <div class="box" key="4">4</div>
             <div class="box" key="5">5</div>
         </div>
-        <button @click="shuffle">打乱</button>
+        <button @click="() => shuffle()">打乱</button>
     </div>
 </template>
 <script setup lang="ts">
-import { nextTick } from 'vue';
-import { ref, useTemplateRef } from 'vue';
+import { useTemplateRef } from 'vue';
 let nums = useTemplateRef('nums')
 function shuffle() {
-    const container = document.querySelector('.container')!
+    const container = nums.value!
     const boxes = Array.from(container.children).map((item, index) => { return { item, index } })
     // First: 记录每个盒子的起始位置
     const startPositions = boxes.reduce(

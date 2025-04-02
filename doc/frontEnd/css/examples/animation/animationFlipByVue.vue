@@ -1,5 +1,6 @@
 <template>
-    <button @click="randomt">打乱</button>
+    <button @click="sort">排序</button>
+    <button @click="random">打乱</button>
     <TransitionGroup name="list" class="container" tag="div">
         <div class="box" v-for="item in list" :key="item">{{ item }}</div>
     </TransitionGroup>
@@ -8,10 +9,14 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 
-const list = ref(new Array(20).fill(0).map(it => Math.random() * 100 | 0))
-function randomt() {
-    list.value = list.value.sort(() => Math.random() - 0.3)
+const list = ref(new Array(20).fill(0).map((v, i) => i).sort(() => Math.random() - 0.5))
+function sort() {
+    list.value = list.value.sort((a, b) => a - b)
 }
+function random() {
+    list.value = list.value.sort(() => Math.random() - 0.5)
+}
+
 </script>
 <style scoped>
 .container {

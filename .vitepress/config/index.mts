@@ -2,12 +2,14 @@ import type { DefaultTheme, UserConfig } from 'vitepress'
 import themeConfig from './themeConfig.mts';
 import { markdown } from './markdown.mts';
 import { viteDemoPreviewPlugin } from '@vitepress-code-preview/plugin'
-import vueJsx from '@vitejs/plugin-vue-jsx'
 import { getFileURLToNextOrPrev } from './file.mts';
+import vueJsx from '@vitejs/plugin-vue-jsx'
+
+import Inspector from 'vite-plugin-vue-inspector' // OR vite-plugin-vue-inspector
 
 let vite = {
     assetsInclude: ['**/*.html'],
-    plugins: [viteDemoPreviewPlugin(), vueJsx()],
+    plugins: [viteDemoPreviewPlugin(), vueJsx(), Inspector()],
 }
 
 export default {
