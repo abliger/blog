@@ -33,10 +33,10 @@ async function main(content: string) {
       "content": content,
       "role": "user"
     },
-      //  {
-      //   "content": "使用中文生成 git 提交内容",
-      //   "role": "user"
-      // }
+    {
+      "content": "使用中文生成 git 提交内容",
+      "role": "user"
+    }
     ],
     model: "deepseek-chat",
   });
