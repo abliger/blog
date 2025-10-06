@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>位运算简介及实用技巧（四）：实战篇 | Matrix67: The Aha Moments</title>
+	<link rel="profile" href="http://gmpg.org/xfn/11">
+	<link rel="pingback" href="http://www.matrix67.com/blog/xmlrpc.php">
+	<script src="http://www.matrix67.com/blog/wp-content/themes/matrix67/js/jquery-2.1.0.min.js"></script>
+	<script src="http://www.matrix67.com/blog/wp-content/themes/matrix67/js/old-theme.js"
+		type="text/javascript"></script>
+	<link rel="stylesheet" href="http://www.matrix67.com/blog/wp-content/themes/matrix67/css/old-theme.css"
+		type="text/css" media="all">
+	<link rel='dns-prefetch' href='//s.w.org' />
+	<link rel="alternate" type="application/rss+xml" title="Matrix67: The Aha Moments &raquo; Feed"
+		href="http://www.matrix67.com/blog/feed" />
+	<link rel="alternate" type="application/rss+xml" title="Matrix67: The Aha Moments &raquo; Comments Feed"
+		href="http://www.matrix67.com/blog/comments/feed" />
+	<link rel="alternate" type="application/rss+xml"
+		title="Matrix67: The Aha Moments &raquo; 位运算简介及实用技巧（四）：实战篇 Comments Feed"
+		href="http://www.matrix67.com/blog/archives/268/feed" />
+	<script type="text/javascript">
+		window._wpemojiSettings = { "baseUrl": "https:\/\/s.w.org\/images\/core\/emoji\/2\/72x72\/", "ext": ".png", "svgUrl": "https:\/\/s.w.org\/images\/core\/emoji\/2\/svg\/", "svgExt": ".svg", "source": { "concatemoji": "http:\/\/www.matrix67.com\/blog\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.6.23" } };
+		!function (e, o, t) { var a, n, r; function i(e) { var t = o.createElement("script"); t.src = e, t.type = "text/javascript", o.getElementsByTagName("head")[0].appendChild(t) } for (r = Array("simple", "flag", "unicode8", "diversity", "unicode9"), t.supports = { everything: !0, everythingExceptFlag: !0 }, n = 0; n < r.length; n++)t.supports[r[n]] = function (e) { var t, a, n = o.createElement("canvas"), r = n.getContext && n.getContext("2d"), i = String.fromCharCode; if (!r || !r.fillText) return !1; switch (r.textBaseline = "top", r.font = "600 32px Arial", e) { case "flag": return (r.fillText(i(55356, 56806, 55356, 56826), 0, 0), n.toDataURL().length < 3e3) ? !1 : (r.clearRect(0, 0, n.width, n.height), r.fillText(i(55356, 57331, 65039, 8205, 55356, 57096), 0, 0), a = n.toDataURL(), r.clearRect(0, 0, n.width, n.height), r.fillText(i(55356, 57331, 55356, 57096), 0, 0), a !== n.toDataURL()); case "diversity": return r.fillText(i(55356, 57221), 0, 0), a = (t = r.getImageData(16, 16, 1, 1).data)[0] + "," + t[1] + "," + t[2] + "," + t[3], r.fillText(i(55356, 57221, 55356, 57343), 0, 0), a != (t = r.getImageData(16, 16, 1, 1).data)[0] + "," + t[1] + "," + t[2] + "," + t[3]; case "simple": return r.fillText(i(55357, 56835), 0, 0), 0 !== r.getImageData(16, 16, 1, 1).data[0]; case "unicode8": return r.fillText(i(55356, 57135), 0, 0), 0 !== r.getImageData(16, 16, 1, 1).data[0]; case "unicode9": return r.fillText(i(55358, 56631), 0, 0), 0 !== r.getImageData(16, 16, 1, 1).data[0] }return !1 }(r[n]), t.supports.everything = t.supports.everything && t.supports[r[n]], "flag" !== r[n] && (t.supports.everythingExceptFlag = t.supports.everythingExceptFlag && t.supports[r[n]]); t.supports.everythingExceptFlag = t.supports.everythingExceptFlag && !t.supports.flag, t.DOMReady = !1, t.readyCallback = function () { t.DOMReady = !0 }, t.supports.everything || (a = function () { t.readyCallback() }, o.addEventListener ? (o.addEventListener("DOMContentLoaded", a, !1), e.addEventListener("load", a, !1)) : (e.attachEvent("onload", a), o.attachEvent("onreadystatechange", function () { "complete" === o.readyState && t.readyCallback() })), (a = t.source || {}).concatemoji ? i(a.concatemoji) : a.wpemoji && a.twemoji && (i(a.twemoji), i(a.wpemoji))) }(window, document, window._wpemojiSettings);
+	</script>
+	<style type="text/css">
+		img.wp-smiley,
+		img.emoji {
+			display: inline !important;
+			border: none !important;
+			box-shadow: none !important;
+			height: 1em !important;
+			width: 1em !important;
+			margin: 0 .07em !important;
+			vertical-align: -0.1em !important;
+			background: none !important;
+			padding: 0 !important;
+		}
+	</style>
+	<link rel='stylesheet' id='matrix67-style-css'
+		href='http://www.matrix67.com/blog/wp-content/themes/matrix67/style.css?ver=4.6.23' type='text/css'
+		media='all' />
+	<link rel='https://api.w.org/' href='http://www.matrix67.com/blog/wp-json/' />
+	<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://www.matrix67.com/blog/xmlrpc.php?rsd" />
+	<link rel="wlwmanifest" type="application/wlwmanifest+xml"
+		href="http://www.matrix67.com/blog/wp-includes/wlwmanifest.xml" />
+	<link rel='prev' title='位运算简介及实用技巧（三）：进阶篇(2)' href='http://www.matrix67.com/blog/archives/266' />
+	<link rel='next' title='令人敬畏的十维空间' href='http://www.matrix67.com/blog/archives/269' />
+	<meta name="generator" content="WordPress 4.6.23" />
+	<link rel="canonical" href="http://www.matrix67.com/blog/archives/268" />
+	<link rel='shortlink' href='http://www.matrix67.com/blog/?p=268' />
+	<link rel="alternate" type="application/json+oembed"
+		href="http://www.matrix67.com/blog/wp-json/oembed/1.0/embed?url=http%3A%2F%2Fwww.matrix67.com%2Fblog%2Farchives%2F268" />
+	<link rel="alternate" type="text/xml+oembed"
+		href="http://www.matrix67.com/blog/wp-json/oembed/1.0/embed?url=http%3A%2F%2Fwww.matrix67.com%2Fblog%2Farchives%2F268&#038;format=xml" />
+</head>
+
+<body class="single single-post postid-268 single-format-standard">
+	<div id="page" class="hfeed site">
+
+		<header id="masthead" class="site-header" role="banner">
+			<div class="site-branding">
+				<h1 class="site-title"><a href="http://www.matrix67.com/blog/" rel="home">Matrix67: The Aha Moments</a>
+				</h1>
+			</div>
+			<aside id="search" class="widget_search">
+				<form role="search" method="get" class="search-form" action="http://www.matrix67.com/blog/">
+					<label>
+						<span class="screen-reader-text"></span>
+						<input type="search" class="search-field" value="" name="s" title="" />
+					</label>
+					<input type="submit" class="search-submit" value="&#59393;" />
+				</form>
+			</aside>
+		</header><!-- #masthead -->
+
+		<div id="content" class="site-content">
+
+			<div id="primary" class="content-area">
+				<main id="main" class="site-main" role="main">
+
+
+
+					<aside id="notice">这是一篇旧文，点击<a id="theme-toggle">此处</a>以旧主题模式浏览。</aside>
+					<article id="post-268"
+						class="post-268 post type-post status-publish format-standard hentry category-uncategorized tag-pascal tag-405 tag-409 tag-412 tag-335 tag-375">
+						<header class="entry-header">
+							<h1 class="entry-title">位运算简介及实用技巧（四）：实战篇</h1>
+						</header><!-- .entry-header -->
+
+						<div class="entry-content">
+							<p>&nbsp;&nbsp;&nbsp;&nbsp;下面分享的是我自己写的三个代码，里面有些题目也是我自己出的。这些代码都是在我的Pascal时代写的，恕不提供C语言了。代码写得并不好，我只是想告诉大家位运算在实战中的应用，包括了搜索和状态压缩DP方面的题目。其实大家可以在网上找到更多用位运算优化的题目，这里整理出一些自己写的代码，只是为了原创系列文章的完整性。这一系列文章到这里就结束了，希望大家能有所收获。<br />&nbsp;&nbsp;&nbsp;&nbsp;Matrix67原创，转贴请注明出处。
+							</p>
+							<blockquote>
+								<p>Problem : 费解的开关</p>
+								<p><a target="_blank"
+										href="http://www.vijos.cn/Problem_Show.asp?id=1197">题目来源</a><br />&nbsp;&nbsp;&nbsp;&nbsp;06年NOIp模拟赛（一）
+									by Matrix67 第四题</p>
+								<p>问题描述<br />&nbsp;&nbsp;&nbsp;&nbsp;你玩过“拉灯”游戏吗？25盏灯排成一个5&#215;5的方形。每一个灯都有一个开关，游戏者可以改变它的状态。每一步，游戏者可以改变某一个灯的状态。游戏者改变一个灯的状态会产生连锁反应：和这个灯上下左右相邻的灯也要相应地改变其状态。<br />&nbsp;&nbsp;&nbsp;&nbsp;我们用数字“1”表示一盏开着的灯，用数字“0”表示关着的灯。下面这种状态
+								</p>
+								<p>10111<br />01101<br />10111<br />10000<br />11011</p>
+								<p>&nbsp;&nbsp;&nbsp;&nbsp;在改变了最左上角的灯的状态后将变成：</p>
+								<p>01111<br />11101<br />10111<br />10000<br />11011</p>
+								<p>&nbsp;&nbsp;&nbsp;&nbsp;再改变它正中间的灯后状态将变成：</p>
+								<p>01111<br />11001<br />11001<br />10100<br />11011</p>
+								<p>&nbsp;&nbsp;&nbsp;&nbsp;给定一些游戏的初始状态，编写程序判断游戏者是否可能在6步以内使所有的灯都变亮。</p>
+								<p>输入格式<br />&nbsp;&nbsp;&nbsp;&nbsp;第一行有一个正整数n，代表数据中共有n个待解决的游戏初始状态。<br />&nbsp;&nbsp;&nbsp;&nbsp;以下若干行数据分为n组，每组数据有5行，每行5个字符。每组数据描述了一个游戏的初始状态。各组数据间用一个空行分隔。<br />&nbsp;&nbsp;&nbsp;&nbsp;对于30%的数据，n&lt;=5；<br />&nbsp;&nbsp;&nbsp;&nbsp;对于100%的数据，n&lt;=500。
+								</p>
+								<p>输出格式<br />&nbsp;&nbsp;&nbsp;&nbsp;输出数据一共有n行，每行有一个小于等于6的整数，它表示对于输入数据中对应的游戏状态最少需要几步才能使所有灯变亮。<br />&nbsp;&nbsp;&nbsp;&nbsp;对于某一个游戏初始状态，若6步以内无法使所有灯变亮，请输出“-1”。
+								</p>
+								<p>样例输入<br />3<br />00111<br />01011<br />10001<br />11010<br />11100</p>
+								<p>11101<br />11101<br />11110<br />11111<br />11111</p>
+								<p>01111<br />11111<br />11111<br />11111<br />11111</p>
+								<p>样例输出<br />3<br />2<br />-1</p>
+							</blockquote>
+							<p>程序代码<br /><code>const<br />&nbsp;&nbsp; BigPrime=3214567;<br />&nbsp;&nbsp; MaxStep=6;<br />type<br />&nbsp;&nbsp; pointer=^rec;<br />&nbsp;&nbsp; rec=record<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; v:longint;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; step:integer;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; next:pointer;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; end;</p>
+<p>var<br />&nbsp;&nbsp; total:longint;<br />&nbsp;&nbsp; hash:array[0..BigPrime-1]of pointer;<br />&nbsp;&nbsp; q:array[1..400000]of rec;</p>
+<p>function up&#100;ate(a:longint;p:integer):longint;<br />begin<br />&nbsp;&nbsp; a:=a xor (1 shl p);<br />&nbsp;&nbsp; if p mod 5&lt;&gt;0 then a:=a xor (1 shl (p-1));<br />&nbsp;&nbsp; if (p+1) mod 5&lt;&gt;0 then a:=a xor (1 shl (p+1));<br />&nbsp;&nbsp; if p&lt;20 then a:=a xor (1 shl (p+5));<br />&nbsp;&nbsp; if p&gt;4 then a:=a xor (1 shl (p-5));<br />&nbsp;&nbsp; exit(a);<br />end;</p>
+<p>function find(a:longint;step:integer):boolean;<br />var<br />&nbsp;&nbsp; now:pointer;<br />begin<br />&nbsp;&nbsp; now:=hash[a mod BigPrime];<br />&nbsp;&nbsp; while now&lt;&gt;nil do<br />&nbsp;&nbsp; begin<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if now^.v=a then exit(true);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;now:=now^.next;<br />&nbsp;&nbsp; end;</p>
+<p>&nbsp;&nbsp; new(now);<br />&nbsp;&nbsp; now^.v:=a;<br />&nbsp;&nbsp; now^.step:=step;<br />&nbsp;&nbsp; now^.next:=hash[a mod BigPrime];<br />&nbsp;&nbsp; hash[a mod BigPrime]:=now;<br />&nbsp;&nbsp; total:=total+1;<br />&nbsp;&nbsp; exit(false);<br />end;</p>
+<p>procedure solve;<br />var<br />&nbsp;&nbsp; p:integer;<br />&nbsp;&nbsp; close:longint=0;<br />&nbsp;&nbsp; open:longint=1;<br />begin<br />&nbsp;&nbsp; find(1 shl 25-1,0);<br />&nbsp;&nbsp; q[1].v:=1 shl 25-1;<br />&nbsp;&nbsp; q[1].step:=0;<br />&nbsp;&nbsp; repeat<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;inc(close);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for p:=0 to 24 do<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if not find(up&#100;ate(q[close].v,p),q[close].step+1) and (q[close].step+1&lt;MaxStep) then<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; begin<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;open:=open+1;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;q[open].v:=up&#100;ate(q[close].v,p);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;q[open].step:=q[close].step+1;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; end;<br />&nbsp;&nbsp; until close&gt;=open;<br />end;</p>
+<p>procedure print(a:longint);<br />var<br />&nbsp;&nbsp; now:pointer;<br />begin<br />&nbsp;&nbsp; now:=hash[a mod BigPrime];<br />&nbsp;&nbsp; while now&lt;&gt;nil do<br />&nbsp;&nbsp; begin<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if now^.v=a then<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;begin<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; writeln(now^.step);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; exit;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;now:=now^.next;<br />&nbsp;&nbsp; end;<br />&nbsp;&nbsp; writeln(-1);<br />end;</p>
+<p>procedure main;<br />var<br />&nbsp;&nbsp; ch:char;<br />&nbsp;&nbsp; i,j,n:integer;<br />&nbsp;&nbsp; t:longint;<br />begin<br />&nbsp;&nbsp; readln(n);<br />&nbsp;&nbsp; for i:=1 to n do<br />&nbsp;&nbsp; begin<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;t:=0;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for j:=1 to 25 do<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;begin<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; read(ch);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; t:=t*2+ord(ch)-48;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if j mod 5=0 then readln;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(t);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if i&lt;n then readln;<br />&nbsp;&nbsp; end;<br />end;</p>
+<p>begin<br />&nbsp;&nbsp; solve;<br />&nbsp;&nbsp; main;<br />end.</code></p>
+							<p><strong>=======================&nbsp;&nbsp;性感的分割线&nbsp;&nbsp;=======================</strong>
+							</p>
+							<blockquote>
+								<p>Problem : garden / 和MM逛花园</p>
+								<p>题目来源<br />&nbsp;&nbsp;&nbsp;&nbsp;<a target="_blank"
+										href="http://www.matrix67.com/blog/article.asp?id=241">07年Matrix67生日邀请赛</a>第四题
+								</p>
+								<p>问题描述<br />&nbsp;&nbsp;&nbsp;&nbsp;花园设计强调，简单就是美。Matrix67常去的花园有着非常简单的布局：花园的所有景点的位置都是“对齐”了的，这些景点可以看作是平面坐标上的格点。相邻的景点之间有小路相连，这些小路全部平行于坐标轴。景点和小路组成了一个“不完整的网格”。<br />&nbsp;&nbsp;&nbsp;&nbsp;一个典型的花园布局如左图所示。花园布局在6行4列的网格上，花园的16个景点的位置用红色标注在了图中。黑色线条表示景点间的小路，其余灰色部分实际并不存在。<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img
+										src="http://www.matrix67.com/data/prob4.gif" border="0" alt="" /></p>
+								<p>&nbsp;&nbsp;&nbsp;&nbsp;Matrix67
+									的生日那天，他要带着他的MM在花园里游玩。Matrix67不会带MM两次经过同一个景点，因此每个景点最多被游览一次。他和他</p>
+						</div><!-- .entry-content -->
+
+						<footer class="entry-footer">
+							<div class="entry-meta">
+								<span class="posted-on"><a href="http://www.matrix67.com/blog/archives/268"
+										rel="bookmark"><time class="entry-date published"
+											datetime="2007-07-26T01:47:44+00:00">2007 年 7 月 26 日</time></a></span> / <a
+									href="http://www.matrix67.com/blog/archives/tag/pascal%e8%af%ad%e8%a8%80"
+									rel="tag">Pascal语言</a>, <a
+									href="http://www.matrix67.com/blog/archives/tag/%e4%ba%8c%e8%bf%9b%e5%88%b6"
+									rel="tag">二进制</a>, <a
+									href="http://www.matrix67.com/blog/archives/tag/%e4%bb%a3%e7%a0%81"
+									rel="tag">代码</a>, <a
+									href="http://www.matrix67.com/blog/archives/tag/%e4%bd%8d%e8%bf%90%e7%ae%97"
+									rel="tag">位运算</a>, <a
+									href="http://www.matrix67.com/blog/archives/tag/%e5%8a%a8%e6%80%81%e8%a7%84%e5%88%92"
+									rel="tag">动态规划</a>, <a
+									href="http://www.matrix67.com/blog/archives/tag/%e6%90%9c%e7%b4%a2" rel="tag">搜索</a>
+							</div><!-- .entry-meta -->
+
+						</footer><!-- .entry-footer -->
+					</article><!-- #post-## -->
+					<div id="rss"><a href="http://www.matrix67.com/blog/feed" target="_blank">&#59392;</a></div>
+					<!--php matrix67_post_nav(); -->
+				</main><!-- #main -->
+			</div><!-- #primary -->
+
+			<div id="secondary" class="widget-area" role="complementary">
+
+			</div><!-- #secondary -->
+
+		</div><!-- #content -->
+
+		<footer id="colophon" class="site-footer" role="contentinfo">
+			<div class="site-info">
+				Powered by <a href="http://wordpress.org/" target="_blank">WordPress</a>
+				<span class="sep"> | </span>
+				Designed by <a href="http://localhost-8080.com" rel="designer" target="_blank">♥ Localhost</a>
+				<span class="sep"> | </span>
+				Creative Commons <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh_TW"
+					target="_blank">BY-NC-SA</a>
+			</div><!-- .site-info -->
+		</footer><!-- #colophon -->
+	</div><!-- #page -->
+
+	<div style="display:none">
+		<script src="http://s44.cnzz.com/stat.php?id=349609&amp;web_id=349609&amp;show=pic" language="JavaScript"
+			charset="gb2312" type="text/javascript">
+			</script>
+	</div>
+	<script src="http://www.google-analytics.com/urchin.js" type="text/javascript">
+	</script>
+	<script type="text/javascript">
+		_uacct = "UA-1093817-1";
+		urchinTracker();
+	</script>
+
+	<script type='text/javascript'
+		src='http://www.matrix67.com/blog/wp-content/plugins/akismet/_inc/form.js?ver=3.1.11'></script>
+	<script type='text/javascript'
+		src='http://www.matrix67.com/blog/wp-content/themes/matrix67/js/navigation.js?ver=20120206'></script>
+	<script type='text/javascript'
+		src='http://www.matrix67.com/blog/wp-content/themes/matrix67/js/skip-link-focus-fix.js?ver=20130115'></script>
+	<script type='text/javascript'
+		src='http://www.matrix67.com/blog/wp-includes/js/comment-reply.min.js?ver=4.6.23'></script>
+	<script type='text/javascript'
+		src='http://www.matrix67.com/blog/wp-includes/js/wp-embed.min.js?ver=4.6.23'></script>
+
+</body>
+
+</html>
+<!-- Dynamic page generated in 0.166 seconds. -->
+<!-- Cached page generated by WP-Super-Cache on 2022-06-17 21:58:16 -->
+
+<!-- super cache -->
