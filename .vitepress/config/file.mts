@@ -40,6 +40,12 @@ async function getArchieve() {
             collapsed: false
         },
         {
+            text: "rust",
+            link: "/rust/",
+            items: await filesToSidebar(filedir['rust']),
+            collapsed: false
+        },
+        {
             text: "其他",
             link: "/other/",
             items: await filesToSidebar(filedir['other']),
@@ -73,6 +79,7 @@ function getFileDir() {
     let linux = getUrlFile('./doc/linux', ['md'], ["**/node_modules"])
     let docker = getUrlFile('./doc/docker', ['md'], ["**/node_modules"])
     let design = getUrlFile('./doc/设计模式', ['md'], ["**/node_modules"])
+    let rust = getUrlFile('./doc/rust-book', ['md'], ["**/node_modules"])
     let other = getUrlFile('./doc/other', ['md'], ["**/node_modules"])
 
     const filedir = {
@@ -82,6 +89,7 @@ function getFileDir() {
         linux,
         docker,
         "设计模式": design,
+        rust,
         other
     }
     return filedir
