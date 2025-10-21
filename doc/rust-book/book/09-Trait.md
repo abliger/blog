@@ -37,7 +37,7 @@ impl Summary for Tweet {
 }
 ```
 
-> 注意: 我们不能为外部类型实现外部 trait.即如果拥有一个名为 other 的 crate ,和 copy 的 trait .我们只能在 other 的 crate 中 为里面的类型添加 copy trait 实现.在主程序使用 use other , 不能给 other 作用域中的类型添加 copy trait 实现.类似的我们也能给外部类型 Vec<T> 实现 other crate 中的 trait.
+> 注意: 我们不能为外部类型实现外部 trait.即如果拥有一个名为 other 的 crate ,和 copy 的 trait .我们只能在 other 的 crate 中 为里面的类型添加 copy trait 实现.在主程序使用 use other , 不能给 other 作用域中的类型添加 copy trait 实现.类似的我们也能给外部类型 `Vec<T>` 实现 other crate 中的 trait.
 
 ## 默认实现
 
@@ -131,6 +131,6 @@ impl<T: Display + PartialOrd> Pair<T> {
 }
 ```
 
-只有那些为 T 类型实现了 PartialOrd trait （来允许比较） 和 Display trait （来启用打印）的 Pair<T> 才会实现 cmp_display 方法.
+只有那些为 T 类型实现了 PartialOrd trait （来允许比较） 和 Display trait （来启用打印）的 `Pair<T>` 才会实现 cmp_display 方法.
 
 注意对比 `impl Pair<i32>{}` 他表示为 泛型是 i32 的 Pair 实现方法.另一者是泛型需要实现 trait bound.

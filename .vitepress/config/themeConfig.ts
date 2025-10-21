@@ -1,5 +1,5 @@
 import { DefaultTheme } from "vitepress/theme";
-import { archieveDir, fileTotal, getArchieveDir, getMonthlyUpdates, lastFiles } from "./file.mts";
+import { archieveDir, fileTotal, getArchieveDir, getMonthlyUpdates, lastFiles } from "./file";
 
 const myOption = {
     lastFiles: lastFiles(20),

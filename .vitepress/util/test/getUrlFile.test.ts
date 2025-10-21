@@ -1,6 +1,6 @@
 
 // 测试 getUrlFile 函数
-import { filesToSidebar, getUrlFile } from '../getUrlFile.ts';
+import { filesToSidebar, getUrlFile } from '../getUrlFile';
 import type { DefaultTheme } from 'vitepress/theme';
 const files = getUrlFile('./doc/other', ["md"],["**/node_modules"]);
 

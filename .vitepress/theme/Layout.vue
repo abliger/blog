@@ -6,7 +6,7 @@ import './css/iframe.css'
 const { path } = useRoute()
 import { useToggleTheme } from './animation/themeDark/trans'
 import { useFadeInByRoute } from './animation/VPDoc/docFadeIn'
-
+import FcIndex from './components/FcIndex.vue'
 useFadeInByRoute('VPDoc')
 useToggleTheme()
 
@@ -15,8 +15,14 @@ useToggleTheme()
 </script>
 
 <template>
-  <template v-if="path === '/'">
-    {{ path }}
+  <template v-if="path === '/' || path === '/index'">
+    <fc-index>
+      <!-- <template #loading>
+        <div class="loading" ref="loading">
+          loading...
+        </div>
+      </template> -->
+    </fc-index>
   </template>
   <template v-else-if="path === '/about'">
 

@@ -1,5 +1,5 @@
 import type { DefaultTheme } from 'vitepress'
-import { filesToSidebar, getUrlFile } from '../util/getUrlFile.ts'
+import { filesToSidebar, getUrlFile } from '../util/getUrlFile'
 import * as fs from 'fs'
 import * as path from 'path'
 
@@ -40,8 +40,8 @@ async function getArchieve() {
             collapsed: false
         },
         {
-            text: "rust",
-            link: "/rust/",
+            text: "rust-book",
+            link: "/rust-book/",
             items: await filesToSidebar(filedir['rust']),
             collapsed: false
         },

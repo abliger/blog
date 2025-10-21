@@ -6,7 +6,7 @@
 
 1. new 创建空字符串
 2. from(&str) 根据字符串字面量创建字符
-3. String::from_utf8(Vec<i32>) i32 集合转换 String
+3. String::from_utf8(Vec\<i32>) i32 集合转换 String
 
 ### 方法
 
@@ -14,7 +14,7 @@
 2. chars() 获得字符迭代器 chars().nth(2) 获得第二个字符
 3. split(&str) 分割字符
 4. contains(&str) 检测字符串是否含有某字符串
-5. parse() 解析字符串 parse::<i32>() 把字符串解析成 i32
+5. parse() 解析字符串 parse::\<i32>() 把字符串解析成 i32
 6. trim() 删除字符串两边的空格,自动删除 `\n`
 7. start_with(&str) 是否以某字符串开始
 8. end_with(&str) 是否以某字符串结束

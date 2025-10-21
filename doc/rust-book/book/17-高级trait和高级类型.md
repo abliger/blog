@@ -31,7 +31,7 @@ fn returns_long_type() -> Thunk {
 }
 ```
 
-更常用的是用在 Result<T,E> 中
+更常用的是用在 `Result<T,E>` 中
 
 ```rust
 type Result<T> = std::result::Result<T, std::io::Error>;
@@ -53,7 +53,7 @@ fn bar() -> ! {
 
 动态大小类型就是指只有在运行时才知道大小的类型.我命常用的 str 和 trait 都是动态大小类型的.
 
-动态大小类型由于不知道大小,而 rust 中必须要知道类型的大小.所以我们对于 str 和 trait 类型,使用引用类型代替.如 &str、box<str>、&dyn trait、Box<dyn trait>.
+动态大小类型由于不知道大小,而 rust 中必须要知道类型的大小.所以我们对于 str 和 trait 类型,使用引用类型代替.如 &str、`box<str>`、&dyn trait、`Box<dyn trait>`.
 
 #### Sized
 
@@ -73,7 +73,7 @@ fn generic<T: ?Sized>(t: &T) {
 
 ### newtype
 
-如果想要在 Vec<T> 上实现 Display.而 rust 不允许我们实现外部 crate 类型.我们可以构建新结构,在新结构上实现 Display 并使用 Vec<T>.
+如果想要在 `Vec<T>` 上实现 Display.而 rust 不允许我们实现外部 crate 类型.我们可以构建新结构,在新结构上实现 Display 并使用 `Vec<T>`.
 
 ```rust
 use std::fmt;
@@ -92,7 +92,7 @@ fn main() {
 }
 ```
 
-此方法的缺点是，因为 Wrapper 是一个新类型，它没有定义于其值之上的方法；必须直接在 Wrapper 上实现 Vec<T> 的所有方法，这样就可以代理到 self.0 上 —— 这就允许我们完全像 Vec<T> 那样对待 Wrapper.
+此方法的缺点是，因为 Wrapper 是一个新类型，它没有定义于其值之上的方法；必须直接在 Wrapper 上实现 `Vec<T>` 的所有方法，这样就可以代理到 self.0 上 —— 这就允许我们完全像 `Vec<T>` 那样对待 Wrapper.
 
 如果希望新类型拥有其内部类型的每一个方法，为封装类型实现 Deref trait 并返回其内部类型是一种解决方案.
 

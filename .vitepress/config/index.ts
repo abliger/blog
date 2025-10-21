@@ -1,8 +1,8 @@
 import type { DefaultTheme, UserConfig } from 'vitepress'
-import themeConfig from './themeConfig.mts';
-import { markdown } from './markdown.mts';
+import themeConfig from './themeConfig.js';
+import { markdown } from './markdown.js';
 import { viteDemoPreviewPlugin } from '@vitepress-code-preview/plugin'
-import { getFileURLToNextOrPrev } from './file.mts';
+import { getFileURLToNextOrPrev } from './file';
 import vueJsx from '@vitejs/plugin-vue-jsx'
 
 import Inspector from 'vite-plugin-vue-inspector' // OR vite-plugin-vue-inspector
