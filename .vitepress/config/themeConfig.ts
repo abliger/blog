@@ -12,8 +12,8 @@ const myOption = {
     // } : {})
 }
 
-const themeConfig = {
-    myOption,
+const themeConfig: DefaultTheme.Config = {
+    ...myOption,
     outline: {
         level: [2, 6],
         label: '页面导航'
@@ -21,7 +21,7 @@ const themeConfig = {
     sidebar: archieveDir,
     nav: [
         { text: '归档', link: '/achieve', activeMatch: Object.keys(archieveDir).map(item => '^' + item).join('|') },
-        { text: '关于', link: '/about' }
+        { text: '关于', link: '/about',target:'_self' }
     ],
     socialLinks: [
         // { icon: 'github', link: 'https://github.com/vuejs/vitepress' }
@@ -73,7 +73,7 @@ const themeConfig = {
     darkModeSwitchLabel: '主题',
     lightModeSwitchTitle: '切换到浅色模式',
     darkModeSwitchTitle: '切换到深色模式',
-    skipToContentLabel: '跳转到内容',
-} as DefaultTheme.Config
+    skipToContentLabel: '跳转到内容'
+}
 
 export default themeConfig

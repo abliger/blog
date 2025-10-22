@@ -1,12 +1,16 @@
+<!-- 
+    fc-typing 文字打字机效果组件
+    传入一个字符串数组 strs，组件会循环显示这些字符串，模拟打字和删除的效果
+-->
 <template>
-    <div>
+    <div class="FcTyping">
         <slot></slot>
         <span class="typing" ref="typing"></span>
     </div>
 </template>
 <script setup lang="tsx">
 import { onMounted, onUnmounted, useTemplateRef } from "vue";
-const typing = useTemplateRef('typing')
+const typing = useTemplateRef<HTMLElement>('typing')
 const props = defineProps<{
     strs: string[];
 }>()
