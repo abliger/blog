@@ -40,16 +40,22 @@ margin （top、bottom）属性无效，设置水平方向的 padding、margin �
 
 - `flex: none | [ <'flex-grow'> <'flex-shrink'>? || <'flex-basis'> ]` 简写
 - `flex-basis: <length> | auto` 在分配多余空间之前，项目占据的主轴空间
-- `flex-direction: row | row-reverse | column | column-reverse` 决定主轴的方向，水平或者垂直
+- `flex-direction: row(默认) | row-reverse | column | column-reverse` 决定主轴的方向，水平或者垂直
 - `flex-flow <flex-direction> || <flex-wrap>` 简写
 - `flex-grow:  <number>` 项目的放大比例
 - `flex-shrink: <number>` 项目的缩小比例
 - `flex-wrap : nowrap | wrap | wrap-reverse` 换行不换行以及换行的方向
-- `justify-content: flex-start | flex-end | center | space-between | space-around` 在 x 轴上的对齐方式。
+- `justify-content: flex-start | flex-end | center | space-between | space-around| space-evenly` 在 x 轴上的对齐方式。
 - `justify-self: auto | flex-start | flex-end | center | baseline | stretch` 单个项目有与其他项目不一样的对齐方式
 - `align-content: flex-start | flex-end | center | space-between | space-around | stretch` 多根轴线的对齐方式
 - `align-items: flex-start | flex-end | center | baseline | stretch` 项目在 y 轴上如何对齐。
 - `align-self: auto | flex-start | flex-end | center | baseline | stretch` 单个项目有与其他项目不一样的对齐方式
+
+flex 布局最重要的三个属性:
+
+1. direction 定义主轴方向,决定项目时水平还是垂直布局
+2. justify content 管理主轴方向的对齐和分布
+3. align items 管理交叉轴方向的分布
 
 :::demo src=frontEnd/css/examples/displayFlex.vue
 :::

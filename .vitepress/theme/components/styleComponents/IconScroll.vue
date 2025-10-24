@@ -25,7 +25,7 @@
         icons: { name: string, imgSrc: string }[];
     }>()
 </script>
-<style lang="css">
+<style lang="css" scoped>
     .IconScroll {
         width: 100%;
         /* overflow: hidden; */
@@ -50,11 +50,16 @@
     }
 
     img {
-        pointer-events: none;
+        /* pointer-events: none; */
+        -webkit-user-drag: none;
 
+        &:hover {
+            transform: scale(1.2);
+            transition: transform 0.3s;
+        }
     }
 
-    @keyframes iconScroll {
+    /* @keyframes iconScroll {
         0% {
             transform: translate3D(0%, 0px, 0px);
         }
@@ -66,5 +71,5 @@
         100% {
             transform: translate3D(-50%, 0px, 0px);
         }
-    }
+    } */
 </style>

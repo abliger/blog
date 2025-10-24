@@ -16,7 +16,7 @@
                 </div>
             </div>
             <div class="card2">
-                <icon-scroll :icons="data.mylearnedSkill" />
+                <!-- <icon-scroll :icons="data.mylearnedSkill" /> -->
             </div>
             <div class="card3">
                 <!-- <Content path="about" /> -->
@@ -48,7 +48,7 @@
             <div class="card4">
                 <!-- 使用 svg -->
                 <p>鲁东大学</p>
-                <div><img src="/ludong.jpg" alt="allPeople" /></div>
+                <MarkImg src="/ludong.jpg" />
                 <p>上海</p>
                 <div><img src="/allPeople.jpeg" alt="allPeople" /></div>
             </div>
@@ -77,6 +77,7 @@
     import IconScroll from "../styleComponents/IconScroll.vue";
     // import { Content } from 'vitepress'
     import data from "./data";
+    import MarkImg from "../styleComponents/markImg.vue";
     let myTag = data.myTag;
 
     let loading = useTemplateRef<HTMLDivElement>('loading')
@@ -101,6 +102,7 @@
                     }
                 }
             });
+
         });
     });
 </script>
