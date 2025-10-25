@@ -1,11 +1,13 @@
 <template>
-    <div class="PartocleImg">
-        <canvas id="particle" ref="canvas"></canvas>
+    <div class="PartocleImg" ref="partocleImg">
+        <canvas id="particle" ref="canvas" v-el-point-event-listener></canvas>
     </div>
 </template>
 <script setup lang="ts">
-    import { ref, onMounted, onBeforeUnmount, watch } from 'vue'
-    import { dataLoaction, throttle } from '../../../util/util';
+    import { onMounted, onBeforeUnmount, watch, useTemplateRef } from 'vue'
+    import { getMousePosition, vElPointEventListener } from '../../directive/elPointEventListener';
+    import { dataLoaction } from '../../../util/util';
+    const partocleImg = useTemplateRef<HTMLDivElement>('partocleImg')
     const props = defineProps({
         imgSrc: { type: String, required: true },
         gap: { type: Number, default: 1 }, // 采样间隔，5%宽度
@@ -18,57 +20,12 @@
         bwThreshold: { type: Number, default: 128 }, // 灰度阈值：>= 则为白，否则为黑
     })
 
-
-    const canvas = ref<HTMLCanvasElement | null>(null)
+    const canvas = useTemplateRef<HTMLCanvasElement>('canvas')
     let ctx: CanvasRenderingContext2D | null = null
-
-    const mousePosition = {
-        mouseX: undefined as number | undefined,
-        mouseY: undefined as number | undefined,
-        timex: undefined,
-        timey: undefined,
-        setMouseX(x: number | undefined) {
-            this.mouseX = x
-            clearTimeout(this.timex);
-            this.timex = setTimeout(() => {
-                this.mouseX = undefined
-            }, 100);
-        },
-        setMouseY(y: number | undefined) {
-            this.mouseY = y
-            clearTimeout(this.timey);
-            this.timey = setTimeout(() => {
-                this.mouseY = undefined
-            }, 100);
-        }
-    }
 
     let particles: Particle[] = []
     let rafId: number | null = null
     let img = new Image()
-
-    function onMouseMove(e: MouseEvent) {
-        if (!canvas.value) return
-        const rect = canvas.value.getBoundingClientRect()
-        mousePosition.setMouseX(e.clientX - rect.left)
-        mousePosition.setMouseY(e.clientY - rect.top)
-    }
-
-    function onTouchMove(e: TouchEvent) {
-        e.preventDefault() // 防止页面滚动
-        if (!canvas.value || !e.touches[0]) return
-        const rect = canvas.value.getBoundingClientRect()
-        const touch = e.touches[0]
-        mousePosition.setMouseX(touch.clientX - rect.left)
-        mousePosition.setMouseY(touch.clientY - rect.top)
-    }
-
-    function onMouseLeave() {
-        mousePosition.mouseX = undefined
-        mousePosition.mouseY = undefined
-    }
-
-    const onTouchEnd = onMouseLeave
 
     onMounted(() => {
         if (!canvas.value) return
@@ -78,13 +35,6 @@
         img.onload = () => {
             start()
         }
-        // 添加触摸事件监听
-        canvas.value.addEventListener('touchstart', throttle(onTouchMove, 10), { passive: false })
-        canvas.value.addEventListener('touchmove', throttle(onTouchMove, 10), { passive: false })
-        canvas.value.addEventListener('touchend', onTouchEnd)
-        canvas.value.addEventListener('touchcancel', onTouchEnd)
-        canvas.value.addEventListener('mousemove', onMouseMove)
-        canvas.value.addEventListener('mouseleave', onMouseLeave)
     })
 
     function start() {
@@ -145,7 +95,6 @@
     }
 
     function animate() {
-        if (!ctx || !canvas.value) return
         ctx.clearRect(0, 0, canvas.value.clientWidth, canvas.value.clientHeight)
         for (const p of particles) {
             p.draw()
@@ -154,14 +103,6 @@
     }
 
     onBeforeUnmount(() => {
-        if (canvas.value) {
-            canvas.value.removeEventListener('touchstart', onTouchMove)
-            canvas.value.removeEventListener('touchmove', onTouchMove)
-            canvas.value.removeEventListener('touchend', onTouchEnd)
-            canvas.value.removeEventListener('touchcancel', onTouchEnd)
-            canvas.value.removeEventListener('mousemove', onMouseMove)
-            canvas.value.removeEventListener('mouseleave', onMouseLeave)
-        }
         stop()
     })
 
@@ -188,7 +129,7 @@
         y: number
         radius: number
         color: string
-        factor: number = 20
+        positionUpdateFactor: number = 20
 
         constructor(point: { x: number; y: number }, color = 'purple') {
             this.targetX = point.x
@@ -210,10 +151,11 @@
         }
 
         update() {
+            if (partocleImg.value.style.display === 'none') return
             const mx = this.targetX - this.x
             const my = this.targetY - this.y
-            let vx = mx / this.factor
-            let vy = my / this.factor
+            let vx = mx / this.positionUpdateFactor
+            let vy = my / this.positionUpdateFactor
             let [dx, dy] = this.mouseMove()
             this.x += vx + dx
             this.y += vy + dy
@@ -221,7 +163,7 @@
 
         // 鼠标移入时的作用力计算
         mouseMove() {
-            const { mouseX, mouseY } = mousePosition
+            const { mouseX, mouseY } = getMousePosition()
             if (mouseX !== undefined && mouseY !== undefined) {
                 let dx = mouseX - this.x
                 let dy = mouseY - this.y

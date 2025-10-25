@@ -12,11 +12,11 @@
                     <p>我在这个网站记录我的成长,记录代码和生活</p>
                 </div>
                 <div class="right">
-                    <partocle-img imgSrc="image.png" />
+                    <partocle-img imgSrc="image.png" v-show="startAnim" />
                 </div>
             </div>
             <div class="card2">
-                <!-- <icon-scroll :icons="data.mylearnedSkill" /> -->
+                <icon-scroll :icons="data.mylearnedSkill" />
             </div>
             <div class="card3">
                 <!-- <Content path="about" /> -->
@@ -48,7 +48,7 @@
             <div class="card4">
                 <!-- 使用 svg -->
                 <p>鲁东大学</p>
-                <MarkImg src="/ludong.jpg" />
+                <MarkImg src="/ludong.jpg" v-show="endAnim" />
                 <p>上海</p>
                 <div><img src="/allPeople.jpeg" alt="allPeople" /></div>
             </div>
@@ -63,10 +63,8 @@
                 <div>音乐</div>
             </div>
         </slot>
-        <slot name="loading">
-            <div class="loading" ref="loading">
-                loading...
-            </div>
+        <slot name="loading" v-if="!isDev">
+            <loading @endAnimate="endAnimate" @startAnimate="startAnimate" />
         </slot>
     </div>
 </template>
@@ -75,36 +73,20 @@
     import FcTyping from "../styleComponents/FcTyping.vue";
     import PartocleImg from "../styleComponents/particleImg.vue";
     import IconScroll from "../styleComponents/IconScroll.vue";
+    import Loading from "../Loading.vue";
     // import { Content } from 'vitepress'
     import data from "./data";
-    import MarkImg from "../styleComponents/markImg.vue";
+    import MarkImg from "../styleComponents/MarkImg.vue";
+    const isDev = import.meta.env.DEV
     let myTag = data.myTag;
-
-    let loading = useTemplateRef<HTMLDivElement>('loading')
-
-    onBeforeMount(() => {
-        console.log("onBeforeMount");
-    });
-
-    onMounted(() => {
-        /// 页面加载完成后，执行淡出动画
-        /// 使用 nextTick 和 requestAnimationFrame 确保首次渲染后执行
-        nextTick(() => {
-            requestAnimationFrame(() => {
-                if (loading.value) {
-                    loading.value.classList.add('loading_hidden');
-                    if (import.meta.env.DEV) {
-                        loading.value.addEventListener('transitionend', () => {
-                            if (loading.value && loading.value.parentNode) {
-                                loading.value.parentNode.removeChild(loading.value);
-                            }
-                        });
-                    }
-                }
-            });
-
-        });
-    });
+    const endAnim = ref(isDev ? true : false)
+    const startAnim = ref(isDev ? true : false)
+    function endAnimate() {
+        endAnim.value = true
+    }
+    function startAnimate() {
+        startAnim.value = true
+    }
 </script>
 <style lang="css" scoped>
     #BIndex {
@@ -115,18 +97,9 @@
     .left h1 {
         color: red;
     }
-
-    .loading {
-        background-color: red;
-        position: absolute;
-        top: 0;
-        left: 0;
-        height: 100vh;
-        width: 100vw;
-        transition: opacity 1s ease-in-out;
-    }
-
-    .loading_hidden {
-        opacity: 0;
+</style>
+<style lang="css">
+    body {
+        position: relative;
     }
 </style>

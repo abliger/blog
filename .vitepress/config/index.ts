@@ -10,13 +10,6 @@ import Inspector from 'vite-plugin-vue-inspector' // OR vite-plugin-vue-inspecto
 let vite = {
     assetsInclude: ['**/*.html'],
     plugins: [viteDemoPreviewPlugin(), vueJsx(), Inspector()],
-    // css: {
-    //     preprocessorOptions: {
-    //         scss: {
-    //             api: "modern"
-    //         }
-    //     }
-    // }
 }
 
 export default {

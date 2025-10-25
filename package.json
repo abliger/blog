@@ -10,14 +10,14 @@
   },
   "dependencies": {
     "json-server": "1.0.0-beta.3",
-    "vite": "^6.3.5",
-    "vitepress": "^1.6.3",
-    "vue": "^3.5.18"
+    "vite": "^6.4.1",
+    "vitepress": "2.0.0-alpha.12",
+    "vue": "^3.5.22"
   },
   "devDependencies": {
     "@shikijs/types": "3.2.1",
-    "@shikijs/vitepress-twoslash": "^3.8.1",
-    "@types/node": "^22.16.5",
+    "@shikijs/vitepress-twoslash": "^3.13.0",
+    "@types/node": "^22.18.12",
     "@vitejs/plugin-vue-jsx": "^4.2.0",
     "@vitepress-code-preview/container": "^1.0.8",
     "@vitepress-code-preview/plugin": "^1.0.6",

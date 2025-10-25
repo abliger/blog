@@ -1,9 +1,9 @@
 <template>
-    <div ref="imageContainer" class="three" :class="{ 'visible': isVisible }" :style="style">
+    <div ref="imageContainer" class="three" :class="{ 'visible': isVisible }" :style>
     </div>
 </template>
 <script lang="tsx" setup>
-    import { ref, onMounted, watch } from 'vue';
+    import { ref, onMounted } from 'vue';
 
     const props = withDefaults(defineProps<{
         src: string;
@@ -30,7 +30,7 @@
                 }
             });
         }, {
-            threshold: 0.5
+            threshold: 1
         });
         observer.value.observe(imageContainer.value);
     });
