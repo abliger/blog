@@ -2,27 +2,65 @@
   "name": "blog",
   "version": "1.0.0",
   "type": "module",
+  "engines": {
+    "node": ">=22.20.0",
+    "npm": ">=10.9.2",
+    "pnpm": ">=10.19.0"
+  },
   "scripts": {
     "db": "json-server .vitepress/db/db.json",
+    "lint:spellcheck": "cspell lint \"(packages|.vitepress)/**/*.{js,ts,mjs,cjs,json,css,less,sass,vue,html,md}\"",
+    "commit": "git-cz",
+    "prepare": "husky",
     "docs:dev": "vitepress dev --host",
     "docs:build": "vitepress build",
     "docs:preview": "vitepress preview"
   },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-git"
+    }
+  },
   "dependencies": {
     "json-server": "1.0.0-beta.3",
+    "style-vue": "workspace:*",
     "vite": "^6.4.1",
     "vitepress": "2.0.0-alpha.12",
     "vue": "^3.5.22"
   },
+  "workspaces": [
+    "packages/*"
+  ],
   "devDependencies": {
+    "@commitlint/cli": "^20.1.0",
+    "@commitlint/config-conventional": "^20.0.0",
+    "@cspell/dict-css": "^4.0.18",
+    "@cspell/dict-lorem-ipsum": "^4.0.5",
     "@shikijs/types": "3.2.1",
     "@shikijs/vitepress-twoslash": "^3.13.0",
     "@types/node": "^22.18.12",
     "@vitejs/plugin-vue-jsx": "^4.2.0",
     "@vitepress-code-preview/container": "^1.0.8",
     "@vitepress-code-preview/plugin": "^1.0.6",
+    "commitizen": "^4.3.1",
+    "cspell": "^9.2.2",
+    "cz-git": "^1.12.0",
+    "eslint": "latest",
+    "eslint-config-standard": "latest",
+    "eslint-plugin-import": "latest",
+    "eslint-plugin-node": "latest",
+    "eslint-plugin-promise": "latest",
+    "eslint-plugin-vue": "latest",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.2.6",
     "markdown-it-mathjax3": "^4.3.2",
-    "sass-embedded": "^1.93.2",
+    "prettier": "^3.6.2",
     "vite-plugin-vue-inspector": "^5.3.2"
+  },
+  "lint-staged": {
+    "*.{vue,js,ts,jsx,tsx,md,json}": [
+      "eslint --fix --concurrency=auto",
+      "prettier --write --experimental-cli"
+    ]
   }
 }

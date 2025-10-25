@@ -65,5 +65,6 @@ let skill = [
 ]
 export default {
     myTag: ["喜欢折腾新技术的前端人", "热爱编程的码农", "游戏 mod 开发者", "热爱生活的普通人", "未来的小说家", "业余摄影师", "电影爱好者", "音乐发烧友"],
-    mylearnedSkill: skill
+    myLearnedSkill: skill
 }
+export type Skill = { name: string, imgSrc: string }[]

@@ -29,9 +29,9 @@ export function getUrlFile(dir: string, fileType: string[] = [], srcExclude: str
         if (file.isFile) {
             if (fileTypeReg.some(reg => reg.test(file!.name))) {
                 if (res['index']) {
-                    res['index'].push(shifeFirstD(file.name))
+                    res['index'].push(shiftFirstD(file.name))
                 } else {
-                    res['index'] = [shifeFirstD(file.name)]
+                    res['index'] = [shiftFirstD(file.name)]
                 }
             }
         } else {
@@ -107,7 +107,7 @@ function getDirName(dir: string): string {
     return dir.split('/').pop() as string
 }
 
-function shifeFirstD(dir: string): string {
+function shiftFirstD(dir: string): string {
     let temp = dir.split('/')
     temp.shift()
     return temp.join('/')

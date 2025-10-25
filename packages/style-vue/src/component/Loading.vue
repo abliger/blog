@@ -197,11 +197,11 @@
                         emit('startAnimate')
                     })
                     loading.value.addEventListener('transitionend', () => {
-                        if (import.meta.env.DEV) {
-                            if (loading.value && loading.value.parentNode) {
-                                loading.value.parentNode.removeChild(loading.value);
-                            }
+                        // if (import.meta.env.DEV) {
+                        if (loading.value && loading.value.parentNode) {
+                            loading.value.parentNode.removeChild(loading.value);
                         }
+                        // }
                         emit('endAnimate')
                     });
 
@@ -684,11 +684,11 @@
         height: 76%;
         background: var(--dark);
         overflow: hidden;
-        animation: lighton 3s ease-in-out 4s 1 normal forwards running;
+        animation: lighten 3s ease-in-out 4s 1 normal forwards running;
 
     }
 
-    @keyframes lighton {
+    @keyframes lighten {
 
         0%,
         100% {

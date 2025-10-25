@@ -1,16 +1,16 @@
-<!-- 
+<template>
+    <!-- 
     IconScroll 图标滚动组件
     接收一个图标数组 icons，图表默认分成两行,无限滚动显示
--->
-<template>
+    -->
     <div class="IconScroll">
         <div class="line">
             <div class="icons" :style="{ transform: 'translate3d(' + move[0] + '%,0px,0px)' }" ref="icons">
-                <div class="icon-item" v-for="(icon, index) in props.icons" :key="index" @mouseenter="pauseAnimation(1)"
+                <div class="icon-item" v-for="(icon, index) in skill" :key="index" @mouseenter="pauseAnimation(1)"
                     @mouseleave="resumeAnimation">
                     <img :src="icon.imgSrc" :alt="icon.name" :title="icon.name" />
                 </div>
-                <div class="icon-item" v-for="(icon, index) in props.icons" :key="index" @mouseenter="pauseAnimation(1)"
+                <div class="icon-item" v-for="(icon, index) in skill" :key="index" @mouseenter="pauseAnimation(1)"
                     @mouseleave="resumeAnimation">
                     <img :src="icon.imgSrc" :alt="icon.name" :title="icon.name" />
                 </div>
@@ -18,11 +18,11 @@
         </div>
         <div class="line">
             <div class="icons" :style="{ transform: 'translate3d(' + move[1] + '%,0px,0px)' }" ref="icons">
-                <div class="icon-item" v-for="(icon, index) in props.icons" :key="index" @mouseenter="pauseAnimation(2)"
+                <div class="icon-item" v-for="(icon, index) in skill" :key="index" @mouseenter="pauseAnimation(2)"
                     @mouseleave="resumeAnimation">
                     <img :src="icon.imgSrc" :alt="icon.name" :title="icon.name" />
                 </div>
-                <div class="icon-item" v-for="(icon, index) in props.icons" :key="index" @mouseenter="pauseAnimation(2)"
+                <div class="icon-item" v-for="(icon, index) in skill" :key="index" @mouseenter="pauseAnimation(2)"
                     @mouseleave="resumeAnimation">
                     <img :src="icon.imgSrc" :alt="icon.name" :title="icon.name" />
                 </div>
@@ -32,28 +32,26 @@
 </template>
 
 <script setup lang="tsx">
-    import { onMounted, ref, useTemplateRef, onUnmounted } from 'vue';
-    import { throttle } from '../../../util/util';
+    import { onMounted, ref, useTemplateRef, onUnmounted, inject } from 'vue';
+    import { throttle } from '../utils/utils';
 
     const icons = useTemplateRef<HTMLDivElement>('icons');
-    const props = defineProps<{
-        icons: { name: string, imgSrc: string }[];
-    }>();
+    const skill = inject<Array<{ imgSrc: string, name: string }>>('skill')
 
     const move = ref([0, 0]);
     const animationId = ref<number | null>(null);
     let effectRow = 0
 
-    let isScorlling = false
+    let isScrolling = false
     onMounted(() => {
         startAnimation();
         let timer = undefined
         window.addEventListener('scroll',
             throttle(() => {
-                isScorlling = true
+                isScrolling = true
                 clearTimeout(timer)
                 timer = setTimeout(() => {
-                    isScorlling = false
+                    isScrolling = false
                 }, 100);
             }, 100)
         );
@@ -64,7 +62,7 @@
         let len = 0.01
         let c = 0;
         function anim() {
-            len = (isScorlling && len == 0.01) ? 0.06 : 0.01;
+            len = (isScrolling && len == 0.01) ? 0.06 : 0.01;
 
             if (len > 0.01) {
                 len -= 0.001

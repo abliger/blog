@@ -1,13 +1,13 @@
 <template>
-    <div class="PartocleImg" ref="partocleImg">
+    <div class="particleImg" ref="particleImg">
         <canvas id="particle" ref="canvas" v-el-point-event-listener></canvas>
     </div>
 </template>
 <script setup lang="ts">
     import { onMounted, onBeforeUnmount, watch, useTemplateRef } from 'vue'
-    import { getMousePosition, vElPointEventListener } from '../../directive/elPointEventListener';
-    import { dataLoaction } from '../../../util/util';
-    const partocleImg = useTemplateRef<HTMLDivElement>('partocleImg')
+    import { getMousePosition, vElPointEventListener } from '../directive/elPointEventListener';
+    import { dataLocation } from '../utils/utils';
+    const particleImg = useTemplateRef<HTMLDivElement>('particleImg')
     const props = defineProps({
         imgSrc: { type: String, required: true },
         gap: { type: Number, default: 1 }, // 采样间隔，5%宽度
@@ -56,7 +56,7 @@
     function createParticlesFromImage() {
         buildVirtualCanvas()
         // const dpr = window.devicePixelRatio || 1
-        particles = dataLoaction('particles' + props.imgSrc, () => getImagePoints())
+        particles = dataLocation('particles' + props.imgSrc, () => getImagePoints())
             .map(p => new Particle({ x: p.x, y: p.y }, p.color))
     }
 
@@ -151,7 +151,7 @@
         }
 
         update() {
-            if (partocleImg.value.style.display === 'none') return
+            if (particleImg.value.style.display === 'none') return
             const mx = this.targetX - this.x
             const my = this.targetY - this.y
             let vx = mx / this.positionUpdateFactor
@@ -188,7 +188,7 @@
     }
 </script>
 <style lang="css" scoped>
-    .PartocleImg {
+    .particleImg {
         /* height: v-bind(canvasHeight + 'px');
         width: v-bind(canvasWidth+'px'); */
         overflow: hidden;

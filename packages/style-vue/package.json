@@ -1,0 +1,41 @@
+{
+  "name": "style-vue",
+  "version": "0.0.1",
+  "description": "自用 vue 动画效果库",
+  "types": "./dist/styleVue.d.ts",
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/es/index.js",
+  "module": "./dist/es/index.js",
+  "style": "./dist/es/style.css",
+  "scripts": {
+    "build": "vite build"
+  },
+  "keywords": [],
+  "author": "abliger",
+  "license": "MIT",
+  "peerDependencies": {
+    "vue": "^3.5.22"
+  },
+  "devDependencies": {
+    "@types/node": "^22.18.12",
+    "@vitejs/plugin-legacy": "^7.2.1",
+    "@vitejs/plugin-vue": "^6.0.1",
+    "@vitejs/plugin-vue-jsx": "^5.1.1",
+    "sass-embedded": "^1.93.2",
+    "typescript": "^5.9.3",
+    "vite": "^7.1.12",
+    "vite-plugin-dts": "^4.5.4",
+    "vue": "^3.5.22"
+  },
+  "buildOptions": {
+    "name": "style-vue",
+    "formats": [
+      "esm",
+      "cjs",
+      "iife"
+    ]
+  }
+}

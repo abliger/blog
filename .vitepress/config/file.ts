@@ -3,7 +3,7 @@ import { filesToSidebar, getUrlFile } from '../util/getUrlFile'
 import * as fs from 'fs'
 import * as path from 'path'
 
-async function getArchieve() {
+async function getArchive() {
     const filedir = getFileDir()
     return Promise.all([
         {
@@ -54,24 +54,24 @@ async function getArchieve() {
     ] as DefaultTheme.SidebarItem[])
 }
 
-const archieve = await getArchieve();
+const archive = await getArchive();
 
-// export const archiveDir: DefaultTheme.Sidebar = getArchieveDir()
+// export const archiveDir: DefaultTheme.Sidebar = getArchiveDir()
 
-export function getArchieveDir() {
+export function getArchiveDir() {
     const a = {}
-    archieve.forEach(item => {
-        a[item.link!] = archieve
+    archive.forEach(item => {
+        a[item.link!] = archive
     })
 
     // 导出归档文件夹的路径 
     const archiveDir: DefaultTheme.Sidebar = {
-        "/achieve": archieve,
+        "/achieve": archive,
         ...a
     }
     return archiveDir
 }
-export const archieveDir = getArchieveDir();
+export const archiveDir = getArchiveDir();
 function getFileDir() {
     let base = getUrlFile('./doc/base', ['md'], ['**/code/**', "**/node_modules"])
     let frontEnd = getUrlFile('./doc/frontEnd', ['md'], ["**/node_modules"])
@@ -127,7 +127,7 @@ function getFileNameByNextOrPrev(str: string): string {
 }
 
 export function getFileURLToNextOrPrev(path: string): Record<string, any> {
-    if (!Object.keys(archieveDir).some(item => new RegExp(`.*${item}/`).test('/' + path))) {
+    if (!Object.keys(archiveDir).some(item => new RegExp(`.*${item}/`).test('/' + path))) {
         return {}
     }
     const getNavItem = function (path: string) {

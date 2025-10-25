@@ -1,8 +1,8 @@
-<!-- 
+<template>
+    <!-- 
     fc-typing 文字打字机效果组件
     传入一个字符串数组 strs，组件会循环显示这些字符串，模拟打字和删除的效果 
--->
-<template>
+    -->
     <div class="FcTyping">
         <slot></slot>
         <span class="typing" ref="typing"></span>
@@ -13,11 +13,11 @@
     const typing = useTemplateRef<HTMLElement>('typing')
     const props = withDefaults(defineProps<{
         strs: string[],
-        typeingDelay?: number,
+        typingDelay?: number,
         delDelay?: number,
         nextDelay?: number,
     }>(), {
-        typeingDelay: 100,
+        typingDelay: 100,
         delDelay: 50,
         nextDelay: 500,
     })
@@ -37,7 +37,7 @@
         if (direction === 1) {
             // 正在输入
             if (pos < text.length) {
-                timer = setTimeout(() => animateTyping(strs, index, pos + 1, 1), props.typeingDelay);
+                timer = setTimeout(() => animateTyping(strs, index, pos + 1, 1), props.typingDelay);
             } else {
                 // 输入完成，停留一段时间后开始删除
                 timer = setTimeout(() => animateTyping(strs, index, pos - 1, -1), props.nextDelay * 3);

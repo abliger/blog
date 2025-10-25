@@ -5,9 +5,12 @@ import TwoslashFloatingVue from '@shikijs/vitepress-twoslash/client'
 import '@shikijs/vitepress-twoslash/style.css'
 import DefaultTheme from 'vitepress/theme'
 import './style.css'
-import DemoPreview,{useComponents} from '@vitepress-code-preview/container'
+import DemoPreview, { useComponents } from '@vitepress-code-preview/container'
 import '@vitepress-code-preview/container/dist/style.css'
 import Layout from './Layout.vue'
+
+
+import 'style-vue/dist/lib/style-vue.css'
 
 export default {
   extends: DefaultTheme,

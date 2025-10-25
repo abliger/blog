@@ -1,5 +1,5 @@
 import { DefaultTheme } from "vitepress/theme";
-import { archieveDir, fileTotal, getArchieveDir, getMonthlyUpdates, lastFiles } from "./file";
+import { archiveDir, fileTotal, getArchiveDir, getMonthlyUpdates, lastFiles } from "./file";
 
 const myOption = {
     lastFiles: lastFiles(20),
@@ -18,10 +18,10 @@ const themeConfig: DefaultTheme.Config = {
         level: [2, 6],
         label: '页面导航'
     },
-    sidebar: archieveDir,
+    sidebar: archiveDir,
     nav: [
-        { text: '归档', link: '/achieve', activeMatch: Object.keys(archieveDir).map(item => '^' + item).join('|') },
-        { text: '关于', link: '/about',target:'_self' }
+        { text: '归档', link: '/achieve', activeMatch: Object.keys(archiveDir).map(item => '^' + item).join('|') },
+        { text: '关于', link: '/about', target: '_self' }
     ],
     socialLinks: [
         // { icon: 'github', link: 'https://github.com/vuejs/vitepress' }

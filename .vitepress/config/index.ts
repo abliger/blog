@@ -1,4 +1,4 @@
-import type { DefaultTheme, UserConfig } from 'vitepress'
+import { build, type DefaultTheme, type UserConfig } from 'vitepress'
 import themeConfig from './themeConfig.js';
 import { markdown } from './markdown.js';
 import { viteDemoPreviewPlugin } from '@vitepress-code-preview/plugin'
@@ -10,6 +10,9 @@ import Inspector from 'vite-plugin-vue-inspector' // OR vite-plugin-vue-inspecto
 let vite = {
     assetsInclude: ['**/*.html'],
     plugins: [viteDemoPreviewPlugin(), vueJsx(), Inspector()],
+    build: {
+        sourcemap: true
+    }
 }
 
 export default {

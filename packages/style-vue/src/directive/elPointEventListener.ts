@@ -47,7 +47,10 @@ function onMouseLeave() {
 
 const onTouchEnd = onMouseLeave
 let element = undefined
-export const vElPointEventListener: Directive = {
+/*
+统一处理鼠标和触摸输入,内部维护当前鼠标位置
+*/
+export const vElPointEventListener: Directive<HTMLElement, never> = {
     mounted: (el: HTMLElement, binding) => {
         element = el
         el.addEventListener('touchstart', onTouchMove, { passive: false })
@@ -67,6 +70,7 @@ export const vElPointEventListener: Directive = {
     },
 
 }
+
 export function getMousePosition() {
     return {
         mouseX: mousePosition.mouseX,
