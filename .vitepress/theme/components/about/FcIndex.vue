@@ -48,4 +48,8 @@
     body {
         position: relative;
     }
+
+    #BIndex {
+        box-sizing: content-box;
+    }
 </style>
