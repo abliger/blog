@@ -1,17 +1,23 @@
 {
   "name": "style-vue",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "自用 vue 动画效果库",
-  "types": "./dist/styleVue.d.ts",
+  "types": "./dist/types/index.d.ts",
   "type": "module",
   "files": [
     "dist"
   ],
   "main": "./dist/es/index.js",
   "module": "./dist/es/index.js",
-  "style": "./dist/es/style.css",
+  "exports": {
+    ".": {
+      "import": "./dist/es/index.js",
+      "require": "./dist/es/index.js"
+    },
+    "./style.css": "./dist/es/index.css"
+  },
   "scripts": {
-    "build": "vite build"
+    "build": "rm -rf ./dist && vite build"
   },
   "keywords": [],
   "author": "abliger",
@@ -29,13 +35,5 @@
     "vite": "^7.1.12",
     "vite-plugin-dts": "^4.5.4",
     "vue": "^3.5.22"
-  },
-  "buildOptions": {
-    "name": "style-vue",
-    "formats": [
-      "esm",
-      "cjs",
-      "iife"
-    ]
   }
 }
