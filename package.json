@@ -36,6 +36,7 @@
     "@commitlint/config-conventional": "^20.0.0",
     "@cspell/dict-css": "^4.0.18",
     "@cspell/dict-lorem-ipsum": "^4.0.5",
+    "@eslint/js": "^9.38.0",
     "@shikijs/types": "3.2.1",
     "@shikijs/vitepress-twoslash": "^3.13.0",
     "@types/node": "^22.18.12",
@@ -45,17 +46,18 @@
     "commitizen": "^4.3.1",
     "cspell": "^9.2.2",
     "cz-git": "^1.12.0",
-    "eslint": "latest",
+    "eslint": "^9.38.0",
     "eslint-config-standard": "latest",
-    "eslint-plugin-import": "latest",
-    "eslint-plugin-node": "latest",
-    "eslint-plugin-promise": "latest",
-    "eslint-plugin-vue": "latest",
+    "eslint-plugin-import": "^2.32.0",
+    "eslint-plugin-vue": "^10.5.1",
+    "globals": "^16.4.0",
     "husky": "^9.1.7",
     "lint-staged": "^16.2.6",
     "markdown-it-mathjax3": "^4.3.2",
     "prettier": "^3.6.2",
-    "vite-plugin-vue-inspector": "^5.3.2"
+    "typescript-eslint": "^8.46.2",
+    "vite-plugin-vue-inspector": "^5.3.2",
+    "vue-eslint-parser": "^10.2.0"
   },
   "lint-staged": {
     "*.{vue,js,ts,jsx,tsx,md,json}": [
