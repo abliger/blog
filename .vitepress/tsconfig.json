@@ -6,6 +6,9 @@
     "moduleResolution": "bundler",
     "target": "es2022",
     "module": "es2022",
-    "types": ["node"]
+    "types": ["node"],
+    "paths": {
+      "style-vue": ["../packages/style-vue/"]
+    }
   }
 }

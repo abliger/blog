@@ -4,10 +4,15 @@ import { markdown } from './markdown.js';
 import { viteDemoPreviewPlugin } from '@vitepress-code-preview/plugin'
 import { getFileURLToNextOrPrev } from './file';
 import vueJsx from '@vitejs/plugin-vue-jsx'
-
+// import path from 'path'
 import Inspector from 'vite-plugin-vue-inspector' // OR vite-plugin-vue-inspector
 
 let vite = {
+    // resolve: {
+    //     alias: {
+    //         'style-vue': path.resolve(__dirname, '../../packages/style-vue/src/')
+    //     }
+    // },
     assetsInclude: ['**/*.html'],
     plugins: [viteDemoPreviewPlugin(), vueJsx(), Inspector()],
     build: {

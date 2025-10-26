@@ -10,7 +10,7 @@ import '@vitepress-code-preview/container/dist/style.css'
 import Layout from './Layout.vue'
 
 
-import 'style-vue/dist/lib/style-vue.css'
+import 'style-vue/style.css'
 
 export default {
   extends: DefaultTheme,

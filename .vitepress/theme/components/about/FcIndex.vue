@@ -26,8 +26,8 @@
     import { Loading } from "style-vue";
     import data from "../data";
     const isDev = import.meta.env.DEV
-    const endAnim = ref(isDev ? true : false)
-    const startAnim = ref(isDev ? true : false)
+    const endAnim = ref(isDev)
+    const startAnim = ref(isDev)
     provide('endAnim', endAnim.value)
     provide('startAnim', startAnim.value)
     provide('skill', data.myLearnedSkill)
