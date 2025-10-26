@@ -2,19 +2,19 @@
   "name": "style-vue",
   "version": "0.0.2",
   "description": "自用 vue 动画效果库",
-  "types": "./dist/types/index.d.ts",
+  "types": "./dist/index.d.ts",
   "type": "module",
   "files": [
     "dist"
   ],
-  "main": "./dist/es/index.js",
-  "module": "./dist/es/index.js",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
   "exports": {
     ".": {
-      "import": "./dist/es/index.js",
-      "require": "./dist/es/index.js"
+      "import": "./dist/index.js",
+      "require": "./dist/index.js"
     },
-    "./style.css": "./dist/es/index.css"
+    "./style.css": "./dist/index.css"
   },
   "scripts": {
     "build": "rm -rf ./dist && vite build"

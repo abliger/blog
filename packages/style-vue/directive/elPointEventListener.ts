@@ -4,6 +4,12 @@
 
 import { type Directive } from "vue";
 
+declare module 'vue' {
+    export interface ComponentCustomProperties {
+        vElPointEventListener: typeof vElPointEventListener
+    }
+}
+
 const mousePosition = {
     mouseX: undefined,
     mouseY: undefined,
@@ -51,7 +57,7 @@ let element = undefined
 统一处理鼠标和触摸输入,内部维护当前鼠标位置
 */
 export const vElPointEventListener: Directive<HTMLElement, never> = {
-    mounted: (el: HTMLElement, ) => {
+    mounted: (el: HTMLElement,) => {
         element = el
         el.addEventListener('touchstart', onTouchMove, { passive: false })
         el.addEventListener('touchmove', onTouchMove, { passive: false })

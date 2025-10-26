@@ -4,13 +4,7 @@ import vue from "@vitejs/plugin-vue";
 import dtsPlugin from "vite-plugin-dts";
 
 export default defineConfig({
-  plugins: [
-    vueJsx(),
-    vue(),
-    dtsPlugin({
-      outDir: "dist/types",
-    }),
-  ],
+  plugins: [vueJsx(), vue(), dtsPlugin()],
   optimizeDeps: {
     include: ["linked-dep"],
   },
@@ -21,7 +15,7 @@ export default defineConfig({
     },
     lib: {
       entry: "src/index.ts",
-      formats: ["es", "cjs"],
+      formats: ["es"],
       cssFileName: "index",
     },
     commonjsOptions: {
@@ -40,17 +34,7 @@ export default defineConfig({
           entryFileNames: "[name].js",
           preserveModules: true,
           preserveModulesRoot: "src",
-          dir: "dist/es",
-        },
-        {
-          globals: {
-            vue: "Vue",
-          },
-          format: "cjs",
-          entryFileNames: "[name].js",
-          preserveModules: true,
-          preserveModulesRoot: "src",
-          dir: "dist/lib",
+          dir: "dist",
         },
       ],
     },
