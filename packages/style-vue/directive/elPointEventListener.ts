@@ -28,7 +28,7 @@ const mousePosition = {
         this._timey = window.setTimeout(() => {
             this.mouseY = undefined
         }, 100)
-    }
+    },
 }
 
 function onMouseMove(e: MouseEvent) {
@@ -74,12 +74,11 @@ export const vElPointEventListener: Directive<HTMLElement, never> = {
         el.removeEventListener('mousemove', onMouseMove)
         el.removeEventListener('mouseleave', onMouseLeave)
     },
-
 }
 
 export function getMousePosition() {
     return {
         mouseX: mousePosition.mouseX,
-        mouseY: mousePosition.mouseY
+        mouseY: mousePosition.mouseY,
     }
 }

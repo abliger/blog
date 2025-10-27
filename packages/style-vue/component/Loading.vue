@@ -28,9 +28,10 @@
                         <div id="pointer" />
                         <div id="content">
                             <p>
-                                <span>H</span><span>E</span><span>L</span><span>L</span><span>O</span><span>
-                                    W
-                                </span><span>O</span><span>R</span><span>L</span><span>D</span>
+                                <span>H</span><span>E</span><span>L</span
+                                ><span>L</span><span>O</span><span> W </span
+                                ><span>O</span><span>R</span><span>L</span
+                                ><span>D</span>
                             </p>
                         </div>
                         <div id="reflection_1" />
@@ -175,57 +176,56 @@
     </div>
 </template>
 <script setup lang="tsx">
-    import { onMounted, useTemplateRef, nextTick, onUnmounted } from 'vue';
+    import { onMounted, useTemplateRef, nextTick, onUnmounted } from 'vue'
     const loading = useTemplateRef<HTMLElement>('loading')
     const phone = useTemplateRef<HTMLElement>('phone')
     const phone_screen = useTemplateRef<HTMLElement>('phone_screen')
     const emit = defineEmits<{
-        endAnimate: [],
+        endAnimate: []
         startAnimate: []
     }>()
     let phoneAnimationTimer = null
     onMounted(() => {
         phoneAnimationTimer = setInterval(function () {
             phone.value.className = phone.value.className ? '' : 'phone_animate'
-            phone_screen.value.className = phone_screen.value.className ? '' : 'phone_screen_light'
+            phone_screen.value.className = phone_screen.value.className
+                ? ''
+                : 'phone_screen_light'
         }, 3000)
         nextTick(() => {
             requestAnimationFrame(() => {
                 if (loading.value) {
-                    loading.value.classList.add('loading_hidden');
+                    loading.value.classList.add('loading_hidden')
                     loading.value.addEventListener('transitionstart', () => {
                         emit('startAnimate')
                     })
                     loading.value.addEventListener('transitionend', () => {
                         // if (import.meta.env.DEV) {
                         if (loading.value && loading.value.parentNode) {
-                            loading.value.parentNode.removeChild(loading.value);
+                            loading.value.parentNode.removeChild(loading.value)
                         }
                         // }
                         emit('endAnimate')
-                    });
-
+                    })
                 }
-            });
-
-        });
+            })
+        })
     })
 
     onUnmounted(() => {
         if (phoneAnimationTimer) {
-            clearInterval(phoneAnimationTimer);
+            clearInterval(phoneAnimationTimer)
         }
     })
-
 </script>
 <style lang="css" scoped>
     .wrapper {
-        --prime: #4E057E;
-        --darker: #2E014A;
-        --dark: #3E0364;
-        --light: #601E8B;
+        --prime: #4e057e;
+        --darker: #2e014a;
+        --dark: #3e0364;
+        --light: #601e8b;
         --lighter: #723798;
-        --high: #FFE100;
+        --high: #ffe100;
     }
 
     .wrapper.loading_hidden {
@@ -297,13 +297,12 @@
         background: var(--high);
         border-radius: 4px;
         transform: scalex(0);
-        animation: btn-active .5s ease-in-out 2.5s 1 normal forwards running;
-
+        animation: btn-active 0.5s ease-in-out 2.5s 1 normal forwards running;
     }
 
     @keyframes btn-active {
         0% {
-            transform: scalex(0)
+            transform: scalex(0);
         }
 
         100% {
@@ -319,7 +318,8 @@
         top: 40px;
         background: var(--high);
         border-radius: 4px;
-        animation: move-pointer 1.5s cubic-bezier(0.3, -0.4, 0.58, 1) 1.2s 1 normal forwards running;
+        animation: move-pointer 1.5s cubic-bezier(0.3, -0.4, 0.58, 1) 1.2s 1
+            normal forwards running;
     }
 
     @keyframes move-pointer {
@@ -347,7 +347,7 @@
 
     #screen #content p span {
         opacity: 0;
-        animation: helloworld .15s ease-in-out forwards running;
+        animation: helloworld 0.15s ease-in-out forwards running;
     }
 
     #screen #content p span:nth-child(1) {
@@ -408,7 +408,7 @@
         width: 100px;
         height: 150px;
         background: var(--dark);
-        opacity: .2;
+        opacity: 0.2;
         transform: rotateZ(30deg);
     }
 
@@ -420,10 +420,9 @@
         width: 50px;
         height: 150px;
         background: var(--dark);
-        opacity: .2;
+        opacity: 0.2;
         transform: rotateZ(30deg);
     }
-
 
     #keyboard-wrapper {
         position: absolute;
@@ -494,7 +493,9 @@
         border-radius: 23px;
         transform: rotatez(-5deg);
         background: var(--light);
-        box-shadow: 1px 1px 0 1px var(--dark), 2px 2px 4px var(--dark);
+        box-shadow:
+            1px 1px 0 1px var(--dark),
+            2px 2px 4px var(--dark);
         animation: move-mouse 1.5s ease-in-out 1s 1 normal forwards running;
     }
 
@@ -517,7 +518,7 @@
         height: 25px;
         background: var(--dark);
         box-shadow: 0px 0px 1px var(--dark);
-        opacity: .8;
+        opacity: 0.8;
     }
 
     #cup-wrapper {
@@ -545,7 +546,9 @@
         border-radius: 100px;
         background: var(--dark);
         border: 6px solid var(--light);
-        box-shadow: -10px -12px var(--prime) inset, 2px 4px 6px var(--dark);
+        box-shadow:
+            -10px -12px var(--prime) inset,
+            2px 4px 6px var(--dark);
     }
 
     #bubble-1 {
@@ -617,7 +620,7 @@
         width: 46px;
         height: 1px;
         background: var(--light);
-        opacity: .5;
+        opacity: 0.5;
     }
 
     #book #book-right div {
@@ -625,7 +628,7 @@
         width: 46px;
         height: 1px;
         background: var(--light);
-        opacity: .5;
+        opacity: 0.5;
     }
 
     #book .label {
@@ -659,7 +662,9 @@
         border-radius: 9px;
         transform: rotatez(26deg);
         background: var(--light);
-        box-shadow: 2px 0px 0px var(--dark), 1px 1px 2px var(--darker);
+        box-shadow:
+            2px 0px 0px var(--dark),
+            1px 1px 2px var(--darker);
         animation: shaking 100ms ease-in-out 4s alternate 25 running;
     }
 
@@ -685,11 +690,9 @@
         background: var(--dark);
         overflow: hidden;
         animation: lighten 3s ease-in-out 4s 1 normal forwards running;
-
     }
 
     @keyframes lighten {
-
         0%,
         100% {
             background: var(--dark);
@@ -708,7 +711,7 @@
         width: 25px;
         height: 100px;
         background: #fff;
-        opacity: .1;
+        opacity: 0.1;
     }
 
     #phone #camera {
@@ -769,7 +772,7 @@
         width: 20px;
         height: 20px;
         background: var(--prime);
-        opacity: .5;
+        opacity: 0.5;
         display: inline-block;
         margin: 60px 2px;
     }
@@ -810,7 +813,6 @@
     #right {
         left: 44px;
         border-radius: 50% 50% 50% 60% / 20% 25% 80% 80%;
-
     }
 
     #pencil {
@@ -850,7 +852,7 @@
         width: 14px;
         height: 4px;
         background: var(--lighter);
-        opacity: .8;
+        opacity: 0.8;
     }
 
     #hand {
@@ -875,7 +877,8 @@
         position: absolute;
     }
 
-    #hand #thumb {}
+    #hand #thumb {
+    }
 
     #hand #index {
         left: 10px;

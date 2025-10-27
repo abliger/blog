@@ -1,8 +1,18 @@
 <template>
     <div class="card4">
         <div class="g-container">
-            <svg class="g-svg" width="400" height="160" xmlns="http://www.w3.org/2000/svg">
-                <path id="svgPath" d="M 350 140 C 1200 1000, -550 1000, 350 1960" stroke="black" fill="transparent" />
+            <svg
+                class="g-svg"
+                width="400"
+                height="160"
+                xmlns="http://www.w3.org/2000/svg"
+            >
+                <path
+                    id="svgPath"
+                    d="M 350 140 C 1200 1000, -550 1000, 350 1960"
+                    stroke="black"
+                    fill="transparent"
+                />
             </svg>
             <div class="ball" />
             <div class="point point1" />
@@ -10,19 +20,25 @@
             <div class="point point3" />
             <h2>去过的地方</h2>
             <p class="p1">
-                CSS Scroll Driven refers to a technique where CSS is used to create visual effects or animations that
-                are triggered by the scrolling behavior of the user. It involves manipulating CSS properties based on
-                the scroll position to create dynamic and interactive elements on a webpage.
+                CSS Scroll Driven refers to a technique where CSS is used to
+                create visual effects or animations that are triggered by the
+                scrolling behavior of the user. It involves manipulating CSS
+                properties based on the scroll position to create dynamic and
+                interactive elements on a webpage.
             </p>
             <p class="p2">
-                1. Parallax scrolling: By adjusting background positions or opacity based on the scroll position.<br>
-                2.Sticky navigation: The navigation bar can have its style modified as the user scrolls, such as
-                changing its background color, size, or position to enhance usability and improve the user experience.
+                1. Parallax scrolling: By adjusting background positions or
+                opacity based on the scroll position.<br />
+                2.Sticky navigation: The navigation bar can have its style
+                modified as the user scrolls, such as changing its background
+                color, size, or position to enhance usability and improve the
+                user experience.
             </p>
             <p class="p3">
-                In summary, CSS Scroll Driven involves using CSS and JavaScript to create effects and animations that
-                respond to the user's scrolling behavior. This technique adds interactivity and visual appeal to
-                webpages, making them more engaging for users.
+                In summary, CSS Scroll Driven involves using CSS and JavaScript
+                to create effects and animations that respond to the user's
+                scrolling behavior. This technique adds interactivity and visual
+                appeal to webpages, making them more engaging for users.
             </p>
             <div class="clear" />
         </div>
@@ -35,7 +51,6 @@
             <div class="blur-after" />
         </div>
 
-
         <!-- 使用 svg -->
         <!-- <p>鲁东大学</p>
         <mark-img src="/ludong.jpg" v-show="endAnim" />
@@ -44,9 +59,9 @@
     </div>
 </template>
 <script setup lang="tsx">
-// import { inject } from 'vue'
-// import { MarkImg } from 'style-vue'
-// const endAnim = inject('endAnim')
+    // import { inject } from 'vue'
+    // import { MarkImg } from 'style-vue'
+    // const endAnim = inject('endAnim')
 </script>
 <style lang="css" scoped>
     .card4 {
@@ -100,8 +115,6 @@
         }
     }
 
-
-
     .g-svg {
         position: absolute;
         top: 0;
@@ -125,8 +138,8 @@
         width: 40px;
         height: 40px;
         clip-path: polygon(0 0, 100% 50%, 0 100%);
-        offset-path: path("M 350 140 C 1200 1000, -550 1000, 350 1960");
-        background: linear-gradient(270deg, #673AB7, #FF5722);
+        offset-path: path('M 350 140 C 1200 1000, -550 1000, 350 1960');
+        background: linear-gradient(270deg, #673ab7, #ff5722);
         animation: move 1s linear;
         animation-timeline: scroll(root);
         z-index: 10;
@@ -153,18 +166,18 @@
 
         &::before,
         &::after {
-            content: "";
+            content: '';
             position: absolute;
             inset: 0;
             border-radius: 50%;
-            background: rgba(255, 255, 255, .5);
+            background: rgba(255, 255, 255, 0.5);
             animation: circleScale 2s infinite ease-in;
             animation-delay: 1s;
             z-index: -1;
         }
 
         &::after {
-            animation-delay: -.5s;
+            animation-delay: -0.5s;
         }
     }
 
@@ -194,7 +207,6 @@
         top: 100px;
         font-size: 42px;
         color: #fff;
-
     }
 
     p {
@@ -228,7 +240,7 @@
     }
 
     .p2::before {
-        content: "";
+        content: '';
         float: left;
         width: 240px;
         height: 200px;
@@ -244,7 +256,7 @@
     }
 
     .p2 {
-        --scale: .2;
+        --scale: 0.2;
         --x: 900px;
         top: 900px;
         animation: show 1s linear forwards;
@@ -292,13 +304,13 @@
     }
 
     @keyframes circleScale {
-
-        40% {}
+        40% {
+        }
 
         80%,
         100% {
             transform: scale(4);
-            opacity: .1;
+            opacity: 0.1;
         }
     }
 

@@ -16,20 +16,20 @@ const vite = {
     assetsInclude: ['**/*.html'],
     plugins: [viteDemoPreviewPlugin(), vueJsx(), Inspector()],
     build: {
-        sourcemap: true
-    }
+        sourcemap: true,
+    },
 }
 
 export default {
     title: 'Blog',
-    description: 'Abliger\'s Blog',
+    description: "Abliger's Blog",
     srcDir: 'doc',
     srcExclude: [
         '**/node_modules/**',
         '**/.git/**',
         '**/.vitepress/**',
         '**/.DS_Store',
-        '**/project/**'
+        '**/project/**',
     ],
     metaChunk: true,
     cleanUrls: true,
@@ -37,7 +37,11 @@ export default {
     ignoreDeadLinks: true,
     transformPageData(pageData) {
         const path = pageData.relativePath
-        pageData.frontmatter = Object.assign({}, pageData.frontmatter, getFileURLToNextOrPrev(path))
+        pageData.frontmatter = Object.assign(
+            {},
+            pageData.frontmatter,
+            getFileURLToNextOrPrev(path),
+        )
     },
     locales: {
         root: {
@@ -47,5 +51,5 @@ export default {
     },
     themeConfig,
     markdown,
-    vite
+    vite,
 } as UserConfig<DefaultTheme.Config>

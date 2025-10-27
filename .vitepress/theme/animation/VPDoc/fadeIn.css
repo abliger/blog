@@ -1,18 +1,18 @@
 .fadeInContent {
-  animation: fadeIn 2s linear alternate forwards;
+    animation: fadeIn 2s linear alternate forwards;
 }
 
 @keyframes fadeIn {
-  0% {
-    opacity: 0;
-    transform: translateY(20px);
-  }
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
 
-  20% {
-    transform: translateY(0px);
-  }
+    20% {
+        transform: translateY(0px);
+    }
 
-  100% {
-    opacity: 1;
-  }
+    100% {
+        opacity: 1;
+    }
 }

@@ -1,4 +1,3 @@
-
 const skill = [
     { name: 'HTML5', imgSrc: 'https://skillicons.dev/icons?i=html' },
     { name: 'CSS3', imgSrc: 'https://skillicons.dev/icons?i=css' },
@@ -12,7 +11,10 @@ const skill = [
     { name: 'jquery', imgSrc: 'https://skillicons.dev/icons?i=jquery' },
     { name: 'Vite', imgSrc: 'https://skillicons.dev/icons?i=vite' },
     { name: 'Webpack', imgSrc: 'https://skillicons.dev/icons?i=webpack' },
-    { name: 'VitePress', imgSrc: 'https://skills.syvixor.com/api/icons?perline=15&i=vitepress' },
+    {
+        name: 'VitePress',
+        imgSrc: 'https://skills.syvixor.com/api/icons?perline=15&i=vitepress',
+    },
     { name: 'Electron', imgSrc: 'https://skillicons.dev/icons?i=electron' },
     { name: 'Java', imgSrc: 'https://skillicons.dev/icons?i=java' },
     { name: 'Rust', imgSrc: 'https://skillicons.dev/icons?i=rust' },
@@ -52,19 +54,58 @@ const skill = [
     { name: 'tailwind', imgSrc: 'https://skillicons.dev/icons?i=tailwind' },
     { name: 'threejs', imgSrc: 'https://skillicons.dev/icons?i=threejs' },
     { name: 'wasm', imgSrc: 'https://skillicons.dev/icons?i=wasm' },
-    { name: 'zshell', imgSrc: 'https://skills.syvixor.com/api/icons?perline=15&i=zshell' },
-    { name: 'tailwindcss', imgSrc: 'https://skills.syvixor.com/api/icons?perline=15&i=tailwindcss' },
-    { name: 'springboot', imgSrc: 'https://skills.syvixor.com/api/icons?perline=15&i=springboot' },
-    { name: 'springcloud', imgSrc: 'https://skills.syvixor.com/api/icons?perline=15&i=springcloud' },
-    { name: 'stackoverflow', imgSrc: 'https://skills.syvixor.com/api/icons?perline=15&i=stackoverflow' },
-    { name: 'elementplus', imgSrc: 'https://skills.syvixor.com/api/icons?perline=15&i=elementplus' },
-    { name: 'elasticsearch', imgSrc: 'https://skills.syvixor.com/api/icons?perline=15&i=elasticsearch' },
-    { name: 'babel', imgSrc: 'https://skills.syvixor.com/api/icons?perline=15&i=babel' },
-    { name: 'eslint', imgSrc: 'https://skills.syvixor.com/api/icons?perline=15&i=eslint' },
-    { name: 'prettier', imgSrc: 'https://skills.syvixor.com/api/icons?perline=15&i=prettier' }
+    {
+        name: 'zshell',
+        imgSrc: 'https://skills.syvixor.com/api/icons?perline=15&i=zshell',
+    },
+    {
+        name: 'tailwindcss',
+        imgSrc: 'https://skills.syvixor.com/api/icons?perline=15&i=tailwindcss',
+    },
+    {
+        name: 'springboot',
+        imgSrc: 'https://skills.syvixor.com/api/icons?perline=15&i=springboot',
+    },
+    {
+        name: 'springcloud',
+        imgSrc: 'https://skills.syvixor.com/api/icons?perline=15&i=springcloud',
+    },
+    {
+        name: 'stackoverflow',
+        imgSrc: 'https://skills.syvixor.com/api/icons?perline=15&i=stackoverflow',
+    },
+    {
+        name: 'elementplus',
+        imgSrc: 'https://skills.syvixor.com/api/icons?perline=15&i=elementplus',
+    },
+    {
+        name: 'elasticsearch',
+        imgSrc: 'https://skills.syvixor.com/api/icons?perline=15&i=elasticsearch',
+    },
+    {
+        name: 'babel',
+        imgSrc: 'https://skills.syvixor.com/api/icons?perline=15&i=babel',
+    },
+    {
+        name: 'eslint',
+        imgSrc: 'https://skills.syvixor.com/api/icons?perline=15&i=eslint',
+    },
+    {
+        name: 'prettier',
+        imgSrc: 'https://skills.syvixor.com/api/icons?perline=15&i=prettier',
+    },
 ]
 export default {
-    myTag: ['喜欢折腾新技术的前端人', '热爱编程的码农', '游戏 mod 开发者', '热爱生活的普通人', '未来的小说家', '业余摄影师', '电影爱好者', '音乐发烧友'],
-    myLearnedSkill: skill
+    myTag: [
+        '喜欢折腾新技术的前端人',
+        '热爱编程的码农',
+        '游戏 mod 开发者',
+        '热爱生活的普通人',
+        '未来的小说家',
+        '业余摄影师',
+        '电影爱好者',
+        '音乐发烧友',
+    ],
+    myLearnedSkill: skill,
 }
-export type Skill = { name: string, imgSrc: string }[]
+export type Skill = { name: string; imgSrc: string }[]

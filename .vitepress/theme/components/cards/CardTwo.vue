@@ -4,5 +4,5 @@
     </div>
 </template>
 <script setup lang="tsx">
-import { IconScroll } from 'style-vue'
+    import { IconScroll } from 'style-vue'
 </script>

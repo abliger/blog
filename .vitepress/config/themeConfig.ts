@@ -16,12 +16,18 @@ const themeConfig: DefaultTheme.Config = {
     ...myOption,
     outline: {
         level: [2, 6],
-        label: '页面导航'
+        label: '页面导航',
     },
     sidebar: archiveDir,
     nav: [
-        { text: '归档', link: '/achieve', activeMatch: Object.keys(archiveDir).map(item => '^' + item).join('|') },
-        { text: '关于', link: '/about', target: '_self' }
+        {
+            text: '归档',
+            link: '/achieve',
+            activeMatch: Object.keys(archiveDir)
+                .map(item => '^' + item)
+                .join('|'),
+        },
+        { text: '关于', link: '/about', target: '_self' },
     ],
     socialLinks: [
         // { icon: 'github', link: 'https://github.com/vuejs/vitepress' }
@@ -34,7 +40,7 @@ const themeConfig: DefaultTheme.Config = {
                     translations: {
                         button: {
                             buttonText: '搜索',
-                            buttonAriaLabel: '搜索文档'
+                            buttonAriaLabel: '搜索文档',
                         },
                         modal: {
                             backButtonTitle: '关闭搜索',
@@ -49,23 +55,23 @@ const themeConfig: DefaultTheme.Config = {
                                 closeText: '关闭',
                                 closeKeyAriaLabel: 'esc',
                             },
-                            noResultsText: '无法找到相关结果'
-                        }
-                    }
-                }
-            }
-        }
+                            noResultsText: '无法找到相关结果',
+                        },
+                    },
+                },
+            },
+        },
     },
     docFooter: {
         prev: '上一页',
-        next: '下一页'
+        next: '下一页',
     },
     lastUpdated: {
         text: '最后更新于',
         formatOptions: {
             dateStyle: 'short',
-            timeStyle: 'medium'
-        }
+            timeStyle: 'medium',
+        },
     },
     langMenuLabel: '多语言',
     returnToTopLabel: '回到顶部',
@@ -73,7 +79,7 @@ const themeConfig: DefaultTheme.Config = {
     darkModeSwitchLabel: '主题',
     lightModeSwitchTitle: '切换到浅色模式',
     darkModeSwitchTitle: '切换到深色模式',
-    skipToContentLabel: '跳转到内容'
+    skipToContentLabel: '跳转到内容',
 }
 
 export default themeConfig

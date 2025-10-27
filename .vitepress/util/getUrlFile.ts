@@ -1,9 +1,9 @@
 /* eslint-disable no-useless-escape */
 /* eslint-disable @typescript-eslint/no-explicit-any */
- 
+
 import * as fs from 'fs'
 import * as path from 'path'
-type Files = { name: string, isFile: boolean }[]
+type Files = { name: string; isFile: boolean }[]
 import type { DefaultTheme } from 'vitepress/theme'
 interface FileStructure {
     [key: string]: string[] | FileStructure
@@ -14,18 +14,24 @@ interface FileStructure {
  * @param srcExclude 排除的文件路径
  * @returns 文件路径数组
  */
-export function getUrlFile(dir: string, fileType: string[] = [], srcExclude: string[] = []): FileStructure {
-    const srcExcludeReg = srcExclude.map((exclude) => {
-        return new RegExp(exclude.replace(/\*\*/g, '.*').replace(/\*/g, '[^/]*'))
+export function getUrlFile(
+    dir: string,
+    fileType: string[] = [],
+    srcExclude: string[] = [],
+): FileStructure {
+    const srcExcludeReg = srcExclude.map(exclude => {
+        return new RegExp(
+            exclude.replace(/\*\*/g, '.*').replace(/\*/g, '[^/]*'),
+        )
     })
-    const fileTypeReg = fileType.map((type) => {
+    const fileTypeReg = fileType.map(type => {
         return new RegExp(`.*\.${type}$`)
     })
     const files = readDirSync(dir)
     const res = {}
-    let file = files.shift() as { name: string, isFile: boolean } | undefined
+    let file = files.shift() as { name: string; isFile: boolean } | undefined
     while (file) {
-        if (srcExcludeReg.some((reg) => reg.test(file!.name))) {
+        if (srcExcludeReg.some(reg => reg.test(file!.name))) {
             file = files.shift()
             continue
         }
@@ -50,12 +56,11 @@ export function getUrlFile(dir: string, fileType: string[] = [], srcExclude: str
     return res
 }
 
-
 type SidebarItem = DefaultTheme.SidebarItem
 /**
  * files 转换成 sidebar
- * @param files 
- * @returns 
+ * @param files
+ * @returns
  */
 export async function filesToSidebar(files: object): Promise<SidebarItem[]> {
     function temp(files: object): SidebarItem[] {
@@ -69,27 +74,33 @@ export async function filesToSidebar(files: object): Promise<SidebarItem[]> {
             const item: SidebarItem = {
                 text: key,
                 collapsed: true,
-                items: []
+                items: [],
             }
 
-            const fileMap = (files[key]['index'] as Array<string>)?.reduce((acc, fileName) => {
-                if (fileName.endsWith('/index.md')) {
-                    acc[0] = fileName
-                } else {
-                    acc[1].push(fileName)
-                }
-                return acc
-            }, [null as any, [] as string[]]) || [undefined, []]
+            const fileMap = (files[key]['index'] as Array<string>)?.reduce(
+                (acc, fileName) => {
+                    if (fileName.endsWith('/index.md')) {
+                        acc[0] = fileName
+                    } else {
+                        acc[1].push(fileName)
+                    }
+                    return acc
+                },
+                [null as any, [] as string[]],
+            ) || [undefined, []]
             if (fileMap[0]) {
                 item.link = '/' + fileMap[0].split('/index.md').shift() + '/'
             }
-            fileMap[1].forEach((key) => {
+            fileMap[1].forEach(key => {
                 item.items!.push({
                     text: getFileName(key),
-                    link: '/' + key.replaceAll('.md', '')
+                    link: '/' + key.replaceAll('.md', ''),
                 })
             })
-            if (Object.keys(files[key]).filter(item => item !== 'index').length > 0) {
+            if (
+                Object.keys(files[key]).filter(item => item !== 'index')
+                    .length > 0
+            ) {
                 item.items?.push(...temp(files[key]))
             }
             sidebar.push(item)
@@ -119,6 +130,6 @@ function readDirSync(dir: string): Files {
     const files = fs.readdirSync(dir, { withFileTypes: true })
     return files.map(file => ({
         name: path.join(dir, file.name),
-        isFile: file.isFile()
+        isFile: file.isFile(),
     }))
 }

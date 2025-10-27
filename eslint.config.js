@@ -1,26 +1,30 @@
-import { defineConfig,globalIgnores } from 'eslint/config'
+import { defineConfig, globalIgnores } from 'eslint/config'
 import js from '@eslint/js'
 import globals from 'globals'
 import pluginVue from 'eslint-plugin-vue'
-import {configs} from 'typescript-eslint'
+import { configs } from 'typescript-eslint'
 import importPlugin from 'eslint-plugin-import'
 import vueParser from 'vue-eslint-parser'
+import eslintConfigPrettier from 'eslint-config-prettier/flat'
 
-const isDev = process.env.NODE_ENV === 'development'
+const isDev = process.env.NODE_ENV || process.env.NODE_ENV === 'development'
 
 export default defineConfig([
-    globalIgnores([
-        'node_modules/**',
-        '**/dist/**',
-        'doc/**',
-        'project/**',
-        'game/**',
-        '**/coverage/**',
-        '**/build/**',
-        '**/temp/**',
-        '**/tmp/**',
-        '**/cache/**',
-    ],'Ignore Build Directory'),
+    globalIgnores(
+        [
+            'node_modules/**',
+            '**/dist/**',
+            'doc/**',
+            'project/**',
+            'game/**',
+            '**/coverage/**',
+            '**/build/**',
+            '**/temp/**',
+            '**/tmp/**',
+            '**/cache/**',
+        ],
+        'Ignore Build Directory',
+    ),
     js.configs.recommended,
     configs.recommended,
     ...pluginVue.configs['flat/recommended'],
@@ -60,7 +64,7 @@ export default defineConfig([
             'import/extensions': 'off',
             'import/no-absolute-path': 'off',
             'import/no-extraneous-dependencies': 'off',
-            'no-empty-pattern': 'off', // 进制空结构 
+            'no-empty-pattern': 'off', // 进制空结构
             'no-console': !isDev ? 'error' : 'off',
             'no-debugger': !isDev ? 'error' : 'off',
             'comma-dangle': ['error', 'only-multiline'], // 要求或禁止末尾逗号
@@ -94,17 +98,17 @@ export default defineConfig([
     },
     {
         files: ['**/*.vue'],
-        languageOptions:{
-            parser:vueParser,
+        languageOptions: {
+            parser: vueParser,
             sourceType: 'module',
             ecmaVersion: 2022,
             globals: {
-                ...globals.browser
+                ...globals.browser,
             },
             parserOptions: {
-                'parser': '@typescript-eslint/parser',
+                parser: '@typescript-eslint/parser',
                 ecmaVersion: 2022,
-                sourceType: 'module'
+                sourceType: 'module',
             },
         },
         rules: {
@@ -156,4 +160,5 @@ export default defineConfig([
             'vue/no-parsing-error': 'off',
         },
     },
+    eslintConfigPrettier,
 ])

@@ -17,7 +17,10 @@
                     </a>
                 </li>
                 <li>
-                    <a href="https://space.bilibili.com/16062076" target="_blank">
+                    <a
+                        href="https://space.bilibili.com/16062076"
+                        target="_blank"
+                    >
                         <IBiliBili />
                     </a>
                 </li>
@@ -44,18 +47,17 @@
     </div>
 </template>
 <script lang="tsx" setup>
-    import { inject } from "vue";
-    import { FcTyping, ParticleImg } from "style-vue";
-    import IGithub from "./icons/IGithub.vue";
-    import IBiliBili from "./icons/IBiliBili.vue";
-    import IMailDot from "./icons/IMailDot.vue";
-    import INeteaseCloudMusic from "./icons/INeteaseCloudMusic.vue";
-    import IRss from "./icons/IRss.vue";
+    import { inject } from 'vue'
+    import { FcTyping, ParticleImg } from 'style-vue'
+    import IGithub from './icons/IGithub.vue'
+    import IBiliBili from './icons/IBiliBili.vue'
+    import IMailDot from './icons/IMailDot.vue'
+    import INeteaseCloudMusic from './icons/INeteaseCloudMusic.vue'
+    import IRss from './icons/IRss.vue'
     const startAnim = inject('startAnim')
     defineProps<{
-        strs: string[];
+        strs: string[]
     }>()
-
 </script>
 <style lang="css" scoped>
     .card {
@@ -80,7 +82,6 @@
         }
 
         .link {
-
             display: flex;
             gap: 20px;
             margin-top: 7rem;
@@ -102,5 +103,4 @@
             }
         }
     }
-
 </style>

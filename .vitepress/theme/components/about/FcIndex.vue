@@ -8,27 +8,21 @@
             <card-five />
             <card-six />
         </slot>
-        <slot
-            v-if="!isDev"
-            name="loading"
-        >
-            <loading
-                @end-animate="endAnimate"
-                @start-animate="startAnimate"
-            />
+        <slot v-if="!isDev" name="loading">
+            <loading @end-animate="endAnimate" @start-animate="startAnimate" />
         </slot>
     </div>
 </template>
 <script setup lang="tsx">
-    import { provide, ref } from "vue";
-    import CardOne from "../cards/CardOne.vue";
-    import CardTwo from "../cards/CardTwo.vue";
-    import CardThree from "../cards/CardThree.vue";
-    import CardFour from "../cards/CardFour.vue";
-    import CardFive from "../cards/CardFive.vue";
-    import CardSix from "../cards/CardSix.vue";
-    import { Loading } from "style-vue";
-    import data from "../data";
+    import { provide, ref } from 'vue'
+    import CardOne from '../cards/CardOne.vue'
+    import CardTwo from '../cards/CardTwo.vue'
+    import CardThree from '../cards/CardThree.vue'
+    import CardFour from '../cards/CardFour.vue'
+    import CardFive from '../cards/CardFive.vue'
+    import CardSix from '../cards/CardSix.vue'
+    import { Loading } from 'style-vue'
+    import data from '../data'
     const isDev = import.meta.env.DEV
     const endAnim = ref(isDev)
     const startAnim = ref(isDev)

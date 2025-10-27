@@ -8,7 +8,6 @@ import DemoPreview, { useComponents } from '@vitepress-code-preview/container'
 import '@vitepress-code-preview/container/dist/style.css'
 import Layout from './Layout.vue'
 
-
 import 'style-vue/style.css'
 
 export default {
@@ -17,5 +16,5 @@ export default {
     enhanceApp({ app }: EnhanceAppContext) {
         app.use(TwoslashFloatingVue)
         useComponents(app, DemoPreview)
-    }
+    },
 } satisfies Theme

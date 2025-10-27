@@ -4,13 +4,11 @@ import { fileURLToPath, URL } from 'node:url'
 import { MarkdownOptions } from 'vitepress'
 
 export const markdown = {
-    codeTransformers: [
-        transformerTwoslash()
-    ],
+    codeTransformers: [transformerTwoslash()],
     toc: { level: [1, 2, 3, 4, 5] },
     math: true,
     config(md) {
         const docRoot = fileURLToPath(new URL('../../doc', import.meta.url))
         md.use(demoPreviewPlugin, { docRoot })
-    }
+    },
 } as MarkdownOptions

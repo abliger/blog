@@ -15,7 +15,7 @@ export function dataLocation(key: string, f?: () => unknown) {
 // 防抖函数,函数不调用后,等待 wait 时间后调用
 export function debounce(func: (..._: unknown[]) => void, wait: number) {
     let timeout: number | undefined
-    return function(...args: unknown[]) {
+    return function (...args: unknown[]) {
         clearTimeout(timeout)
         timeout = window.setTimeout(() => {
             func.apply(this, args)
@@ -27,7 +27,7 @@ export function debounce(func: (..._: unknown[]) => void, wait: number) {
 */
 export function throttle(func: (..._: unknown[]) => void, limit: number) {
     let inThrottle: boolean
-    return function(...args: unknown[]) {
+    return function (...args: unknown[]) {
         if (!inThrottle) {
             func.apply(this, args)
             inThrottle = true

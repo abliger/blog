@@ -10,47 +10,50 @@ async function getArchive() {
             text: '基础',
             link: '/base/',
             items: await filesToSidebar(filedir['base']),
-            collapsed: false
-        }, {
+            collapsed: false,
+        },
+        {
             text: '前端',
             link: '/frontEnd/',
             items: await filesToSidebar(filedir['frontEnd']),
-            collapsed: false
-        }, {
+            collapsed: false,
+        },
+        {
             text: 'JAVA',
             link: '/java/',
             items: await filesToSidebar(filedir['java']),
-            collapsed: false
-        }, {
+            collapsed: false,
+        },
+        {
             text: 'Linux',
             link: '/linux/',
             items: await filesToSidebar(filedir['linux']),
-            collapsed: false
+            collapsed: false,
         },
         {
             text: 'Docker',
             link: '/docker/',
             items: await filesToSidebar(filedir['docker']),
-            collapsed: false
+            collapsed: false,
         },
         {
             text: '设计模式',
             link: '/设计模式/',
             items: await filesToSidebar(filedir['设计模式']),
-            collapsed: false
+            collapsed: false,
         },
         {
             text: 'rust-book',
             link: '/rust-book/',
             items: await filesToSidebar(filedir['rust']),
-            collapsed: false
+            collapsed: false,
         },
         {
             text: '其他',
             link: '/other/',
             items: await filesToSidebar(filedir['other']),
-            collapsed: false
-        }
+            collapsed: false,
+        },
     ] as DefaultTheme.SidebarItem[])
 }
 
@@ -64,16 +67,20 @@ export function getArchiveDir() {
         a[item.link!] = archive
     })
 
-    // 导出归档文件夹的路径 
+    // 导出归档文件夹的路径
     const archiveDir: DefaultTheme.Sidebar = {
         '/achieve': archive,
-        ...a
+        ...a,
     }
     return archiveDir
 }
 export const archiveDir = getArchiveDir()
 function getFileDir() {
-    const base = getUrlFile('./doc/base', ['md'], ['**/code/**', '**/node_modules'])
+    const base = getUrlFile(
+        './doc/base',
+        ['md'],
+        ['**/code/**', '**/node_modules'],
+    )
     const frontEnd = getUrlFile('./doc/frontEnd', ['md'], ['**/node_modules'])
     const java = getUrlFile('./doc/java', ['md'], ['**/node_modules'])
     const linux = getUrlFile('./doc/linux', ['md'], ['**/node_modules'])
@@ -88,9 +95,9 @@ function getFileDir() {
         java,
         linux,
         docker,
-        '设计模式': design,
+        设计模式: design,
         rust,
-        other
+        other,
     }
     return filedir
 }
@@ -127,14 +134,20 @@ function getFileNameByNextOrPrev(str: string): string {
 }
 
 export function getFileURLToNextOrPrev(path: string): Record<string, unknown> {
-    if (!Object.keys(archiveDir).some(item => new RegExp(`.*${item}/`).test('/' + path))) {
+    if (
+        !Object.keys(archiveDir).some(item =>
+            new RegExp(`.*${item}/`).test('/' + path),
+        )
+    ) {
         return {}
     }
-    const getNavItem = function(path: string) {
-        return path && {
-            text: getFileNameByNextOrPrev(path),
-            link: path
-        }
+    const getNavItem = function (path: string) {
+        return (
+            path && {
+                text: getFileNameByNextOrPrev(path),
+                link: path,
+            }
+        )
     }
 
     const index = dir.indexOf(path)
@@ -143,7 +156,7 @@ export function getFileURLToNextOrPrev(path: string): Record<string, unknown> {
 
     return {
         ...(hasPrev && { prev: getNavItem(dir[index - 1]) }),
-        ...(hasNext && { next: getNavItem(dir[index + 1]) })
+        ...(hasNext && { next: getNavItem(dir[index + 1]) }),
     }
 }
 function getLastEditFile(dir: string[], size: number): string[] {
@@ -153,12 +166,12 @@ function getLastEditFile(dir: string[], size: number): string[] {
             const stats = fs.statSync(filePath)
             return {
                 file,
-                mtime: stats.mtime.getTime()
+                mtime: stats.mtime.getTime(),
             }
         } catch (_) {
             return {
                 file,
-                mtime: 0
+                mtime: 0,
             }
         }
     })
@@ -190,7 +203,10 @@ const filterFilesByMtime = (dir: string[], thresholdDate: Date): number => {
 }
 
 // 统一查询接口
-const getUpdatedFilesCount = (dir: string[], timeUnit: 'month' | 'week'): number => {
+const getUpdatedFilesCount = (
+    dir: string[],
+    timeUnit: 'month' | 'week',
+): number => {
     const threshold = getTimeAgo(timeUnit, timeUnit === 'month' ? 1 : 7)
     return filterFilesByMtime(dir, threshold)
 }

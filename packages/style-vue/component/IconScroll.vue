@@ -5,34 +5,70 @@
     -->
     <div class="IconScroll">
         <div class="line">
-            <div ref="icons" class="icons" :style="{ transform: 'translate3d(' + move[0] + '%,0px,0px)' }">
+            <div
+                ref="icons"
+                class="icons"
+                :style="{ transform: 'translate3d(' + move[0] + '%,0px,0px)' }"
+            >
                 <div
-                    v-for="(icon, index) in skill" :key="index" class="icon-item" @mouseenter="pauseAnimation(1)"
+                    v-for="(icon, index) in skill"
+                    :key="index"
+                    class="icon-item"
+                    @mouseenter="pauseAnimation(1)"
                     @mouseleave="resumeAnimation"
                 >
-                    <img :src="icon.imgSrc" :alt="icon.name" :title="icon.name">
+                    <img
+                        :src="icon.imgSrc"
+                        :alt="icon.name"
+                        :title="icon.name"
+                    />
                 </div>
                 <div
-                    v-for="(icon, index) in skill" :key="index" class="icon-item" @mouseenter="pauseAnimation(1)"
+                    v-for="(icon, index) in skill"
+                    :key="index"
+                    class="icon-item"
+                    @mouseenter="pauseAnimation(1)"
                     @mouseleave="resumeAnimation"
                 >
-                    <img :src="icon.imgSrc" :alt="icon.name" :title="icon.name">
+                    <img
+                        :src="icon.imgSrc"
+                        :alt="icon.name"
+                        :title="icon.name"
+                    />
                 </div>
             </div>
         </div>
         <div class="line">
-            <div ref="icons" class="icons" :style="{ transform: 'translate3d(' + move[1] + '%,0px,0px)' }">
+            <div
+                ref="icons"
+                class="icons"
+                :style="{ transform: 'translate3d(' + move[1] + '%,0px,0px)' }"
+            >
                 <div
-                    v-for="(icon, index) in skill" :key="index" class="icon-item" @mouseenter="pauseAnimation(2)"
+                    v-for="(icon, index) in skill"
+                    :key="index"
+                    class="icon-item"
+                    @mouseenter="pauseAnimation(2)"
                     @mouseleave="resumeAnimation"
                 >
-                    <img :src="icon.imgSrc" :alt="icon.name" :title="icon.name">
+                    <img
+                        :src="icon.imgSrc"
+                        :alt="icon.name"
+                        :title="icon.name"
+                    />
                 </div>
                 <div
-                    v-for="(icon, index) in skill" :key="index" class="icon-item" @mouseenter="pauseAnimation(2)"
+                    v-for="(icon, index) in skill"
+                    :key="index"
+                    class="icon-item"
+                    @mouseenter="pauseAnimation(2)"
                     @mouseleave="resumeAnimation"
                 >
-                    <img :src="icon.imgSrc" :alt="icon.name" :title="icon.name">
+                    <img
+                        :src="icon.imgSrc"
+                        :alt="icon.name"
+                        :title="icon.name"
+                    />
                 </div>
             </div>
         </div>
@@ -40,52 +76,56 @@
 </template>
 
 <script setup lang="tsx">
-    import { onMounted, ref, useTemplateRef, onUnmounted, inject } from 'vue';
-    import { throttle } from '../utils/utils';
+    import { onMounted, ref, useTemplateRef, onUnmounted, inject } from 'vue'
+    import { throttle } from '../utils/utils'
 
-    const icons = useTemplateRef<HTMLDivElement>('icons');
-    const skill = inject<Array<{ imgSrc: string, name: string }>>('skill')
+    const icons = useTemplateRef<HTMLDivElement>('icons')
+    const skill = inject<Array<{ imgSrc: string; name: string }>>('skill')
 
-    const move = ref([0, 0]);
-    const animationId = ref<number | null>(null);
+    const move = ref([0, 0])
+    const animationId = ref<number | null>(null)
     let effectRow = 0
 
     let isScrolling = false
     onMounted(() => {
-        startAnimation();
+        startAnimation()
         let timer = undefined
-        window.addEventListener('scroll',
+        window.addEventListener(
+            'scroll',
             throttle(() => {
                 isScrolling = true
                 clearTimeout(timer)
                 timer = setTimeout(() => {
                     isScrolling = false
-                }, 100);
-            }, 100)
-        );
-    });
+                }, 100)
+            }, 100),
+        )
+    })
 
     function startAnimation() {
-        if (animationId.value) return;
+        if (animationId.value) return
         let len = 0.01
         function anim() {
-            len = (isScrolling && len == 0.01) ? 0.06 : 0.01;
+            len = isScrolling && len == 0.01 ? 0.06 : 0.01
             if (len > 0.01) {
                 len -= 0.001
             } else {
                 len = 0.01
             }
-            move.value = [effectRow == 1 ? move.value[0] : move.value[0] - len, effectRow == 2 ? move.value[1] : move.value[1] + len];
+            move.value = [
+                effectRow == 1 ? move.value[0] : move.value[0] - len,
+                effectRow == 2 ? move.value[1] : move.value[1] + len,
+            ]
             if (move.value[0] <= -50) {
-                move.value[0] = 0;
+                move.value[0] = 0
             }
             if (move.value[1] >= 50) {
-                move.value[1] = 0;
+                move.value[1] = 0
             }
-            animationId.value = requestAnimationFrame(anim);
+            animationId.value = requestAnimationFrame(anim)
         }
 
-        anim();
+        anim()
     }
 
     function pauseAnimation(row: number) {
@@ -99,9 +139,9 @@
     // 清理动画
     onUnmounted(() => {
         if (animationId.value) {
-            cancelAnimationFrame(animationId.value);
+            cancelAnimationFrame(animationId.value)
         }
-    });
+    })
 </script>
 
 <style lang="css" scoped>

@@ -56,7 +56,6 @@ export default {
         useAI: false,
         aiNumber: 1,
         themeColorCode: '',
-
         allowCustomScopes: true,
         allowEmptyScopes: true,
         customScopesAlign: 'bottom',

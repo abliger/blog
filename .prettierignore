@@ -1,0 +1,9 @@
+**/node_modules/**
+project/** 
+doc/** 
+game/** 
+.vitepress/cache/**
+.vitepress/dist/**
+*-lock.yaml
+.idea
+.vscode

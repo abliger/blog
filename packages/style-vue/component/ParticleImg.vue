@@ -5,8 +5,11 @@
 </template>
 <script setup lang="ts">
     import { onMounted, onBeforeUnmount, watch, useTemplateRef } from 'vue'
-    import { getMousePosition, vElPointEventListener } from '../directive/elPointEventListener';
-    import { dataLocation } from '../utils/utils';
+    import {
+        getMousePosition,
+        vElPointEventListener,
+    } from '../directive/elPointEventListener'
+    import { dataLocation } from '../utils/utils'
     const particleImg = useTemplateRef<HTMLDivElement>('particleImg')
     const props = defineProps({
         imgSrc: { type: String, required: true },
@@ -55,8 +58,9 @@
     function createParticlesFromImage() {
         buildVirtualCanvas()
         // const dpr = window.devicePixelRatio || 1
-        particles = dataLocation('particles' + props.imgSrc, () => getImagePoints())
-            .map(p => new Particle({ x: p.x, y: p.y }, p.color))
+        particles = dataLocation('particles' + props.imgSrc, () =>
+            getImagePoints(),
+        ).map(p => new Particle({ x: p.x, y: p.y }, p.color))
     }
 
     function buildVirtualCanvas() {
@@ -69,7 +73,12 @@
         依据图像的灰度值决定该位置是黑色粒子还是白色粒子
     */
     function getImagePoints() {
-        const imageData = ctx.getImageData(0, 0, canvas.value.width, canvas.value.height).data
+        const imageData = ctx.getImageData(
+            0,
+            0,
+            canvas.value.width,
+            canvas.value.height,
+        ).data
 
         const pts: { x: number; y: number; color: string }[] = []
         const threshold = props.bwThreshold ?? 128
@@ -84,8 +93,10 @@
                 if (a > 10) {
                     const lum = 0.299 * r + 0.587 * g + 0.114 * b
                     const isWhite = lum >= threshold
-                    const alpha = (a / 255)
-                    const color = isWhite ? `rgba(234, 234, 171,${alpha})` : `rgba(0,0,0,${alpha})`
+                    const alpha = a / 255
+                    const color = isWhite
+                        ? `rgba(234, 234, 171,${alpha})`
+                        : `rgba(0,0,0,${alpha})`
                     pts.push({ x, y, color })
                 }
             }
@@ -111,15 +122,18 @@
     }
 
     // 支持图片切换时重建粒子（但不改变 canvas 大小）
-    watch(() => props.imgSrc, (nv) => {
-        if (!nv || !canvas.value) return
-        img = new Image()
-        img.crossOrigin = 'anonymous'
-        img.src = nv
-        img.onload = () => {
-            createParticlesFromImage()
-        }
-    })
+    watch(
+        () => props.imgSrc,
+        nv => {
+            if (!nv || !canvas.value) return
+            img = new Image()
+            img.crossOrigin = 'anonymous'
+            img.src = nv
+            img.onload = () => {
+                createParticlesFromImage()
+            }
+        },
+    )
 
     class Particle {
         targetX: number
@@ -167,12 +181,17 @@
                 let dx = mouseX - this.x
                 let dy = mouseY - this.y
                 let distance = Math.sqrt(dx * dx + dy * dy)
-                let preDistance = props.radius * 4 / distance
+                let preDistance = (props.radius * 4) / distance
                 const angle = Math.atan2(dy, dx)
 
-                let repX = distance > props.power ? (Math.random() * 2 - 1) * preDistance : Math.cos(angle) * props.power
-                let repY = distance > props.power ? (Math.random() * 2 - 1) * preDistance : Math.sin(angle) * props.power
-
+                let repX =
+                    distance > props.power
+                        ? (Math.random() * 2 - 1) * preDistance
+                        : Math.cos(angle) * props.power
+                let repY =
+                    distance > props.power
+                        ? (Math.random() * 2 - 1) * preDistance
+                        : Math.sin(angle) * props.power
 
                 if (props.isRepulse) {
                     return [-repX, -repY]
@@ -182,8 +201,7 @@
             }
             return [0, 0]
         }
-        [Symbol.toStringTag] = 'Particle';
-
+        [Symbol.toStringTag] = 'Particle'
     }
 </script>
 <style lang="css" scoped>
