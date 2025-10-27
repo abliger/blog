@@ -112,17 +112,99 @@ export default defineConfig([
             },
         },
         rules: {
-            'vue/no-unused-vars': ['error'],
-            'vue/multi-word-component-names': 'warn',
-            'vue/attribute-hyphenation': ['error', 'always'],
-            'vue/no-mutating-props': 'off',
+            'vue/no-unused-vars': [
+                'error',
+                {
+                    ignorePattern: '^_',
+                },
+            ], // 没有未使用的变量
+            'vue/multi-word-component-names': [
+                'warn',
+                {
+                    ignores: ['Layout'],
+                },
+            ], // 多单词名字
+            'vue/no-async-in-computed-properties': [
+                'error',
+                {
+                    ignoredObjectNames: [],
+                },
+            ], //防止在计算属性和函数中调用异步方法
+            'vue/no-duplicate-attributes': [
+                'error',
+                {
+                    allowCoexistClass: true,
+                    allowCoexistStyle: true,
+                },
+            ], // 报告重复的属性 , 允许  v-bind 的 class 和 style 属性重复
+            'vue/no-mutating-props': 'off', // 不允许组件 props 对象变化
+            'vue/no-parsing-error': [
+                'error',
+                {
+                    'abrupt-closing-of-empty-comment': true,
+                    'absence-of-digits-in-numeric-character-reference': true,
+                    'cdata-in-html-content': true,
+                    'character-reference-outside-unicode-range': true,
+                    'control-character-in-input-stream': true,
+                    'control-character-reference': true,
+                    'eof-before-tag-name': true,
+                    'eof-in-cdata': true,
+                    'eof-in-comment': true,
+                    'eof-in-tag': true,
+                    'incorrectly-closed-comment': true,
+                    'incorrectly-opened-comment': true,
+                    'invalid-first-character-of-tag-name': true,
+                    'missing-attribute-value': true,
+                    'missing-end-tag-name': true,
+                    'missing-semicolon-after-character-reference': true,
+                    'missing-whitespace-between-attributes': true,
+                    'nested-comment': true,
+                    'noncharacter-character-reference': true,
+                    'noncharacter-in-input-stream': true,
+                    'null-character-reference': true,
+                    'surrogate-character-reference': true,
+                    'surrogate-in-input-stream': true,
+                    'unexpected-character-in-attribute-name': true,
+                    'unexpected-character-in-unquoted-attribute-value': true,
+                    'unexpected-equals-sign-before-attribute-name': true,
+                    'unexpected-null-character': true,
+                    'unexpected-question-mark-instead-of-tag-name': true,
+                    'unexpected-solidus-in-tag': true,
+                    'unknown-named-character-reference': true,
+                    'end-tag-with-attributes': true,
+                    'duplicate-attribute': true,
+                    'end-tag-with-trailing-solidus': true,
+                    'non-void-html-element-start-tag-with-trailing-solidus': false,
+                    'x-invalid-end-tag': true,
+                    'x-invalid-namespace': true,
+                },
+            ], //不允许在 <template> 中解析错误
+            'vue/attribute-hyphenation': [
+                'error',
+                'always',
+                {
+                    ignore: [],
+                    ignoreTags: [],
+                },
+            ], //强制在 Vue 模板中的自定义组件上使用连字符的属性名称
+            'vue/no-unused-components': [
+                'error',
+                {
+                    ignoreWhenBindingPresent: false,
+                },
+            ], //报告模板中未使用的组件
+            'vue/component-definition-name-casing': ['error', 'PascalCase'], // "kebab-case" vue 模版名字风格
             'vue/html-closing-bracket-newline': [
                 'error',
                 {
                     singleline: 'never',
                     multiline: 'always',
+                    selfClosingTag: {
+                        singleline: 'never',
+                        multiline: 'always',
+                    },
                 },
-            ],
+            ], //要求或不允许在标签的右括号之前换行
             'vue/html-closing-bracket-spacing': [
                 'error',
                 {
@@ -130,7 +212,7 @@ export default defineConfig([
                     endTag: 'never',
                     selfClosingTag: 'always',
                 },
-            ],
+            ], // 此规则旨在在标记的 > 中关闭括号之前强制执行一致的间距样式
             'vue/html-indent': [
                 'error',
                 4,
@@ -142,22 +224,32 @@ export default defineConfig([
                     ignores: [],
                 },
             ],
-            'vue/html-quotes': ['error', 'double'],
+            'vue/html-quotes': ['error', 'double'], //强制 HTML 属性的引号样式
             'vue/max-attributes-per-line': [
                 'error',
                 {
-                    singleline: 6,
-                    multiline: 6,
+                    singleline: {
+                        max: 5,
+                    },
+                    multiline: {
+                        max: 2,
+                    },
                 },
-            ],
+            ], //强制执行每行的最大属性数
             'vue/multiline-html-element-content-newline': [
                 'error',
                 {
                     ignoreWhenEmpty: true,
                     ignores: ['pre', 'textarea'],
+                    allowEmptyLines: false,
                 },
-            ],
-            'vue/no-parsing-error': 'off',
+            ], //在多行元素的内容之前和之后强制执行换行符
+            'vue/no-multi-spaces': [
+                'error',
+                {
+                    ignoreProperties: true, //是否应该忽略对象的属性
+                },
+            ], // 删除标签中不用于缩进的多个空格
         },
     },
     eslintConfigPrettier,
