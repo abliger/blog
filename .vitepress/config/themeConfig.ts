@@ -1,5 +1,5 @@
-import { DefaultTheme } from "vitepress/theme";
-import { archiveDir, fileTotal, getArchiveDir, getMonthlyUpdates, lastFiles } from "./file";
+import { DefaultTheme } from 'vitepress/theme'
+import { archiveDir, fileTotal, getMonthlyUpdates, lastFiles } from './file'
 
 const myOption = {
     lastFiles: lastFiles(20),
@@ -37,19 +37,19 @@ const themeConfig: DefaultTheme.Config = {
                             buttonAriaLabel: '搜索文档'
                         },
                         modal: {
-                            backButtonTitle: "关闭搜索",
-                            resetButtonTitle: "重置搜索",
-                            displayDetails: "显示详细列表",
+                            backButtonTitle: '关闭搜索',
+                            resetButtonTitle: '重置搜索',
+                            displayDetails: '显示详细列表',
                             footer: {
-                                selectText: "选择",
-                                selectKeyAriaLabel: "输入",
-                                navigateText: "导航",
-                                navigateUpKeyAriaLabel: "上箭头",
-                                navigateDownKeyAriaLabel: "下箭头",
-                                closeText: "关闭",
-                                closeKeyAriaLabel: "esc",
+                                selectText: '选择',
+                                selectKeyAriaLabel: '输入',
+                                navigateText: '导航',
+                                navigateUpKeyAriaLabel: '上箭头',
+                                navigateDownKeyAriaLabel: '下箭头',
+                                closeText: '关闭',
+                                closeKeyAriaLabel: 'esc',
                             },
-                            noResultsText: "无法找到相关结果"
+                            noResultsText: '无法找到相关结果'
                         }
                     }
                 }

@@ -1,5 +1,5 @@
 /// <reference types="vite/client" />
-export { };
+export { }
 
 declare global {
 

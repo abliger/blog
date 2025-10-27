@@ -30,7 +30,7 @@
                 <div>TaskTodo</div>
             </div>
         </div>
-        <!-- <div class="other-skills">
+    <!-- <div class="other-skills">
             <div>vitepress</div>
             <div>skills-icons</div>
             <div>simple-icons</div>

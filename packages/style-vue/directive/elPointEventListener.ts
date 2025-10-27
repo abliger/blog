@@ -2,7 +2,7 @@
     统一处理鼠标和触摸输入,内部维护当前鼠标位置
 */
 
-import { type Directive } from "vue";
+import { type Directive } from 'vue'
 
 declare module 'vue' {
     export interface ComponentCustomProperties {
@@ -17,17 +17,17 @@ const mousePosition = {
     _timey: undefined,
     setMouseX(x: number | undefined) {
         this.mouseX = x
-        clearTimeout(this._timex);
+        clearTimeout(this._timex)
         this._timex = window.setTimeout(() => {
             this.mouseX = undefined
-        }, 100);
+        }, 100)
     },
     setMouseY(y: number | undefined) {
         this.mouseY = y
-        clearTimeout(this._timey);
+        clearTimeout(this._timey)
         this._timey = window.setTimeout(() => {
             this.mouseY = undefined
-        }, 100);
+        }, 100)
     }
 }
 
@@ -57,7 +57,7 @@ let element = undefined
 统一处理鼠标和触摸输入,内部维护当前鼠标位置
 */
 export const vElPointEventListener: Directive<HTMLElement, never> = {
-    mounted: (el: HTMLElement,) => {
+    mounted: (el: HTMLElement) => {
         element = el
         el.addEventListener('touchstart', onTouchMove, { passive: false })
         el.addEventListener('touchmove', onTouchMove, { passive: false })
@@ -81,5 +81,5 @@ export function getMousePosition() {
     return {
         mouseX: mousePosition.mouseX,
         mouseY: mousePosition.mouseY
-    };
+    }
 }

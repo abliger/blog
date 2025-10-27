@@ -7,11 +7,15 @@
             <card-four />
             <card-five />
             <card-six />
-
-
         </slot>
-        <slot name="loading" v-if="!isDev">
-            <loading @endAnimate="endAnimate" @startAnimate="startAnimate" />
+        <slot
+            v-if="!isDev"
+            name="loading"
+        >
+            <loading
+                @end-animate="endAnimate"
+                @start-animate="startAnimate"
+            />
         </slot>
     </div>
 </template>

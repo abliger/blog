@@ -4,8 +4,8 @@
     传入一个字符串数组 strs，组件会循环显示这些字符串，模拟打字和删除的效果 
     -->
     <div class="FcTyping">
-        <slot></slot>
-        <span class="typing" ref="typing"></span>
+        <slot />
+        <span ref="typing" class="typing" />
     </div>
 </template>
 <script setup lang="tsx">

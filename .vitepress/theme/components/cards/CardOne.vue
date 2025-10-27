@@ -13,47 +13,47 @@
             <ul class="link">
                 <li>
                     <a href="https://github.com/abliger" target="_blank">
-                        <github />
+                        <IGithub />
                     </a>
                 </li>
                 <li>
                     <a href="https://space.bilibili.com/16062076" target="_blank">
-                        <bilibili />
+                        <IBiliBili />
                     </a>
                 </li>
                 <li>
                     <a href="https://163cn.tv/Mj09MfT" target="_blank">
-                        <neteasecloudmusic />
+                        <INeteaseCloudMusic />
                     </a>
                 </li>
                 <li>
                     <a href="mailto:abliger@icloud.com">
-                        <maildotru />
+                        <IMailDot />
                     </a>
                 </li>
                 <li>
                     <a href="javascript: void(0)">
-                        <rss />
+                        <IRss />
                     </a>
                 </li>
             </ul>
         </div>
         <div class="right">
-            <particle-img imgSrc="image.png" v-show="startAnim" />
+            <particle-img v-show="startAnim" img-src="image.png" />
         </div>
     </div>
 </template>
 <script lang="tsx" setup>
     import { inject } from "vue";
     import { FcTyping, ParticleImg } from "style-vue";
-    import github from "./icons/github.vue";
-    import bilibili from "./icons/bilibili.vue";
-    import maildotru from "./icons/maildotru.vue";
-    import neteasecloudmusic from "./icons/neteasecloudmusic.vue";
-    import rss from "./icons/rss.vue";
+    import IGithub from "./icons/IGithub.vue";
+    import IBiliBili from "./icons/IBiliBili.vue";
+    import IMailDot from "./icons/IMailDot.vue";
+    import INeteaseCloudMusic from "./icons/INeteaseCloudMusic.vue";
+    import IRss from "./icons/IRss.vue";
     const startAnim = inject('startAnim')
     defineProps<{
-        strs: string[]
+        strs: string[];
     }>()
 
 </script>

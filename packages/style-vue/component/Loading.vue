@@ -1,175 +1,175 @@
 <template>
-    <div class="wrapper" ref="loading">
+    <div ref="loading" class="wrapper">
         <div class="container">
             <div id="papers">
-                <div class="paper" id="paper-3"></div>
-                <div class="paper" id="paper-2"></div>
-                <div class="paper" id="paper-1">
-                    <div></div>
-                    <div></div>
-                    <div></div>
+                <div id="paper-3" class="paper" />
+                <div id="paper-2" class="paper" />
+                <div id="paper-1" class="paper">
+                    <div />
+                    <div />
+                    <div />
                 </div>
             </div>
             <div id="glasses">
-                <div class="glass" id="left"></div>
-                <div class="glass" id="right"></div>
+                <div id="left" class="glass" />
+                <div id="right" class="glass" />
             </div>
             <div id="pencil">
-                <div id="tip"></div>
-                <div id="body"></div>
-                <div id="eraser"></div>
+                <div id="tip" />
+                <div id="body" />
+                <div id="eraser" />
             </div>
             <div id="laptop">
                 <div id="screen-wrapper">
                     <div id="screen">
                         <div id="btn">
-                            <div></div>
+                            <div />
                         </div>
-                        <div id="pointer"></div>
+                        <div id="pointer" />
                         <div id="content">
                             <p>
                                 <span>H</span><span>E</span><span>L</span><span>L</span><span>O</span><span>
-                                    W</span><span>O</span><span>R</span><span>L</span><span>D</span>
+                                    W
+                                </span><span>O</span><span>R</span><span>L</span><span>D</span>
                             </p>
                         </div>
-                        <div id="reflection_1"></div>
-                        <div id="reflection_2"></div>
+                        <div id="reflection_1" />
+                        <div id="reflection_2" />
                     </div>
                 </div>
                 <div id="keyboard-wrapper">
                     <div id="keyboard">
                         <div class="row">
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
+                            <div />
+                            <div />
+                            <div />
+                            <div />
+                            <div />
+                            <div />
+                            <div />
+                            <div />
+                            <div />
+                            <div />
+                            <div />
+                            <div />
                         </div>
                         <div class="row">
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
+                            <div />
+                            <div />
+                            <div />
+                            <div />
+                            <div />
+                            <div />
+                            <div />
+                            <div />
+                            <div />
+                            <div />
+                            <div />
+                            <div />
                         </div>
                         <div class="row">
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
+                            <div />
+                            <div />
+                            <div />
+                            <div />
+                            <div />
+                            <div />
+                            <div />
+                            <div />
+                            <div />
+                            <div />
+                            <div />
+                            <div />
                         </div>
                         <div class="row">
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
+                            <div />
+                            <div />
+                            <div />
+                            <div />
+                            <div />
+                            <div />
+                            <div />
+                            <div />
+                            <div />
+                            <div />
+                            <div />
                         </div>
                         <div class="row">
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
+                            <div />
+                            <div />
+                            <div />
+                            <div />
+                            <div />
+                            <div />
+                            <div />
+                            <div />
+                            <div />
                         </div>
                     </div>
                 </div>
             </div>
             <div id="mouse">
-                <div></div>
+                <div />
             </div>
             <div id="cup-wrapper">
-                <div id="handle"></div>
+                <div id="handle" />
                 <div id="cup">
-                    <div id="bubble-1"></div>
-                    <div id="bubble-2"></div>
-                    <div id="bubble-3"></div>
+                    <div id="bubble-1" />
+                    <div id="bubble-2" />
+                    <div id="bubble-3" />
                 </div>
             </div>
             <div id="phone" ref="phone">
                 <div id="phone_screen" ref="phone_screen">
-                    <div id="reflect"></div>
+                    <div id="reflect" />
                 </div>
-                <div id="camera"></div>
-                <div id="speaker"></div>
-                <div id="home"></div>
+                <div id="camera" />
+                <div id="speaker" />
+                <div id="home" />
             </div>
             <div id="book">
                 <div id="book-left">
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
+                    <div />
+                    <div />
+                    <div />
+                    <div />
+                    <div />
+                    <div />
                 </div>
                 <div id="book-right">
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-
+                    <div />
+                    <div />
+                    <div />
+                    <div />
+                    <div />
+                    <div />
+                    <div />
                 </div>
-                <div class="label" id="label-1"></div>
-                <div class="label" id="label-2"></div>
-                <div class="label" id="label-3"></div>
+                <div id="label-1" class="label" />
+                <div id="label-2" class="label" />
+                <div id="label-3" class="label" />
             </div>
             <div id="hand">
                 <div id="thumb">
-                    <div id="first"></div>
-                    <div id="second"></div>
-                    <div class="nail"></div>
+                    <div id="first" />
+                    <div id="second" />
+                    <div class="nail" />
                 </div>
                 <div id="index">
-                    <div class="nail"></div>
+                    <div class="nail" />
                 </div>
                 <div id="middle">
-                    <div class="nail"></div>
+                    <div class="nail" />
                 </div>
                 <div id="ring">
-                    <div class="nail"></div>
+                    <div class="nail" />
                 </div>
                 <div id="little">
-                    <div class="nail"></div>
+                    <div class="nail" />
                 </div>
-                <div id="palm"></div>
-                <div id="wrist"></div>
-                <div id="arm"></div>
+                <div id="palm" />
+                <div id="wrist" />
+                <div id="arm" />
             </div>
         </div>
     </div>

@@ -1,13 +1,13 @@
-import { build, type DefaultTheme, type UserConfig } from 'vitepress'
-import themeConfig from './themeConfig.js';
-import { markdown } from './markdown.js';
+import { type DefaultTheme, type UserConfig } from 'vitepress'
+import themeConfig from './themeConfig'
+import { markdown } from './markdown'
 import { viteDemoPreviewPlugin } from '@vitepress-code-preview/plugin'
-import { getFileURLToNextOrPrev } from './file';
+import { getFileURLToNextOrPrev } from './file'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 // import path from 'path'
 import Inspector from 'vite-plugin-vue-inspector' // OR vite-plugin-vue-inspector
 
-let vite = {
+const vite = {
     // resolve: {
     //     alias: {
     //         'style-vue': path.resolve(__dirname, '../../packages/style-vue/src/')
@@ -21,8 +21,8 @@ let vite = {
 }
 
 export default {
-    title: "Blog",
-    description: "Abliger's Blog",
+    title: 'Blog',
+    description: 'Abliger\'s Blog',
     srcDir: 'doc',
     srcExclude: [
         '**/node_modules/**',
@@ -35,8 +35,8 @@ export default {
     cleanUrls: true,
     lastUpdated: true,
     ignoreDeadLinks: true,
-    transformPageData(pageData, ctx) {
-        let path = pageData.relativePath
+    transformPageData(pageData) {
+        const path = pageData.relativePath
         pageData.frontmatter = Object.assign({}, pageData.frontmatter, getFileURLToNextOrPrev(path))
     },
     locales: {

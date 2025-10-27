@@ -1,4 +1,4 @@
 import { defineConfig } from 'vitepress'
-import vitePressOptions from './config';
+import vitePressOptions from './config'
 
-export default defineConfig(vitePressOptions);
+export default defineConfig(vitePressOptions)

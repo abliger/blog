@@ -1,6 +1,5 @@
 <template>
-    <div ref="imageContainer" class="three" :class="{ 'visible': isVisible }" :style>
-    </div>
+    <div ref="imageContainer" class="three" :class="{ 'visible': isVisible }" :style />
 </template>
 <script lang="tsx" setup>
     import { ref, onMounted } from 'vue';

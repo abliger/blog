@@ -1,6 +1,6 @@
 <template>
-    <div class="particleImg" ref="particleImg">
-        <canvas id="particle" ref="canvas" v-el-point-event-listener></canvas>
+    <div ref="particleImg" class="particleImg">
+        <canvas id="particle" ref="canvas" v-el-point-event-listener />
     </div>
 </template>
 <script setup lang="ts">
@@ -22,7 +22,6 @@
 
     const canvas = useTemplateRef<HTMLCanvasElement>('canvas')
     let ctx: CanvasRenderingContext2D | null = null
-
     let particles: Particle[] = []
     let rafId: number | null = null
     let img = new Image()

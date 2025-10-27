@@ -5,26 +5,34 @@
     -->
     <div class="IconScroll">
         <div class="line">
-            <div class="icons" :style="{ transform: 'translate3d(' + move[0] + '%,0px,0px)' }" ref="icons">
-                <div class="icon-item" v-for="(icon, index) in skill" :key="index" @mouseenter="pauseAnimation(1)"
-                    @mouseleave="resumeAnimation">
-                    <img :src="icon.imgSrc" :alt="icon.name" :title="icon.name" />
+            <div ref="icons" class="icons" :style="{ transform: 'translate3d(' + move[0] + '%,0px,0px)' }">
+                <div
+                    v-for="(icon, index) in skill" :key="index" class="icon-item" @mouseenter="pauseAnimation(1)"
+                    @mouseleave="resumeAnimation"
+                >
+                    <img :src="icon.imgSrc" :alt="icon.name" :title="icon.name">
                 </div>
-                <div class="icon-item" v-for="(icon, index) in skill" :key="index" @mouseenter="pauseAnimation(1)"
-                    @mouseleave="resumeAnimation">
-                    <img :src="icon.imgSrc" :alt="icon.name" :title="icon.name" />
+                <div
+                    v-for="(icon, index) in skill" :key="index" class="icon-item" @mouseenter="pauseAnimation(1)"
+                    @mouseleave="resumeAnimation"
+                >
+                    <img :src="icon.imgSrc" :alt="icon.name" :title="icon.name">
                 </div>
             </div>
         </div>
         <div class="line">
-            <div class="icons" :style="{ transform: 'translate3d(' + move[1] + '%,0px,0px)' }" ref="icons">
-                <div class="icon-item" v-for="(icon, index) in skill" :key="index" @mouseenter="pauseAnimation(2)"
-                    @mouseleave="resumeAnimation">
-                    <img :src="icon.imgSrc" :alt="icon.name" :title="icon.name" />
+            <div ref="icons" class="icons" :style="{ transform: 'translate3d(' + move[1] + '%,0px,0px)' }">
+                <div
+                    v-for="(icon, index) in skill" :key="index" class="icon-item" @mouseenter="pauseAnimation(2)"
+                    @mouseleave="resumeAnimation"
+                >
+                    <img :src="icon.imgSrc" :alt="icon.name" :title="icon.name">
                 </div>
-                <div class="icon-item" v-for="(icon, index) in skill" :key="index" @mouseenter="pauseAnimation(2)"
-                    @mouseleave="resumeAnimation">
-                    <img :src="icon.imgSrc" :alt="icon.name" :title="icon.name" />
+                <div
+                    v-for="(icon, index) in skill" :key="index" class="icon-item" @mouseenter="pauseAnimation(2)"
+                    @mouseleave="resumeAnimation"
+                >
+                    <img :src="icon.imgSrc" :alt="icon.name" :title="icon.name">
                 </div>
             </div>
         </div>
@@ -60,13 +68,10 @@
     function startAnimation() {
         if (animationId.value) return;
         let len = 0.01
-        let c = 0;
         function anim() {
             len = (isScrolling && len == 0.01) ? 0.06 : 0.01;
-
             if (len > 0.01) {
                 len -= 0.001
-                c += 1
             } else {
                 len = 0.01
             }

@@ -3,14 +3,13 @@ import { nextTick, provide } from 'vue'
 import './in.css'
 
 export function useToggleTheme() {
-
     const { isDark } = useData()
 
     const enableTransitions = () =>
         'startViewTransition' in document &&  // 检查浏览器是否支持 View Transitions API
         window.matchMedia('(prefers-reduced-motion: no-preference)').matches // 检查用户是否未开启减少动画设置
 
-    provide('toggle-appearance', async ({ clientX: x, clientY: y }: MouseEvent) => {
+    provide('toggle-appearance', async({ clientX: x, clientY: y }: MouseEvent) => {
         if (!enableTransitions()) {
             isDark.value = !isDark.value
             return
@@ -24,7 +23,7 @@ export function useToggleTheme() {
             )}px at ${x}px ${y}px)`
         ]
 
-        await document.startViewTransition(async () => {
+        await document.startViewTransition(async() => {
             isDark.value = !isDark.value
             // 手动让页面渲染好拍摄快照
             await nextTick()

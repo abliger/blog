@@ -1,5 +1,8 @@
-import * as fs from 'fs';
-import * as path from 'path';
+/* eslint-disable no-useless-escape */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+ 
+import * as fs from 'fs'
+import * as path from 'path'
 type Files = { name: string, isFile: boolean }[]
 import type { DefaultTheme } from 'vitepress/theme'
 interface FileStructure {
@@ -12,18 +15,18 @@ interface FileStructure {
  * @returns 文件路径数组
  */
 export function getUrlFile(dir: string, fileType: string[] = [], srcExclude: string[] = []): FileStructure {
-    let srcExcludeReg = srcExclude.map((exclude) => {
+    const srcExcludeReg = srcExclude.map((exclude) => {
         return new RegExp(exclude.replace(/\*\*/g, '.*').replace(/\*/g, '[^/]*'))
     })
-    let fileTypeReg = fileType.map((type) => {
+    const fileTypeReg = fileType.map((type) => {
         return new RegExp(`.*\.${type}$`)
     })
-    let files = readDirSync(dir)
-    let res = {}
+    const files = readDirSync(dir)
+    const res = {}
     let file = files.shift() as { name: string, isFile: boolean } | undefined
     while (file) {
         if (srcExcludeReg.some((reg) => reg.test(file!.name))) {
-            file = files.shift();
+            file = files.shift()
             continue
         }
         if (file.isFile) {
@@ -35,7 +38,7 @@ export function getUrlFile(dir: string, fileType: string[] = [], srcExclude: str
                 }
             }
         } else {
-            let files = getUrlFile(file.name, fileType, srcExclude)
+            const files = getUrlFile(file.name, fileType, srcExclude)
             if (Object.keys(files).length) {
                 res[getDirName(file.name)] = files
             }
@@ -54,29 +57,29 @@ type SidebarItem = DefaultTheme.SidebarItem
  * @param files 
  * @returns 
  */
-export async function filesToSidebar(files: Object): Promise<SidebarItem[]> {
-    function temp(files: Object): SidebarItem[] {
-        let sidebar: SidebarItem[] = []
+export async function filesToSidebar(files: object): Promise<SidebarItem[]> {
+    function temp(files: object): SidebarItem[] {
+        const sidebar: SidebarItem[] = []
 
-        for (let key in files) {
+        for (const key in files) {
             if (key === 'index') {
                 continue
             }
 
-            let item: SidebarItem = {
+            const item: SidebarItem = {
                 text: key,
                 collapsed: true,
                 items: []
             }
 
-            let fileMap = (files[key]['index'] as Array<string>)?.reduce((acc, fileName) => {
+            const fileMap = (files[key]['index'] as Array<string>)?.reduce((acc, fileName) => {
                 if (fileName.endsWith('/index.md')) {
-                    acc[0] = fileName;
+                    acc[0] = fileName
                 } else {
-                    acc[1].push(fileName);
+                    acc[1].push(fileName)
                 }
-                return acc;
-            }, [null as any, [] as string[]]) || [undefined, []];
+                return acc
+            }, [null as any, [] as string[]]) || [undefined, []]
             if (fileMap[0]) {
                 item.link = '/' + fileMap[0].split('/index.md').shift() + '/'
             }
@@ -97,8 +100,8 @@ export async function filesToSidebar(files: Object): Promise<SidebarItem[]> {
 }
 // 获得文件名
 function getFileName(dir: string): string {
-    let fileName = dir.split('/').pop()?.split('.').shift() as string
-    let t = /^\d+\_(.*)/.exec(fileName)
+    const fileName = dir.split('/').pop()?.split('.').shift() as string
+    const t = /^\d+_(.*)/.exec(fileName)
     return t ? t[1] : fileName
 }
 
@@ -108,14 +111,14 @@ function getDirName(dir: string): string {
 }
 
 function shiftFirstD(dir: string): string {
-    let temp = dir.split('/')
+    const temp = dir.split('/')
     temp.shift()
     return temp.join('/')
 }
 function readDirSync(dir: string): Files {
-    const files = fs.readdirSync(dir, { withFileTypes: true });
+    const files = fs.readdirSync(dir, { withFileTypes: true })
     return files.map(file => ({
         name: path.join(dir, file.name),
         isFile: file.isFile()
-    }));
+    }))
 }
