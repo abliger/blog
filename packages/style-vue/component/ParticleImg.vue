@@ -13,6 +13,8 @@
     const particleImg = useTemplateRef<HTMLDivElement>('particleImg')
     const props = defineProps({
         imgSrc: { type: String, required: true },
+        once: { type: Boolean, default: false },
+        keepOriginColor: { type: Boolean, default: false },
         gap: { type: Number, default: 1 }, // 采样间隔，5%宽度
         particleRadius: { type: Number, default: 1 }, // 粒子半径
         power: { type: Number, default: 30 }, // 力强度
@@ -58,9 +60,21 @@
     function createParticlesFromImage() {
         buildVirtualCanvas()
         // const dpr = window.devicePixelRatio || 1
-        particles = dataLocation('particles' + props.imgSrc, () =>
-            getImagePoints(),
-        ).map(p => new Particle({ x: p.x, y: p.y }, p.color))
+        // 如果 particles 中粒子位置和dataLocation 中的粒子位置一样则直接使用
+        let originInfos = props.once
+            ? dataLocation('particles' + props.imgSrc, () => getImagePoints())
+            : getImagePoints()
+        particles = particles.map(p => {
+            let originInfo = originInfos.pop()
+            if (!originInfo) {
+                return
+            }
+            p.reLoadImg(originInfo.x, originInfo.y, originInfo.color)
+            return p
+        })
+        particles.push(
+            ...originInfos.map(p => new Particle({ x: p.x, y: p.y }, p.color)),
+        )
     }
 
     function buildVirtualCanvas() {
@@ -68,7 +82,7 @@
         ctx.drawImage(img, 0, 0, canvas.value.width, canvas.value.height)
     }
 
-    /* 
+    /*
         获得 canvas 图像上每个像素点的颜色信息, gap 决定采样间隔
         依据图像的灰度值决定该位置是黑色粒子还是白色粒子
     */
@@ -91,13 +105,17 @@
                 const b = imageData[pos + 2]
                 const a = imageData[pos + 3]
                 if (a > 10) {
-                    const lum = 0.299 * r + 0.587 * g + 0.114 * b
-                    const isWhite = lum >= threshold
-                    const alpha = a / 255
-                    const color = isWhite
-                        ? `rgba(234, 234, 171,${alpha})`
-                        : `rgba(0,0,0,${alpha})`
-                    pts.push({ x, y, color })
+                    if (props.keepOriginColor) {
+                        pts.push({ x, y, color: `rgba(${r}, ${g}, ${b},${a})` })
+                    } else {
+                        const lum = 0.299 * r + 0.587 * g + 0.114 * b
+                        const isWhite = lum >= threshold
+                        const alpha = a / 255
+                        const color = isWhite
+                            ? `rgba(234, 234, 171,${alpha})`
+                            : `rgba(0,0,0,${alpha})`
+                        pts.push({ x, y, color })
+                    }
                 }
             }
         }
@@ -126,6 +144,11 @@
         () => props.imgSrc,
         nv => {
             if (!nv || !canvas.value) return
+            if (props.once) {
+                throw new Error(
+                    '更改了图片,请修改属性 once 为 false,或者删除 once 属性',
+                )
+            }
             img = new Image()
             img.crossOrigin = 'anonymous'
             img.src = nv
@@ -150,6 +173,14 @@
             this.x = Math.round(Math.random() * (canvas.value.width || 1))
             this.y = Math.round(Math.random() * (canvas.value.height || 1))
             this.radius = props.particleRadius
+            this.color = color
+        }
+
+        reLoadImg(x: number, y: number, color: string) {
+            this.targetX = x
+            this.targetY = y
+            this.x = Math.round(Math.random() * (canvas.value.width || 1))
+            this.y = Math.round(Math.random() * (canvas.value.height || 1))
             this.color = color
         }
 

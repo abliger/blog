@@ -1,7 +1,7 @@
 /*
     获得 浏览器缓存内容,如果没有保存 f 函数返回值
 */
-export function dataLocation(key: string, f?: () => unknown) {
+export function dataLocation<T>(key: string, f: () => T): T {
     const ptsJson = localStorage.getItem(key)
     if (!ptsJson) {
         const pts = f()

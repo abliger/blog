@@ -121,7 +121,7 @@ export default defineConfig([
             'vue/multi-word-component-names': [
                 'warn',
                 {
-                    ignores: ['Layout'],
+                    ignores: ['Layout', 'Loading'],
                 },
             ], // 多单词名字
             'vue/no-async-in-computed-properties': [

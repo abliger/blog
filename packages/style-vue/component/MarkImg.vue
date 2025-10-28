@@ -3,7 +3,9 @@
         ref="imageContainer"
         class="three"
         :class="{ visible: isVisible }"
-        :style
+        :style="{
+            backgroundImage: `url(${src})`,
+        }"
     />
 </template>
 <script lang="tsx" setup>
@@ -44,10 +46,6 @@
         )
         observer.value.observe(imageContainer.value)
     })
-
-    const style = {
-        backgroundImage: `url(${props.src})`,
-    }
 </script>
 <style lang="scss" scoped>
     @use 'sass:math';

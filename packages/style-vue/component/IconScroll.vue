@@ -4,72 +4,29 @@
     接收一个图标数组 icons，图表默认分成两行,无限滚动显示
     -->
     <div class="IconScroll">
-        <div class="line">
+        <div v-for="k in 2" :key="k" class="line">
             <div
                 ref="icons"
                 class="icons"
-                :style="{ transform: 'translate3d(' + move[0] + '%,0px,0px)' }"
+                :style="{
+                    transform: `translate3d(${k === 1 ? move[0] : move[1]}%,0px,0px)`,
+                }"
             >
-                <div
-                    v-for="(icon, index) in skill"
-                    :key="index"
-                    class="icon-item"
-                    @mouseenter="pauseAnimation(1)"
-                    @mouseleave="resumeAnimation"
-                >
-                    <img
-                        :src="icon.imgSrc"
-                        :alt="icon.name"
-                        :title="icon.name"
-                    />
-                </div>
-                <div
-                    v-for="(icon, index) in skill"
-                    :key="index"
-                    class="icon-item"
-                    @mouseenter="pauseAnimation(1)"
-                    @mouseleave="resumeAnimation"
-                >
-                    <img
-                        :src="icon.imgSrc"
-                        :alt="icon.name"
-                        :title="icon.name"
-                    />
-                </div>
-            </div>
-        </div>
-        <div class="line">
-            <div
-                ref="icons"
-                class="icons"
-                :style="{ transform: 'translate3d(' + move[1] + '%,0px,0px)' }"
-            >
-                <div
-                    v-for="(icon, index) in skill"
-                    :key="index"
-                    class="icon-item"
-                    @mouseenter="pauseAnimation(2)"
-                    @mouseleave="resumeAnimation"
-                >
-                    <img
-                        :src="icon.imgSrc"
-                        :alt="icon.name"
-                        :title="icon.name"
-                    />
-                </div>
-                <div
-                    v-for="(icon, index) in skill"
-                    :key="index"
-                    class="icon-item"
-                    @mouseenter="pauseAnimation(2)"
-                    @mouseleave="resumeAnimation"
-                >
-                    <img
-                        :src="icon.imgSrc"
-                        :alt="icon.name"
-                        :title="icon.name"
-                    />
-                </div>
+                <template v-for="i in 2" :key="i">
+                    <div
+                        v-for="(icon, index) in skill"
+                        :key="index"
+                        class="icon-item"
+                        @mouseenter="pauseAnimation(k)"
+                        @mouseleave="resumeAnimation"
+                    >
+                        <img
+                            :src="icon.imgSrc"
+                            :alt="icon.name"
+                            :title="icon.name"
+                        />
+                    </div>
+                </template>
             </div>
         </div>
     </div>
@@ -83,7 +40,7 @@
     const skill = inject<Array<{ imgSrc: string; name: string }>>('skill')
 
     const move = ref([0, 0])
-    const animationId = ref<number | null>(null)
+    let animationId: number = 0
     let effectRow = 0
 
     let isScrolling = false
@@ -103,7 +60,7 @@
     })
 
     function startAnimation() {
-        if (animationId.value) return
+        if (animationId) return
         let len = 0.01
         function anim() {
             len = isScrolling && len == 0.01 ? 0.06 : 0.01
@@ -122,7 +79,7 @@
             if (move.value[1] >= 50) {
                 move.value[1] = 0
             }
-            animationId.value = requestAnimationFrame(anim)
+            animationId = requestAnimationFrame(anim)
         }
 
         anim()
@@ -138,8 +95,8 @@
 
     // 清理动画
     onUnmounted(() => {
-        if (animationId.value) {
-            cancelAnimationFrame(animationId.value)
+        if (animationId) {
+            cancelAnimationFrame(animationId)
         }
     })
 </script>

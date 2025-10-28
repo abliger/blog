@@ -402,7 +402,6 @@
 
     #reflection_1 {
         position: absolute;
-        position: absolute;
         left: -50px;
         top: -40px;
         width: 100px;
@@ -787,7 +786,7 @@
     #paper-3 {
         left: 18px;
         top: 2px;
-        transform-origin: bott;
+        transform-origin: bottom;
         transform: rotatez(4deg);
     }
 

@@ -4,24 +4,24 @@
             <div>
                 <div class="title">文稿</div>
                 <div class="content">
-                    <li v-for="c in contentTitle" :key="c.date">
+                    <div v-for="c in contentTitle" :key="c.date">
                         <div>
                             <a :href="c.href">{{ c.title }}</a>
                         </div>
                         <div>{{ c.data }}</div>
-                    </li>
+                    </div>
                 </div>
             </div>
             <br />
             <div>
                 <div class="title">手记</div>
                 <div class="content">
-                    <li v-for="c in contentTitle" :key="c.date">
+                    <div v-for="c in contentTitle" :key="c.date">
                         <div>
                             <a :href="c.href">{{ c.title }}</a>
                         </div>
                         <div>{{ c.data }}</div>
-                    </li>
+                    </div>
                 </div>
             </div>
         </div>
@@ -35,7 +35,6 @@
 </template>
 <script setup lang="tsx">
     import { onMounted } from 'vue'
-    // fetch()
 
     const contentTitle = []
 

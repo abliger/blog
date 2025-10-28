@@ -1,7 +1,7 @@
 <script setup>
-    import DefaultTheme from 'vitepress/theme'
+    import ThemeDefault from 'vitepress/theme'
     import { useRoute } from 'vitepress'
-    const { Layout } = DefaultTheme
+    let { Layout } = ThemeDefault
     import './css/iframe.css'
     const { path } = useRoute()
     import { useToggleTheme } from './animation/themeDark/trans'
