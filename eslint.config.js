@@ -7,7 +7,7 @@ import importPlugin from 'eslint-plugin-import'
 import vueParser from 'vue-eslint-parser'
 import eslintConfigPrettier from 'eslint-config-prettier/flat'
 
-const isDev = process.env.NODE_ENV || process.env.NODE_ENV === 'development'
+const isDev = !process.env.NODE_ENV || process.env.NODE_ENV === 'development'
 
 export default defineConfig([
     globalIgnores(

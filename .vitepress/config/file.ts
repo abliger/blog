@@ -43,6 +43,12 @@ async function getArchive() {
             collapsed: false,
         },
         {
+            text: '编译原理',
+            link: '/compiler_principles/',
+            items: await filesToSidebar(filedir['compiler_principles']),
+            collapsed: false,
+        },
+        {
             text: 'rust-book',
             link: '/rust-book/',
             items: await filesToSidebar(filedir['rust']),
@@ -88,6 +94,11 @@ function getFileDir() {
     const design = getUrlFile('./doc/设计模式', ['md'], ['**/node_modules'])
     const rust = getUrlFile('./doc/rust-book', ['md'], ['**/node_modules'])
     const other = getUrlFile('./doc/other', ['md'], ['**/node_modules'])
+    const cp = getUrlFile(
+        './doc/compiler_principles',
+        ['md'],
+        ['**/node_modules'],
+    )
 
     const filedir = {
         base,
@@ -98,6 +109,7 @@ function getFileDir() {
         设计模式: design,
         rust,
         other,
+        compiler_principles: cp,
     }
     return filedir
 }
