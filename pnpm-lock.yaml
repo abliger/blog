@@ -39,12 +39,6 @@ importers:
       '@eslint/js':
         specifier: ^9.38.0
         version: 9.38.0
-      '@mdit/plugin-katex':
-        specifier: ^0.23.2
-        version: 0.23.2(markdown-it@14.1.0)
-      '@mdit/plugin-mathjax':
-        specifier: ^0.23.2
-        version: 0.23.2(markdown-it@14.1.0)
       '@mdit/plugin-tex':
         specifier: ^0.22.2
         version: 0.22.2(markdown-it@14.1.0)
@@ -1269,33 +1263,6 @@ packages:
 
   '@jridgewell/trace-mapping@0.3.31':
     resolution: {integrity: sha512-zzNR+SdQSDJzc8joaeP8QQoCQr8NuYx2dIIytl1QeBEZHJ9uW6hebsrYgbz8hJwUQao3TWCMtmfV8Nu1twOLAw==}
-
-  '@mdit/helper@0.22.1':
-    resolution: {integrity: sha512-lDpajcdAk84aYCNAM/Mi3djw38DJq7ocLw5VOSMu/u2YKX3/OD37a6Qb59in8Uyp4SiAbQoSHa8px6hgHEpB5g==}
-    engines: {node: '>= 18'}
-    peerDependencies:
-      markdown-it: ^14.1.0
-    peerDependenciesMeta:
-      markdown-it:
-        optional: true
-
-  '@mdit/plugin-katex@0.23.2':
-    resolution: {integrity: sha512-3914dyl/mHrzrdHDm/ZDhOSUhAttZdF80jKfc1RK5gdTcDSpNekn7naTdeP002oey/bDp1tzooEq5UfbRaHXYg==}
-    engines: {node: '>= 18'}
-    peerDependencies:
-      markdown-it: ^14.1.0
-    peerDependenciesMeta:
-      markdown-it:
-        optional: true
-
-  '@mdit/plugin-mathjax@0.23.2':
-    resolution: {integrity: sha512-KxJ0fNBDLssfpZmOOsroRZ4jw/FJLj/ZH5MTaG10dyJ9nxA48iyQe9cy1MEbMianfpWkD/BJItE3ehFTrGaQ2g==}
-    engines: {node: '>= 18'}
-    peerDependencies:
-      markdown-it: ^14.1.0
-    peerDependenciesMeta:
-      markdown-it:
-        optional: true
 
   '@mdit/plugin-tex@0.22.2':
     resolution: {integrity: sha512-iniJQ9BPZc8AGdLPRoyC+nDA0SoDSe+AETma4y2dOk/EbaSZMYgMaZO843mk5JV7eJkfRc6TWcTIE2CqY2/9Rg==}
@@ -5064,10 +5031,6 @@ packages:
   unrs-resolver@1.11.1:
     resolution: {integrity: sha512-bSjt9pjaEBnNiGgc9rUiHGKv5l4/TGzDmYw3RhnkJGtLhbnnA/5qJj7x3dNDCRx/PJxu774LlH8lCOlB4hEfKg==}
 
-  upath@2.0.1:
-    resolution: {integrity: sha512-1uEe95xksV1O0CYKXo8vQvN1JEbtJp7lb7C5U9HMsIp6IVwntkH/oNUzyVNQSd4S1sYk2FpSSW44FqMc8qee5w==}
-    engines: {node: '>=4'}
-
   update-browserslist-db@1.1.4:
     resolution: {integrity: sha512-q0SPT4xyU84saUX+tomz1WLkxUbuaJnR1xWt17M7fJtEJigJeWUNGUqrauFXsHnqev9y9JTRGwk13tFBuKby4A==}
     hasBin: true
@@ -6665,30 +6628,6 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.5
 
-  '@mdit/helper@0.22.1(markdown-it@14.1.0)':
-    dependencies:
-      '@types/markdown-it': 14.1.2
-    optionalDependencies:
-      markdown-it: 14.1.0
-
-  '@mdit/plugin-katex@0.23.2(markdown-it@14.1.0)':
-    dependencies:
-      '@mdit/helper': 0.22.1(markdown-it@14.1.0)
-      '@mdit/plugin-tex': 0.22.2(markdown-it@14.1.0)
-      '@types/markdown-it': 14.1.2
-      katex: 0.16.25
-    optionalDependencies:
-      markdown-it: 14.1.0
-
-  '@mdit/plugin-mathjax@0.23.2(markdown-it@14.1.0)':
-    dependencies:
-      '@mdit/plugin-tex': 0.22.2(markdown-it@14.1.0)
-      '@types/markdown-it': 14.1.2
-      mathjax-full: 3.2.2
-      upath: 2.0.1
-    optionalDependencies:
-      markdown-it: 14.1.0
-
   '@mdit/plugin-tex@0.22.2(markdown-it@14.1.0)':
     dependencies:
       '@types/markdown-it': 14.1.2
@@ -7661,7 +7600,8 @@ snapshots:
     dependencies:
       vue: 3.5.22(typescript@5.9.3)
 
-  '@xmldom/xmldom@0.9.8': {}
+  '@xmldom/xmldom@0.9.8':
+    optional: true
 
   JSONStream@1.3.5:
     dependencies:
@@ -8026,7 +7966,8 @@ snapshots:
 
   comma-separated-tokens@2.0.3: {}
 
-  commander@13.1.0: {}
+  commander@13.1.0:
+    optional: true
 
   commander@14.0.2: {}
 
@@ -8859,7 +8800,8 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  esm@3.2.25: {}
+  esm@3.2.25:
+    optional: true
 
   espree@10.4.0:
     dependencies:
@@ -9655,6 +9597,7 @@ snapshots:
       mhchemparser: 4.2.1
       mj-context-menu: 0.6.1
       speech-rule-engine: 4.1.2
+    optional: true
 
   mdast-util-find-and-replace@3.0.2:
     dependencies:
@@ -9821,7 +9764,8 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  mhchemparser@4.2.1: {}
+  mhchemparser@4.2.1:
+    optional: true
 
   micromark-core-commonmark@2.0.3:
     dependencies:
@@ -9999,7 +9943,8 @@ snapshots:
 
   mitt@3.0.1: {}
 
-  mj-context-menu@0.6.1: {}
+  mj-context-menu@0.6.1:
+    optional: true
 
   mlly@1.8.0:
     dependencies:
@@ -10664,6 +10609,7 @@ snapshots:
       '@xmldom/xmldom': 0.9.8
       commander: 13.1.0
       wicked-good-xpath: 1.3.0
+    optional: true
 
   split2@4.2.0: {}
 
@@ -10990,8 +10936,6 @@ snapshots:
       '@unrs/resolver-binding-win32-ia32-msvc': 1.11.1
       '@unrs/resolver-binding-win32-x64-msvc': 1.11.1
 
-  upath@2.0.1: {}
-
   update-browserslist-db@1.1.4(browserslist@4.27.0):
     dependencies:
       browserslist: 4.27.0
@@ -11304,7 +11248,8 @@ snapshots:
     dependencies:
       isexe: 2.0.0
 
-  wicked-good-xpath@1.3.0: {}
+  wicked-good-xpath@1.3.0:
+    optional: true
 
   word-wrap@1.2.5: {}
 

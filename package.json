@@ -13,7 +13,7 @@
         "lint:eslint": "NODE_ENV=development eslint . --fix",
         "lint:spellcheck": "cspell lint \"(packages|.vitepress)/**/*.{js,ts,mjs,cjs,json,css,less,sass,vue,html,md}\"",
         "commit": "git-cz",
-        "precommit": "pnpm prettier && pnpm lint:eslint && pnpm lint:spellcheck",
+        "precommit": "pnpm prettier && pnpm lint:eslint && pnpm lint:spellcheck && git add .",
         "prepare": "husky",
         "docs:dev": "vitepress dev --host",
         "docs:build": "vitepress build",

@@ -80,7 +80,7 @@ export default defineConfig([
             eqeqeq: ['error', 'smart'], // 要求使用 === 和 !==
             'prefer-promise-reject-errors': 'off', // 要求使用 Error 对象作为 Promise 拒绝的原因
             'no-tabs': ['error', { allowIndentationTabs: true }], // 禁用 tab
-
+            complexity: ['warn', { max: 10 }], // 圈复杂度
             // ts
             '@typescript-eslint/no-unused-vars': [
                 'error',
@@ -252,5 +252,5 @@ export default defineConfig([
             ], // 删除标签中不用于缩进的多个空格
         },
     },
-    eslintConfigPrettier,
+    eslintConfigPrettier, // 关闭 eslint 中与 prettier 冲突的规则
 ])
