@@ -37,6 +37,7 @@ export function getDirAllObjects(
     const stats = getFileStats(realPath)
 
     if (stats.isFile()) {
+        docFileinfo.saveFileInfo(realPath, stats)
         return new FileObject(false, realPath, path.basename(realPath))
     }
 
@@ -85,32 +86,55 @@ function sortFile(a: FileObject, b: FileObject): number {
     return 0
 }
 
-// // 时间计算模块
-// const getTimeAgo = (unit: 'month' | 'week', value: number): Date => {
-//     const date = new Date()
-//     const method = unit === 'month' ? 'Month' : 'Date'
-//     date[`set${method}`](date[`get${method}`]() - value)
-//     return date
-// }
+export type info = {
+    ctime: Date
+    mtime: Date
+    path: string
+}
+class FileInfo {
+    fileInfoList = new Array<info>()
 
-// // 文件过滤核心逻辑
-// const filterFilesByMtime = (dir: string[], thresholdDate: Date): number => {
-//     return dir.filter(async file => {
-//         try {
-//             const stats = await fs.promises.stat(path.resolve('doc', file))
-//             return stats.mtime > thresholdDate
-//         } catch (e) {
-//             console.error(`File check error: ${file}`, e)
-//             return false
-//         }
-//     }).length
-// }
+    saveFileInfo = (path: string, stats: fs.Stats) => {
+        this.fileInfoList.push({
+            ctime: stats.ctime,
+            mtime: stats.mtime,
+            path,
+        })
+        return this
+    }
+}
+function getLastFile(fileInfo: info[], number: number) {
+    return [...fileInfo]
+        .sort((a, b) => b.ctime.getTime() - a.ctime.getTime()) // 按创建时间降序
+        .slice(0, number) // 取前number个
+}
 
-// // 统一查询接口
-// const getUpdatedFilesCount = (
-//     dir: string[],
-//     timeUnit: 'month' | 'week',
-// ): number => {
-//     const threshold = getTimeAgo(timeUnit, timeUnit === 'month' ? 1 : 7)
-//     return filterFilesByMtime(dir, threshold)
-// }
+export const docFileinfo = new FileInfo()
+
+export const fileInfos = () => {
+    const t = { daily: [], other: [] }
+    const gre = /.*\/daily\//
+    docFileinfo.fileInfoList.forEach(v => {
+        if (gre.test(v.path)) {
+            t['daily'].push(v)
+            return
+        }
+        t['other'].push(v)
+    })
+    return {
+        daily: getLastFile(t.daily, 20).map(v => {
+            return {
+                path: v.path,
+                ctime: v.ctime.toLocaleString(),
+                mtime: v.mtime.toLocaleString(),
+            }
+        }),
+        other: getLastFile(t.other, 20).map(v => {
+            return {
+                path: v.path,
+                ctime: v.ctime.toLocaleString(),
+                mtime: v.mtime.toLocaleString(),
+            }
+        }),
+    }
+}

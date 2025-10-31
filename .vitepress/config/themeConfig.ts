@@ -1,30 +1,24 @@
 import { DefaultTheme } from 'vitepress/theme'
-import { getArchive } from './route'
+import { docSidebar, dailySidebar } from './route'
+import { fileInfos } from './file'
 
 const myOption = {
-    // lastFiles: lastFiles(20),
-    // fileTotal,
-    // getMonthlyUpdates,
-    // ...(process.env.NODE_ENV === 'development' ? {
-    //     getWeeklyUpdates,
-    //     archiveDir,
-    //     dir
-    // } : {})
+    dailySidebar,
+    fileInfo: fileInfos(),
 }
 
-const sidebar = await getArchive()
 const themeConfig: DefaultTheme.Config = {
     ...myOption,
     outline: {
         level: [2, 6],
         label: '页面导航',
     },
-    sidebar,
+    sidebar: docSidebar,
     nav: [
         {
             text: '归档',
             link: '/achieve',
-            activeMatch: sidebar.map(item => '^' + item.link).join('|'),
+            activeMatch: docSidebar.map(item => '^' + item.link).join('|'),
         },
         { text: '关于', link: '/about', target: '_self' },
     ],

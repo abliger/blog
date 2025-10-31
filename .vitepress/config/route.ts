@@ -59,3 +59,17 @@ export async function getArchive(): Promise<DefaultTheme.SidebarItem[]> {
         },
     ]
 }
+
+export async function getDailyArchive(): Promise<DefaultTheme.SidebarItem[]> {
+    return [
+        {
+            text: '手记',
+            link: '/daily/',
+            items: await getSidebar('daily'),
+            collapsed: false,
+        },
+    ]
+}
+
+export const docSidebar = await getArchive()
+export const dailySidebar = await getDailyArchive()
