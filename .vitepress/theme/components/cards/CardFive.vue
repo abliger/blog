@@ -1,29 +1,7 @@
 <template>
     <div class="card5">
         <div class="left">
-            <div>
-                <div class="title">文稿</div>
-                <div class="content">
-                    <div v-for="c in contentTitle" :key="c.date">
-                        <div>
-                            <a :href="c.href">{{ c.title }}</a>
-                        </div>
-                        <div>{{ c.data }}</div>
-                    </div>
-                </div>
-            </div>
-            <br />
-            <div>
-                <div class="title">手记</div>
-                <div class="content">
-                    <div v-for="c in contentTitle" :key="c.date">
-                        <div>
-                            <a :href="c.href">{{ c.title }}</a>
-                        </div>
-                        <div>{{ c.data }}</div>
-                    </div>
-                </div>
-            </div>
+            <recent-articles />
         </div>
         <div class="right">
             <div>steam</div>
@@ -35,8 +13,7 @@
 </template>
 <script setup lang="tsx">
     import { onMounted } from 'vue'
-
-    const contentTitle = []
+    import RecentArticles from '../styleComponents/RecentArticles.vue'
 
     onMounted(() => {})
 </script>

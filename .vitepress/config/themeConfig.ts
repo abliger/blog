@@ -1,10 +1,10 @@
 import { DefaultTheme } from 'vitepress/theme'
-import { archiveDir, fileTotal, getMonthlyUpdates, lastFiles } from './file'
+import { getArchive } from './route'
 
 const myOption = {
-    lastFiles: lastFiles(20),
-    fileTotal,
-    getMonthlyUpdates,
+    // lastFiles: lastFiles(20),
+    // fileTotal,
+    // getMonthlyUpdates,
     // ...(process.env.NODE_ENV === 'development' ? {
     //     getWeeklyUpdates,
     //     archiveDir,
@@ -12,20 +12,19 @@ const myOption = {
     // } : {})
 }
 
+const sidebar = await getArchive()
 const themeConfig: DefaultTheme.Config = {
     ...myOption,
     outline: {
         level: [2, 6],
         label: '页面导航',
     },
-    sidebar: archiveDir,
+    sidebar,
     nav: [
         {
             text: '归档',
             link: '/achieve',
-            activeMatch: Object.keys(archiveDir)
-                .map(item => '^' + item)
-                .join('|'),
+            activeMatch: sidebar.map(item => '^' + item.link).join('|'),
         },
         { text: '关于', link: '/about', target: '_self' },
     ],

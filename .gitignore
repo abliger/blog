@@ -8,3 +8,4 @@ project/
 .vscode/
 .idea/
 .DS_Store
+coverage/
