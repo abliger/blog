@@ -58,32 +58,30 @@ export async function getSidebar(
  * @param path 路由对应文件对象
  * @returns link 路由地址
  */
-function haveLink(fo: FileObject, ...p): string | undefined {
-    if (fo.isDir) {
-        const haveIndexFile = fo.includes.some(v => v.name === 'index.md')
-        const haveSameNameFile = fo.includes.some(v => {
-            const s = v.name.split('.')
-            if (s[0] === fo.name && s[s.length - 1] === 'md') {
-                return true
-            }
-            return false
-        })
-        if (haveIndexFile) {
-            fo.includes = fo.includes.filter(v => v.name !== 'index.md')
-            return p.join('/') + '/'
-        } else if (haveSameNameFile) {
-            fo.includes = fo.includes.filter(v => {
-                const s = v.name.split('.')
-                if (s[0] === fo.name && s[s.length - 1] === 'md') {
-                    return false
-                }
-                return true
-            })
-            return p.join('/') + '/' + fo.name + '.md'
-        } else {
-            return undefined
-        }
-    } else {
+function haveLink(fo: FileObject, ...p: string[]): string | undefined {
+    if (!fo.isDir) {
         return p.join('/')
     }
+    const haveIndexFile = fo.includes.some(v => v.name === 'index.md')
+
+    if (haveIndexFile) {
+        fo.includes = fo.includes.filter(v => v.name !== 'index.md')
+        return p.join('/') + '/'
+    }
+    const haveSameNameFile = fo.includes.some(
+        v => !filterSameFile(fo.name, v.name),
+    )
+    if (haveSameNameFile) {
+        fo.includes = fo.includes.filter(v => filterSameFile(fo.name, v.name))
+        return p.join('/') + '/' + fo.name + '.md'
+    }
+    return undefined
+}
+
+function filterSameFile(dirName: string, fileName: string): boolean {
+    const s = fileName.split('.')
+    if (s[0] === dirName && s[s.length - 1] === 'md') {
+        return false
+    }
+    return true
 }

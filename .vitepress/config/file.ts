@@ -31,41 +31,58 @@ export function getDirAllObjects(
     realPath: string,
     ignore?: string[],
 ): FileObject {
-    let stats: fs.Stats | undefined = undefined
+    if (isIgnoredPath(realPath, ignore)) {
+        return undefined
+    }
+    const stats = getFileStats(realPath)
+
+    if (stats.isFile()) {
+        return new FileObject(false, realPath, path.basename(realPath))
+    }
+
+    const fileObjectList = fs
+        .readdirSync(realPath)
+        .map(k => getDirAllObjects(path.resolve(realPath, k), ignore))
+        .filter(v => v)
+        .sort((a, b) => sortFile(a, b))
+    return new FileObject(
+        true,
+        realPath,
+        path.basename(realPath),
+        fileObjectList.length > 0 ? fileObjectList : undefined,
+    )
+}
+
+/**
+ * 获取文件状态信息，处理异常
+ */
+function getFileStats(realPath: string): fs.Stats {
     try {
-        stats = fs.statSync(realPath)
+        return fs.statSync(realPath)
     } catch (err) {
         throw new Error(err)
     }
-    const hasIgnore = ignore?.some(exclude => {
-        return new RegExp(exclude).test(realPath)
-    })
-    if (hasIgnore) {
-        return undefined
+}
+
+/**
+ * 检查路径是否应该被忽略
+ */
+function isIgnoredPath(realPath: string, ignore?: string[]): boolean {
+    if (!ignore || ignore.length === 0) {
+        return false
     }
-    if (stats.isFile()) {
-        return new FileObject(false, realPath, path.basename(realPath))
-    } else {
-        const fileObjects = fs.readdirSync(realPath)
-        const fileObjectList = fileObjects
-            .map(k => getDirAllObjects(path.resolve(realPath, k), ignore))
-            .filter(v => v)
-            .sort((a, b) => {
-                if (a.isDir && !b.isDir) {
-                    return 1
-                }
-                if (!a.isDir && b.isDir) {
-                    return -1
-                }
-                return 0
-            })
-        return new FileObject(
-            true,
-            realPath,
-            path.basename(realPath),
-            fileObjectList.length > 0 ? fileObjectList : undefined,
-        )
+
+    return ignore.some(exclude => new RegExp(exclude).test(realPath))
+}
+
+/**
+ * 排序方法,让文件夹排在后面
+ */
+function sortFile(a: FileObject, b: FileObject): number {
+    if (a.isDir !== b.isDir) {
+        return a.isDir ? 1 : -1
     }
+    return 0
 }
 
 // // 时间计算模块
