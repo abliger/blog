@@ -10,11 +10,15 @@ import Layout from './Layout.vue'
 import { createMermaidRenderer } from 'vitepress-mermaid-renderer'
 import 'style-vue/style.css'
 import { nextTick } from 'vue'
+
+import { NolebaseGitChangelogPlugin } from '@nolebase/vitepress-plugin-git-changelog/client'
+import '@nolebase/vitepress-plugin-git-changelog/client/style.css'
+
 export default {
     extends: ThemeDefault,
-    Layout: Layout,
+    Layout,
     enhanceApp({ app, router }: EnhanceAppContext) {
-        app.use(TwoslashFloatingVue)
+        app.use(TwoslashFloatingVue).use(NolebaseGitChangelogPlugin)
         useComponents(app, DemoPreview)
         const mermaidRenderer = createMermaidRenderer({
             theme: 'dark', // 'default', 'dark', 'forest', 'neutral'

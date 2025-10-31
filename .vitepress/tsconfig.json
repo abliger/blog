@@ -3,9 +3,9 @@
         "allowSyntheticDefaultImports": true,
         "jsx": "preserve",
         "jsxImportSource": "vue",
-        "moduleResolution": "bundler",
+        "moduleResolution": "Bundler",
         "target": "es2022",
-        "module": "es2022",
+        "module": "ESNext",
         "types": ["node"],
         "paths": {
             "style-vue": ["../packages/style-vue/"]

@@ -9,6 +9,8 @@
     import FcIndex from './components/about/FcIndex.vue'
     useFadeInByRoute('VPDoc')
     useToggleTheme()
+    import { NolebaseHighlightTargetedHeading } from '@nolebase/vitepress-plugin-highlight-targeted-heading/client'
+    import '@nolebase/vitepress-plugin-highlight-targeted-heading/client/style.css'
 </script>
 
 <template>
@@ -17,9 +19,9 @@
     </template>
     <template v-else>
         <Layout>
-            <!-- <template #doc-before>
-        {{ path }}
-      </template> -->
+            <template #layout-top>
+                <NolebaseHighlightTargetedHeading />
+            </template>
         </Layout>
     </template>
 </template>
