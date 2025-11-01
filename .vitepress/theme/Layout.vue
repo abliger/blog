@@ -11,17 +11,20 @@
     useToggleTheme()
     import { NolebaseHighlightTargetedHeading } from '@nolebase/vitepress-plugin-highlight-targeted-heading/client'
     import '@nolebase/vitepress-plugin-highlight-targeted-heading/client/style.css'
+    import GridBackground from './components/styleComponents/GridBackground.vue'
 </script>
 
 <template>
-    <template v-if="path === '/about'">
-        <fc-index />
-    </template>
-    <template v-else>
-        <Layout>
-            <template #layout-top>
-                <NolebaseHighlightTargetedHeading />
-            </template>
-        </Layout>
-    </template>
+    <GridBackground>
+        <template v-if="path === '/about'">
+            <fc-index />
+        </template>
+        <template v-else>
+            <Layout>
+                <template #layout-top>
+                    <NolebaseHighlightTargetedHeading />
+                </template>
+            </Layout>
+        </template>
+    </GridBackground>
 </template>
