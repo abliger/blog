@@ -1,8 +1,10 @@
 abliger
 bilibili
 breakline
+catppuccin
 elementplus
 fengsixue
+giscus
 ludong
 maildotru
 mathjax

@@ -9,3 +9,6 @@ project/
 .idea/
 .DS_Store
 coverage/
+.env
+.env.*
+env.config.*

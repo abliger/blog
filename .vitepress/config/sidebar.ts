@@ -9,7 +9,7 @@ export async function getSidebar(
     const basePath = path.resolve(p, needParseChildPath)
     const fileObjects = getDirAllObjects(
         basePath,
-        (await import('./config')).default.ignoreFile,
+        (await import('./env/config')).default.ignoreFile,
     )
     if (needParseChildPath[0] !== '/') {
         needParseChildPath = '/' + needParseChildPath

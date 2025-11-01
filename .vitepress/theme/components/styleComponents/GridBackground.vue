@@ -103,6 +103,7 @@
         position: fixed;
         inset: 0;
         pointer-events: none; /* 允许鼠标事件穿透画布，不影响下层元素 */
+        z-index: -100;
     }
 
     .gridCanvas {
