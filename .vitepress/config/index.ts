@@ -2,8 +2,6 @@ import { type DefaultTheme, type UserConfig } from 'vitepress'
 import themeConfig from './themeConfig'
 import { markdown } from './markdown'
 import { vite } from './vite'
-// import config from './config'
-console.log(process.env)
 
 export default {
     title: 'Blog',
@@ -16,7 +14,10 @@ export default {
         '**/.DS_Store',
         '**/project/**',
     ],
-
+    sitemap: {
+        hostname: 'http://localhost:5173/',
+        lastmodDateOnly: false,
+    },
     metaChunk: true,
     cleanUrls: true,
     lastUpdated: true,

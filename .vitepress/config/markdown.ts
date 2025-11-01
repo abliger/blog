@@ -1,7 +1,8 @@
+import { MarkdownOptions } from 'vitepress'
 // import { transformerTwoslash } from '@shikijs/vitepress-twoslash'
 // import { demoPreviewPlugin } from '@vitepress-code-preview/plugin'
 // import { fileURLToPath, URL } from 'node:url'
-import { MarkdownOptions } from 'vitepress'
+
 // import { UnlazyImages } from '@nolebase/markdown-it-unlazy-img'
 // import mathjax3 from 'markdown-it-mathjax3'
 // import { BiDirectionalLinks } from '@nolebase/markdown-it-bi-directional-links'
@@ -13,7 +14,7 @@ export const markdown = {
     config(_) {
         // const docRoot = fileURLToPath(new URL('../../doc', import.meta.url))
         // md.use(mathjax3)
-        // .use(demoPreviewPlugin, { docRoot })
+        // md.use(demoPreviewPlugin, { docRoot })
         // .use(UnlazyImages(), {
         //     imgElementTag: 'NolebaseUnlazyImg',
         // })

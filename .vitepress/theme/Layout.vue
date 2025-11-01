@@ -20,6 +20,7 @@
         <template v-if="path === '/about'">
             <fc-index />
         </template>
+        <template v-else-if="path === '/tag'"> </template>
         <template v-else>
             <Layout>
                 <!-- <template #not-found> </template> -->
@@ -39,3 +40,8 @@
         </template> -->
     </GridBackground>
 </template>
+<!-- <style lang="css">
+    .VPSidebar {
+        display: none;
+    }
+</style> -->

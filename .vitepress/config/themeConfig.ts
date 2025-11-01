@@ -22,9 +22,7 @@ const themeConfig: DefaultTheme.Config = {
         },
         { text: '关于', link: '/about', target: '_self' },
     ],
-    socialLinks: [
-        // { icon: 'github', link: 'https://github.com/vuejs/vitepress' }
-    ],
+    socialLinks: [{ icon: 'github', link: 'https://github.com/abliger/blog' }],
     search: {
         provider: 'local',
         options: {
