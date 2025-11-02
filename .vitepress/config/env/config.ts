@@ -15,4 +15,5 @@ export default {
         '.*\\.ts',
     ],
     baseUrl: 'http://localhost:5173',
+    steamUrl: 'https://steamcommunity.com/profiles/76561198841892559/',
 }

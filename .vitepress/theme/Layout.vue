@@ -13,6 +13,7 @@
     // import '@nolebase/vitepress-plugin-highlight-targeted-heading/client/style.css'
     import GridBackground from './components/styleComponents/GridBackground.vue'
     import CommentGiscus from './components/styleComponents/CommentGiscus.vue'
+    import ZhuiFan from './components/page/ZhuiFan.vue'
 </script>
 
 <template>
@@ -21,6 +22,7 @@
             <fc-index />
         </template>
         <template v-else-if="path === '/tag'"> </template>
+        <template v-else-if="path === '/zhuifan'"><ZhuiFan /> </template>
         <template v-else>
             <Layout>
                 <!-- <template #not-found> </template> -->

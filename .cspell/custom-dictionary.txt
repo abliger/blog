@@ -1,7 +1,9 @@
 abliger
+animes
 bilibili
 breakline
 catppuccin
+danmaku
 elementplus
 fengsixue
 giscus
@@ -12,10 +14,13 @@ mdit
 neteasecloudmusic
 nolebase
 noncharacter
+ohhhhhh
 pixiv
+rcmd
 rotatex
 rotatez
 scalex
+Sery
 shikijs
 springboot
 springcloud
@@ -27,4 +32,6 @@ timey
 twoslash
 unlazy
 vitepress
+Zhui
+zhuifan
 zshell

@@ -4,17 +4,19 @@
             <recent-articles />
         </div>
         <div class="right">
-            <div>steam</div>
-            <div>图书</div>
-            <div>追番</div>
-            <div>音乐</div>
+            <AdminInfo></AdminInfo>
         </div>
     </div>
 </template>
 <script setup lang="tsx">
     import { onMounted } from 'vue'
     import RecentArticles from '../styleComponents/RecentArticles.vue'
-
+    import AdminInfo from './other/AdminInfo.vue'
     onMounted(() => {})
 </script>
-<style lang="css" scoped></style>
+<style lang="css" scoped>
+    .card5 {
+        display: flex;
+        justify-content: space-around;
+    }
+</style>
