@@ -7,7 +7,7 @@
     import { useToggleTheme } from './animation/themeDark/trans'
     import { useFadeInByRoute } from './animation/VPDoc/docFadeIn'
     import FcIndex from './components/about/FcIndex.vue'
-    useFadeInByRoute('VPDoc')
+    useFadeInByRoute('content-container')
     useToggleTheme()
     // import { NolebaseHighlightTargetedHeading } from '@nolebase/vitepress-plugin-highlight-targeted-heading/client'
     // import '@nolebase/vitepress-plugin-highlight-targeted-heading/client/style.css'
