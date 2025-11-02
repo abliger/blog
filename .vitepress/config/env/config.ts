@@ -14,4 +14,5 @@ export default {
         '.*\\.txt',
         '.*\\.ts',
     ],
+    baseUrl: 'http://localhost:5173',
 }

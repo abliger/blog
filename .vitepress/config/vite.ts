@@ -10,7 +10,14 @@ import vueDevTools from 'vite-plugin-vue-devtools'
 // } from '@nolebase/vitepress-plugin-git-changelog/vite'
 
 // import config from './config'
+import { RSSOptions, RssPlugin } from 'vitepress-plugin-rss'
 
+import config from './env/config'
+const RSS: RSSOptions = {
+    title: "Abliger's blog",
+    baseUrl: config.baseUrl,
+    copyright: 'Copyright (c) 2018-present, Abliger',
+}
 export const vite = {
     assetsInclude: ['**/*.html'],
     plugins: [
@@ -18,6 +25,7 @@ export const vite = {
         vueJsx(),
         Inspector(),
         vueDevTools(),
+        RssPlugin(RSS),
         // ThumbnailHashImages(),
 
         // GitChangelog({

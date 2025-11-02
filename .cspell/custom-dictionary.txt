@@ -8,6 +8,7 @@ giscus
 ludong
 maildotru
 mathjax
+mdit
 neteasecloudmusic
 nolebase
 noncharacter

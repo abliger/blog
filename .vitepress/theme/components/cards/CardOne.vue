@@ -3,7 +3,7 @@
         <div class="left">
             <div class="info">
                 <p>你好,我是</p>
-                <h1>Abliger</h1>
+                <h1><Abliger /></h1>
                 <fc-typing :strs>
                     <span>一名 </span>
                 </fc-typing>
@@ -35,7 +35,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="javascript: void(0)">
+                    <a href="./feed.rss" target="_blank">
                         <IRss />
                     </a>
                 </li>
@@ -54,6 +54,7 @@
     import IMailDot from './icons/IMailDot.vue'
     import INeteaseCloudMusic from './icons/INeteaseCloudMusic.vue'
     import IRss from './icons/IRss.vue'
+    import Abliger from './icons/Abliger.vue'
     const startAnim = inject('startAnim')
     defineProps<{
         strs: string[]
