@@ -3,6 +3,7 @@ import vueJsx from '@vitejs/plugin-vue-jsx'
 
 import Inspector from 'vite-plugin-vue-inspector'
 import vueDevTools from 'vite-plugin-vue-devtools'
+import glsl from 'vite-plugin-glsl'
 // import { ThumbnailHashImages } from '@nolebase/vitepress-plugin-thumbnail-hash/vite'
 // import {
 //     GitChangelog,
@@ -26,6 +27,7 @@ export const vite = {
         Inspector(),
         vueDevTools(),
         RssPlugin(RSS),
+        glsl(),
         // ThumbnailHashImages(),
 
         // GitChangelog({

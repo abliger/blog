@@ -5,7 +5,7 @@
             <div class="arrow-button"></div>
             <div class="arrow-right"></div>
         </div>
-        <a href="/ViewBook" target="_self">图书</a>
+        <a href="/viewBook" target="_self">图书</a>
     </div>
 </template>
 <script lang="tsx" setup></script>

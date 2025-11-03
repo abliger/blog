@@ -14,6 +14,7 @@
     import GridBackground from './components/styleComponents/GridBackground.vue'
     import CommentGiscus from './components/styleComponents/CommentGiscus.vue'
     import ZhuiFan from './components/page/ZhuiFan.vue'
+    import ViewBook from './components/page/ViewBook.vue'
 </script>
 
 <template>
@@ -23,6 +24,7 @@
         </template>
         <template v-else-if="path === '/tag'"> </template>
         <template v-else-if="path === '/zhuifan'"><ZhuiFan /> </template>
+        <template v-else-if="path === '/viewBook'"><ViewBook /> </template>
         <template v-else>
             <Layout>
                 <!-- <template #not-found> </template> -->

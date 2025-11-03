@@ -7,6 +7,9 @@ danmaku
 elementplus
 fengsixue
 giscus
+glsl
+gsap
+highp
 ludong
 maildotru
 mathjax
@@ -16,6 +19,7 @@ nolebase
 noncharacter
 ohhhhhh
 pixiv
+Raycaster
 rcmd
 rotatex
 rotatez
@@ -34,4 +38,5 @@ unlazy
 vitepress
 Zhui
 zhuifan
+Zrange
 zshell
