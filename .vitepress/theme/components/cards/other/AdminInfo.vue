@@ -6,12 +6,15 @@
         <div class="info2">
             <ZhuiFanImg />
         </div>
-        <div class="info3"></div>
-        <div class="info4"></div>
+        <div class="info3">
+            <ViewBook />
+        </div>
+        <!-- <div class="info4"></div> -->
     </div>
 </template>
 <script lang="tsx" setup>
     import SteamInfo from './SteamInfo.vue'
+    import ViewBook from './ViewBook.vue'
     import ZhuiFanImg from './ZhuiFanImg.vue'
 </script>
 <style lang="css" scoped>
@@ -38,8 +41,8 @@
     .info3 {
         grid-area: 3/1/5/5;
     }
-    .info4 {
+    /* .info4 {
         grid-column: 1 /7;
         grid-row: 5/7;
-    }
+    } */
 </style>

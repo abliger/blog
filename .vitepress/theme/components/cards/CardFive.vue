@@ -19,4 +19,8 @@
         display: flex;
         justify-content: space-around;
     }
+    .right {
+        transform: translateY(70px);
+        /* todo 如何 AdminInfo 添加信息,这里要注释掉 */
+    }
 </style>
