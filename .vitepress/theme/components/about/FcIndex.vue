@@ -3,7 +3,7 @@
         <slot>
             <card-one :strs="data.myTag" />
             <card-two />
-            <card-three />
+            <ShuffleText effect="fx3"><card-three /></ShuffleText>
             <card-four />
             <card-five />
             <card-six />
@@ -23,6 +23,7 @@
     import CardSix from '../cards/CardSix.vue'
     import { Loading } from 'style-vue'
     import data from '../data'
+    import ShuffleText from '../styleComponents/ShuffleText.vue'
     const isDev = import.meta.env.DEV
     const endAnim = ref(isDev)
     const startAnim = ref(isDev)

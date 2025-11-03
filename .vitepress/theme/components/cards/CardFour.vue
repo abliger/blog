@@ -18,7 +18,7 @@
             <div class="point point1" />
             <div class="point point2" />
             <div class="point point3" />
-            <h2>去过的地方</h2>
+            <h2><SmokyText text="去过的地方" /></h2>
             <p class="p1">
                 CSS Scroll Driven refers to a technique where CSS is used to
                 create visual effects or animations that are triggered by the
@@ -58,11 +58,15 @@
         <div><img src="/allPeople.jpeg" alt="allPeople" /></div> -->
     </div>
 </template>
+
 <script setup lang="tsx">
+    import SmokyText from '../styleComponents/SmokyText.vue'
+
     // import { inject } from 'vue'
     // import { MarkImg } from 'style-vue'
     // const endAnim = inject('endAnim')
 </script>
+
 <style lang="css" scoped>
     .card4 {
         position: relative;
@@ -75,7 +79,6 @@
         --rang3: 70%;
         --rang4: 80%;
     }
-
     .blur {
         display: flex;
         flex-direction: column;
@@ -343,5 +346,11 @@
             transform: translate(0, 0);
             opacity: 1;
         }
+    }
+</style>
+<style lang="css">
+    h2 .smokyText {
+        animation-timeline: scroll(root);
+        animation-range: 55% 60%;
     }
 </style>

@@ -63,7 +63,6 @@
     .inline::after {
         content: '';
         position: absolute;
-        position: absolute;
         height: 100%;
         width: 2px;
         left: 12px;

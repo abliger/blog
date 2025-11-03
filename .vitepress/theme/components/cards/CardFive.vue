@@ -18,6 +18,7 @@
     .card5 {
         display: flex;
         justify-content: space-around;
+        overflow: hidden;
     }
     .right {
         transform: translateY(70px);
