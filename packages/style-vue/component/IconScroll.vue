@@ -24,6 +24,8 @@
                             :src="icon.imgSrc"
                             :alt="icon.name"
                             :title="icon.name"
+                            loading="eager"
+                            crossorigin="anonymous"
                         />
                     </div>
                 </template>

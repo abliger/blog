@@ -2,7 +2,6 @@ import { DefaultTheme } from 'vitepress/theme'
 import { docSidebar, dailySidebar } from './route'
 import { fileInfos } from './file'
 import { info } from './init'
-console.log(info)
 
 const myOption = {
     dailySidebar,
