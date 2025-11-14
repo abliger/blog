@@ -3,6 +3,7 @@ export default {
         'code',
         '\\.DS_Store',
         'image',
+        'img',
         'examples',
         'assert',
         'css',

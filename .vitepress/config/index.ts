@@ -32,11 +32,4 @@ export default {
     themeConfig,
     markdown,
     vite,
-    vue: {
-        // template: {
-        //     transformAssetUrls: {
-        //         NolebaseUnlazyImg: ['src'],
-        //     },
-        // },
-    },
 } as UserConfig<DefaultTheme.Config>

@@ -29,7 +29,7 @@
     let ctx: CanvasRenderingContext2D | null = null
     let particles: Particle[] = []
     let rafId: number | null = null
-    let img = new Image()
+    let img: HTMLImageElement | undefined = undefined
 
     onMounted(() => {
         if (!canvas.value) return

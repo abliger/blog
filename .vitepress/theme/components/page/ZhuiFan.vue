@@ -36,7 +36,6 @@
     import { List } from '../../../types/fan'
     const list: List[] = useData().theme.value.zhuifan
 
-    console.log(list)
     function parseDate(data: string) {
         const [y, m, d] = data.split(' ')[0].split('-')
         return `${y}年${m}月${d}日`

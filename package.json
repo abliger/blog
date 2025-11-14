@@ -30,7 +30,9 @@
         "json-server": "1.0.0-beta.3",
         "lil-gui": "^0.21.0",
         "normalize-wheel": "^1.0.1",
+        "splitting": "^1.1.0",
         "style-vue": "workspace:*",
+        "three": "^0.181.1",
         "vite": "^7.1.12",
         "vitepress": "2.0.0-alpha.12",
         "vue": "^3.5.22"
@@ -70,7 +72,7 @@
         "lint-staged": "^16.2.6",
         "markdown-it-mathjax3": "^4.3.2",
         "prettier": "^3.6.2",
-        "splitting": "^1.1.0",
+        "rollup-plugin-visualizer": "^6.0.5",
         "typescript-eslint": "^8.46.2",
         "vite-plugin-glsl": "^1.5.4",
         "vite-plugin-vue-devtools": "^8.0.3",

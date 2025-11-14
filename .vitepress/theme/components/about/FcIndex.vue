@@ -23,7 +23,11 @@
     import CardSix from '../cards/CardSix.vue'
     import { Loading } from 'style-vue'
     import data from '../data'
-    import ShuffleText from '../styleComponents/ShuffleText.vue'
+    import { defineClientComponent } from 'vitepress'
+
+    const ShuffleText = defineClientComponent(() => {
+        return import('../styleComponents/ShuffleText.vue')
+    })
     const isDev = import.meta.env.DEV
     const endAnim = ref(isDev)
     const startAnim = ref(isDev)

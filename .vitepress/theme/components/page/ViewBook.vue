@@ -4,7 +4,7 @@
 <script lang="tsx" setup>
     import * as THREE from 'three'
     import { Dimensions, Size } from '../../../types/index'
-     
+
     import { OrbitControls } from 'three/addons/controls/OrbitControls.js'
     import * as GUI from 'lil-gui'
 

@@ -5,7 +5,7 @@
             loop
             autoplay
             preload="auto"
-            src="steam-profile.mp4"
+            :src="steamProfileVideo"
         ></video>
         <a class="link" :href="config.steamUrl" target="_blank">Steam</a>
         <div class="info">
@@ -49,6 +49,7 @@
 </template>
 <script lang="tsx" setup>
     import config from '../../../../config/env/config'
+    import steamProfileVideo from '../../../assert/steam-profile.mp4'
 </script>
 <style lang="css" scoped>
     .steam-detail-info {
