@@ -127,7 +127,7 @@ brew install steipete/tap/imsg
 		"imessage": {
 			"enabled": true,
 			"cliPath": "imsg",
-			"dmPolicy": "pairing",
+			"dmPolicy": "allowlist",
 			"allowFrom": [
 				"+861234567890"
 			],
