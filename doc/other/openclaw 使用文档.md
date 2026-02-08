@@ -134,7 +134,7 @@ brew install steipete/tap/imsg
     }
 ```
 
-在第一次给 iMessage 发送消息后, openclaw 会发送设备匹配验证码.在终端执行 openclaw pairing approve imessage <CODE>.
+在第一次给 iMessage 发送消息后, openclaw 会发送设备匹配验证码.在终端执行 `openclaw pairing approve imessage <CODE>`.
 
 ##### 使用openclaw 发送消息
 
@@ -252,7 +252,7 @@ openclaw 作为一个个人助力,最重要的事情之一就是定时任务,测
 
 ---
 
-生成定时任务时,openclaw 会生成对应**Cron**‌表达式,并给这个定时任务起个名字,以 json 形式保存到 ~/.openclaw/cron/jobs.json 中.
+生成定时任务时,openclaw 会生成对应**Cron**‌表达式,并给这个定时任务起个名字,以 json 形式保存到 `~/.openclaw/cron/jobs.json` 中.
 
 > 详细配置: https://docs.openclaw.ai/tools/web#web_fetch
 
@@ -260,9 +260,9 @@ openclaw 作为一个个人助力,最重要的事情之一就是定时任务,测
 
 #### .openclaw/workspace
 
-1. **`AGENTS.md`**: 这是一份"家园指南"，包含了workspace的基本结构说明，如何使用记忆系统（MEMORY.md和daily memory文件），以及一些基本操作原则。
+1. **`AGENTS.md`**: 这是一份"家园指南"，包含了workspace的基本结构说明，如何使用记忆系统（ MEMORY.md和 daily memory 文件），以及一些基本操作原则。
 
-2. **`SOUL.md`**: 这是openclaw的"灵魂文件"，定义了我的核心性格、价值观和行为风格。它告诉openclaw要"真诚有用"、"有自己的观点"、"尊重隐私"等，塑造了openclaw的"人格"。
+2. **`SOUL.md`**: 这是openclaw的"灵魂文件"，定义了我的核心性格、价值观和行为风格。它告诉 openclaw 要"真诚有用"、"有自己的观点"、"尊重隐私"等，塑造了 openclaw 的"人格"。
 
 3. **`USER.md`**: 这里记录着关于您的信息，比如您的姓名、称呼、偏好等，帮助我了解并个性化地协助您。
 
@@ -275,10 +275,10 @@ openclaw 作为一个个人助力,最重要的事情之一就是定时任务,测
 7. **`BOOTSTRAP.md`**: 这是一个一次性初始化文件，用于首次启动时的引导设置。根据内容，我现在应该删除它（如果还存在的话），因为我已经完成了初始化。
 
    workspace主要用于：
-   1. **临时存储抓取的数据**：当我从各个新闻网站抓取内容时，可能会将原始数据临时存放在workspace中进行处理。
+   1. **临时存储抓取的数据**：当我从各个新闻网站抓取内容时，可能会将原始数据临时存放在 workspace 中进行处理。
    2. **生成过程文件**：在整理和筛选新闻的过程中，可能会生成一些中间文件或草稿。
-   3. **日志记录**：执行任务时的日志和调试信息可能会写入workspace中的日志文件。
-   4. **与您共享的工作成果**：如果需要向您展示某个执行步骤的中间产物，也会放在workspace中。
+   3. **日志记录**：执行任务时的日志和调试信息可能会写入 workspace 中的日志文件。
+   4. **与您共享的工作成果**：如果需要向您展示某个执行步骤的中间产物，也会放在 workspace 中。
    
 这些 markdown 文件会每次对话自动注入.shill 文件不会每次消息中发送,但会发送 skill 名称 和简短描述.再决定使用某的 skill 时,才会读取 skill 文件.
 
@@ -293,7 +293,7 @@ openclaw 作为一个个人助力,最重要的事情之一就是定时任务,测
 ### 发送一条信息,openclaw 发生了什么?
 
 首先发送 `查看当前电脑的内存使用情况` 这句话给大模型
-大模型判断需要使用 skill 需要执行 top -l 1 | head -n 20,从而调用内置的 exec 函数
+大模型判断需要使用 skill 需要执行 `top -l 1 | head -n 20`,从而调用内置的 `exec` 函数
 openclaw 把执行结果发送给大模型
 大模型拿着执行结果输出结果.
 
