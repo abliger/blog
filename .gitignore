@@ -13,3 +13,5 @@ coverage/
 .env.*
 env.config.*
 chunk-*.html
+*.log
+*.tmp
