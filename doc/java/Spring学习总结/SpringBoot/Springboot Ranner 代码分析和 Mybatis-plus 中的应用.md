@@ -51,13 +51,11 @@ ApplicationRunner 和 CommandLineRunner 之间只有方法参数有区别.如果
 	private <R extends Runner> void callRunner(Class<R> type, Runner runner, ThrowingConsumer<R> call) {
 		call.throwing(
 				(message, ex) -> new IllegalStateException("Failed to execute " + ClassUtils.getShortName(type), ex))
+		// 这里主要为了捕获异常,如果不捕获异常,如果 runner 运行时抛出异常,会导致 springboot 启动失败.
 			.accept((R) runner);
 	}
 ```
 
-这里有一个问题 为什么使用 ThrowingConsumer 函数接口.明明之前已经判断了 runner 的类型.
-
-ai 说这里 `.accept((R) runner)` R 会类型擦除.
 ---
 
 下面的方法会在所有的工作完毕后调用,所以 runner 运行时所有的 bean 一定全部注入完毕了.
