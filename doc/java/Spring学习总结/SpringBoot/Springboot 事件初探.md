@@ -80,3 +80,70 @@ public class MyEventListener implements ApplicationListener<MyEvent> {
 - `ApplicationStartedEvent` 上下文已刷新，此时应用已启动但还未准备好接受请求时触发
 - `ApplicationReadyEvent` 上下文已刷新，应用程序已启动且准备好接受请求时触发
 - `ApplicationFailedEvent` Springboot 应用启动失败时触发
+
+# java 事件监听
+
+- 定义事件
+
+```java
+public class ButtonClickEvent extends EventObject {
+    private String buttonName;
+
+    public ButtonClickEvent(Object source, String buttonName) {
+        super(source);
+        this.buttonName = buttonName;
+    }
+
+    public String getButtonName() {
+        return buttonName;
+    }
+}
+```
+- 准备监听器
+
+```java
+public interface ButtonClickListener extends EventListener {
+    void onButtonClick(ButtonClickEvent event);
+}
+public class MyButtonClickListener implements ButtonClickListener {
+    @Override
+    public void onButtonClick(ButtonClickEvent event) {
+        System.out.println("Button '" + event.getButtonName() + "' was clicked!");
+    }
+}
+```
+- 触发事件
+
+```java
+public class MyButton {
+    private List<ButtonClickListener> listeners = new ArrayList<>();
+    private String buttonName;
+
+    public MyButton(String buttonName) {
+        this.buttonName = buttonName;
+    }
+
+    public void addButtonClickListener(ButtonClickListener listener) {
+        listeners.add(listener);
+    }
+
+    public void click() {
+        ButtonClickEvent event = new ButtonClickEvent(this, buttonName);
+        for (ButtonClickListener listener : listeners) {
+            listener.onButtonClick(event);
+        }
+    }
+}
+```
+- 使用事件监听器
+
+```java
+public class Application {
+    public static void main(String[] args) {
+        MyButton button = new MyButton("Submit");
+        MyButtonClickListener listener = new MyButtonClickListener();
+        button.addButtonClickListener(listener);
+        button.click(); // This will trigger the listener's onButtonClick method.
+    }
+}
+```
