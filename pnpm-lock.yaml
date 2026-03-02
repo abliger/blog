@@ -163,6 +163,14 @@ importers:
         specifier: ^10.2.0
         version: 10.2.0(eslint@9.38.0(jiti@2.6.1))
 
+  packages/compiler:
+    dependencies:
+      vitest:
+        specifier: ^4.0.5
+        version: 4.0.5(@types/debug@4.1.12)(@types/node@24.9.2)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.93.2)(sass@1.93.2)(terser@5.44.0)(yaml@2.8.1)
+
+  packages/compiler/lex: {}
+
   packages/style-vue:
     devDependencies:
       '@types/node':
