@@ -1,0 +1,25 @@
+prog:statement+
+
+statement: 
+    'if' paren_expr statement
+    'if' paren_expr statement 'else' statement
+    'while' paren_expr statement
+    'do' statement 'while' paren_expr ';'
+    '{' statement* '}'
+    expr ';'
+    ';'
+
+paren_expr: '(' expr ')'| term
+term: id| integer | paren_expr
+
+expr: test| id '=' expr
+
+test: sum| sum '<' sum
+sum: term| sum '+' term| sum '-' term
+
+id: string
+
+digit : "0" | "1" | ... | "9"
+char:  [a-zA-Z]
+string: char+
+integer :    ["-"] digit { digit }
