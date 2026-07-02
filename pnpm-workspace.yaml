@@ -1,3 +1,9 @@
 packages:
     - 'packages/**'
     - '.vitepress'
+allowBuilds:
+    '@parcel/watcher': true
+    core-js: true
+    esbuild: true
+    unrs-resolver: true
+    vue-demi: true
