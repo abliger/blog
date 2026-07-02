@@ -67,13 +67,15 @@ function getFileStats(realPath: string): fs.Stats {
 
 /**
  * 检查路径是否应该被忽略
+ * 只匹配文件/目录名，避免项目所在路径中的子串误匹配
  */
 function isIgnoredPath(realPath: string, ignore?: string[]): boolean {
     if (!ignore || ignore.length === 0) {
         return false
     }
 
-    return ignore.some(exclude => new RegExp(exclude).test(realPath))
+    const name = path.basename(realPath)
+    return ignore.some(exclude => new RegExp(exclude).test(name))
 }
 
 /**

@@ -26,7 +26,7 @@ export async function getSidebar(
                       collapsed: true,
                   },
               ]
-            : _a.includes.map(v => {
+            : (_a.includes ?? []).map(v => {
                   return {
                       text: v.name.split('.').shift(),
                       link: haveLink(v, basePath, v.name),
@@ -38,7 +38,7 @@ export async function getSidebar(
               })
     }
 
-    return fileObjects.includes
+    return (fileObjects?.includes ?? [])
         .filter(v => v.name !== 'index.md')
         .map(v => {
             const link = haveLink(v, needParseChildPath, v.name)
@@ -62,17 +62,18 @@ function haveLink(fo: FileObject, ...p: string[]): string | undefined {
     if (!fo.isDir) {
         return p.join('/')
     }
-    const haveIndexFile = fo.includes.some(v => v.name === 'index.md')
+    const includes = fo.includes ?? []
+    const haveIndexFile = includes.some(v => v.name === 'index.md')
 
     if (haveIndexFile) {
-        fo.includes = fo.includes.filter(v => v.name !== 'index.md')
+        fo.includes = includes.filter(v => v.name !== 'index.md')
         return p.join('/') + '/'
     }
-    const haveSameNameFile = fo.includes.some(
+    const haveSameNameFile = includes.some(
         v => !filterSameFile(fo.name, v.name),
     )
     if (haveSameNameFile) {
-        fo.includes = fo.includes.filter(v => filterSameFile(fo.name, v.name))
+        fo.includes = includes.filter(v => filterSameFile(fo.name, v.name))
         return p.join('/') + '/' + fo.name + '.md'
     }
     return undefined
